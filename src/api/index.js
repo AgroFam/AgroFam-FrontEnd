@@ -1,8 +1,17 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
-// const API = axios.create({ baseURL: 'https://notionofnetizen.herokuapp.com/' });
-const API = axios.create({ baseURL: 'https://notionofnetizen.up.railway.app' });
-// const API = axios.create({ baseURL: 'http://localhost:5000' });
+let API;
+
+// console.log(process.env.ENVIRONMENT)
+// if (process.env.ENVIRONMENT === 'DEVELOPMENT') {
+//     API = axios.create({ baseURL: 'http://localhost:5000' });
+// } else {
+//     API = axios.create({ baseURL: 'https://notionofnetizen.up.railway.app' });
+// }
+
+API = axios.create({ baseURL: 'http://localhost:5000' });
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
