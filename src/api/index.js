@@ -4,14 +4,11 @@ dotenv.config();
 
 let API;
 
-// console.log(process.env.ENVIRONMENT)
-// if (process.env.ENVIRONMENT === 'DEVELOPMENT') {
-//     API = axios.create({ baseURL: 'http://localhost:5000' });
-// } else {
-//     API = axios.create({ baseURL: 'https://notionofnetizen.up.railway.app' });
-// }
-
-API = axios.create({ baseURL: 'http://localhost:5000' });
+if (process.env.REACT_APP_ENVIRONMENT === 'DEVELOPMENT') {
+    API = axios.create({ baseURL: 'http://localhost:5000' });
+} else if (process.env.REACT_APP_ENVIRONMENT === 'PRODUCTION'){
+    API = axios.create({ baseURL: 'https://notionofnetizen.up.railway.app' });
+}
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
