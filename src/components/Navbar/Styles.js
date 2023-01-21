@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: theme.palette.type === 'dark' ? 'rgba(42, 36, 35, 0.85)' : 'rgba(248, 224, 221, 0.85)',
+    backgroundColor: theme.palette.type === 'dark' ? 'hsla(104, 25%, 10%, 0.85)' : 'hsla(104, 25%, 90%, 0.85)',
     backdropFilter: 'blur(20px)',
     padding: '5px 20px',
     zIndex: "9",

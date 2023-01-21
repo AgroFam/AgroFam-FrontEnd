@@ -22,20 +22,23 @@ const App = () => {
         palette: {
           type: prefersDarkMode ? 'dark' : 'light',
           primary: {
-            main: prefersDarkMode ? '#ffb4a8' : "#9c4236",
+            main: prefersDarkMode ? '#acd370' : "#47680f",
           },
           secondary: {
-            main: prefersDarkMode ? '#e7b6c6' : "#775161",
+            main: prefersDarkMode ? '#ffb86e' : "#8a5100",
           },
           background: {
-            default: prefersDarkMode ? '#201a19' : "#f9edea",
-            paper: prefersDarkMode ? '#2a2423' : "#f8e0dd",
+            default: prefersDarkMode ? '#1b1c18' : "#fefcf5",
+            paper: prefersDarkMode ? '#45483d' : "#e1e4d5",
           },
           error: {
-            main: prefersDarkMode ? '#ffb4ab' : "#ba1a1a",
+            main: prefersDarkMode ? '#ffb4ab' : "#f44336",
+          },
+          warning: {
+            main: prefersDarkMode ? '#ffb86e' : "#8a5100",
           },
           text: {
-            primary: prefersDarkMode ? '#d8c2be' : "#534341",
+            primary: prefersDarkMode ? "#e2f5da" : '#14290a',
           },
         },
         typography: {
