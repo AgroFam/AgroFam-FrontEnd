@@ -24,9 +24,9 @@ const Auth = () => {
     useEffect(() => {
         /* global google */
         google.accounts.id.initialize({
-            client_id: '74117768345-1ui9u3cp9db7vkegavpv4impvpc8tm2r.apps.googleusercontent.com',
+            client_id: '312651318153-duhu95bpdjuv8vj29nndbo48gfc18lbr.apps.googleusercontent.com',
             callback: googleSuccess
-        });
+        }); //google client secret:  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
         google.accounts.id.prompt();
         google.accounts.id.renderButton(
             document.getElementById('signInDiv'),
@@ -34,11 +34,6 @@ const Auth = () => {
         )
         // eslint-disable-next-line 
     }, [])
-
-
-
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -66,7 +61,6 @@ const Auth = () => {
 
     const googleSuccess = async (res) => {
         const actualRes = jwt_decode(res.credential);
-        console.log(actualRes);
         const result = actualRes;
         const token = res?.credential;
 
