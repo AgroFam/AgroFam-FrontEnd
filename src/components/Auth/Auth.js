@@ -8,6 +8,7 @@ import Input from "./Input";
 // import Icon from "./Icon";
 import { signin, signup } from '../../actions/auth';
 import jwt_decode from 'jwt-decode';
+import config from '../../config'
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
@@ -24,9 +25,9 @@ const Auth = () => {
     useEffect(() => {
         /* global google */
         google.accounts.id.initialize({
-            client_id: '312651318153-duhu95bpdjuv8vj29nndbo48gfc18lbr.apps.googleusercontent.com',
+            client_id: config.googleOAuthClientID,
             callback: googleSuccess
-        }); //google client secret:  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
+        }); 
         google.accounts.id.prompt();
         google.accounts.id.renderButton(
             document.getElementById('signInDiv'),

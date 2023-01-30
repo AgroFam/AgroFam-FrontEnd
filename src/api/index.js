@@ -1,14 +1,7 @@
-import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
+import Axios from 'axios';
+import config from '../config';
 
-let API;
-
-if (process.env.REACT_APP_ENVIRONMENT === 'DEVELOPMENT') {
-    API = axios.create({ baseURL: 'http://localhost:5000' });
-} else if (process.env.REACT_APP_ENVIRONMENT === 'PRODUCTION'){
-    API = axios.create({ baseURL: 'https://notionofnetizen.up.railway.app' });
-}
+const API = Axios.create({ baseURL: config.apiBaseURL });
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {

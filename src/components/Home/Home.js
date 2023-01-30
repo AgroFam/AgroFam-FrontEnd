@@ -10,6 +10,7 @@ import ChipInput from 'material-ui-chip-input';
 import jwt_decode from 'jwt-decode';
 
 import { getPostsBySearch } from '../../actions/posts';
+import config from '../../config';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -47,7 +48,7 @@ const Home = () => {
         if (!user) {
             /* global google */
             google.accounts.id.initialize({
-                client_id: '74117768345-1ui9u3cp9db7vkegavpv4impvpc8tm2r.apps.googleusercontent.com',
+                client_id: config.googleOAuthClientID,
                 callback: googleSuccess
             });
             google.accounts.id.prompt();
