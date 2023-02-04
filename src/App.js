@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,49 +22,49 @@ const App = () => {
         palette: {
           type: prefersDarkMode ? 'dark' : 'light',
           primary: {
-            main: prefersDarkMode ? '#acd370' : "#47680f",
+            main: prefersDarkMode ? '#acd370' : '#47680f'
           },
           secondary: {
-            main: prefersDarkMode ? '#ffb86e' : "#8a5100",
+            main: prefersDarkMode ? '#ffb86e' : '#8a5100'
           },
           background: {
-            default: prefersDarkMode ? '#1b1c18' : "#fefcf5",
-            paper: prefersDarkMode ? '#45483d' : "#e1e4d5",
+            default: prefersDarkMode ? '#1b1c18' : '#fefcf5',
+            paper: prefersDarkMode ? '#45483d' : '#e1e4d5'
           },
           error: {
-            main: prefersDarkMode ? '#ffb4ab' : "#f44336",
+            main: prefersDarkMode ? '#ffb4ab' : '#f44336'
           },
           warning: {
-            main: prefersDarkMode ? '#ffb86e' : "#8a5100",
+            main: prefersDarkMode ? '#ffb86e' : '#8a5100'
           },
           text: {
-            primary: prefersDarkMode ? "#e2f5da" : '#14290a',
-          },
+            primary: prefersDarkMode ? '#e2f5da' : '#14290a'
+          }
         },
         typography: {
-          fontFamily: "Lexend Deca",
+          fontFamily: 'Lexend Deca'
         },
         shape: {
-          borderRadius: 10,
-        },
+          borderRadius: 10
+        }
       }),
-    [prefersDarkMode],
+    [prefersDarkMode]
   );
 
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-      <CssBaseline/>
-      <Navbar />
-      <Container maxWidth="xl">
-        <Routes>
-          <Route exact path="/" element={<Navigate replace={true} to='/posts' />} />
-          <Route exact path="/posts" element={<Home />} />
-          <Route exact path="/posts/search" element={<Home />} />
-          <Route path="/posts/:id" element={<PostDetails/>}/>
-          <Route path="/auth" element={(!user ? <Auth /> : <Navigate to='/posts'/>)} />
-          <Route path="/privacypolicy" element={<PrivacyPolicy/>}/>
-        </Routes>
+        <CssBaseline />
+        <Navbar />
+        <Container maxWidth="xl">
+          <Routes>
+            <Route exact path="/" element={<Navigate replace={true} to="/posts" />} />
+            <Route exact path="/posts" element={<Home />} />
+            <Route exact path="/posts/search" element={<Home />} />
+            <Route path="/posts/:id" element={<PostDetails />} />
+            <Route path="/auth" element={!user ? <Auth /> : <Navigate to="/posts" />} />
+            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          </Routes>
         </Container>
       </ThemeProvider>
     </BrowserRouter>
