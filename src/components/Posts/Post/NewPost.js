@@ -17,7 +17,8 @@ import {
   Paper,
   Popper,
   Grow,
-  MenuList
+  MenuList,
+  CardActions
 } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpOutlined';
@@ -180,7 +181,7 @@ const NewPost = ({ post, setCurrentId }) => {
           />
         </div>
       </div>
-      <div className={classes.actions}>
+      <CardActions className={classes.actions}>
         <div>
           <Chip label="Catagory" color="secondary" onClick={()=>{}}/> &#160; 5 min read
         </div>
@@ -202,7 +203,7 @@ const NewPost = ({ post, setCurrentId }) => {
             <Comment />
           </Button>
         </div>
-      </div>
+      </CardActions>
     </Paper>
   );
 };
