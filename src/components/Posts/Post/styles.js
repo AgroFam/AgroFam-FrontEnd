@@ -1,63 +1,44 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
+
 
 export default makeStyles((theme) => ({
   media: {
-    aspectRatio: '1/1'
-  },
-  border: {
-    border: 'solid'
-  },
-  fullHeightCard: {
-    height: '100%'
+    aspectRatio: '1/1',
+    height: '150px',
+    objectFit: 'center',
+    [theme.breakpoints.down('xs')]: {
+      height: '100px',
+    },
+    borderRadius: '12px',
   },
   card: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
     borderRadius: '12px',
-    height: '100%',
-    position: 'relative',
-    maxWidth: '700px'
-  },
-  overlay: {
-    position: 'absolute',
-    top: '20px',
-    left: '20px',
-    color: 'white'
-  },
-  overlay2: {
-    position: 'absolute',
-    top: '20px',
-    right: '20px',
-    color: 'white'
-  },
-  grid: {
-    display: 'flex'
+    maxWidth: '900px'
   },
   details: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '20px'
+    flexDirection: 'column',
+    padding: '1.5em',
   },
-  title: {
-    padding: '0 16px'
+  green: {
+    color: theme.palette.getContrastText(green[500]),
+    backgroundColor: green[500]
   },
-  cardActions: {
-    padding: '0 16px 8px 16px',
+  content: {
     display: 'flex',
-    justifyContent: 'space-between'
+    alignItems: 'center',
+    cursor: 'pointer',
   },
-  message: {
-    display: 'inline-block',
-    height: '44px',
-    // whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    marginBottom: '10px'
+  actions: {
+    padding: '1.5em',
+    display: 'flex',
+    justifyContent: 'space-between',
   },
-  purple: {
-    color: theme.palette.getContrastText(red[500]),
-    backgroundColor: red[500]
+  postDetailsText: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    },
   }
 }));
