@@ -114,8 +114,8 @@ const Post = ({ post, setCurrentId }) => {
                     vertical: 'top',
                     horizontal: 'left'
                   }}>
-                  <MenuItem onClick={handleEdit}>Edit Notion</MenuItem>
-                  <MenuItem onClick={() => dispatch(deletePost(post._id))}>Delete Notion</MenuItem>
+                  <MenuItem onClick={handleEdit}>Edit Blog</MenuItem>
+                  <MenuItem onClick={() => dispatch(deletePost(post._id))}>Delete Blog</MenuItem>
                 </Menu>
               </div>
             )

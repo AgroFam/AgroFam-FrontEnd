@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
     height: '200px',
     objectFit: 'center',
     [theme.breakpoints.down('xs')]: {
-      height: '120px',
+      height: '100px',
     },
     borderRadius: '12px',
     marginRight: '1em',
@@ -16,7 +16,6 @@ export default makeStyles((theme) => ({
   card: {
     borderRadius: '12px',
     maxWidth: '900px',
-    padding: '0.5em'
   },
   details: {
     display: 'flex',
@@ -36,10 +35,23 @@ export default makeStyles((theme) => ({
     padding: '1em',
     display: 'flex',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('xs')]: {
+      padding: '0.7em',
+    },
   },
   postDetailsText: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       display: 'none'
+    },
+  },
+  postDetailsTitleText: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1em'
+    },
+  },
+  cardHeader: {
+    [theme.breakpoints.down('xs')]: {
+      padding: '0.7em',
     },
   }
 }));

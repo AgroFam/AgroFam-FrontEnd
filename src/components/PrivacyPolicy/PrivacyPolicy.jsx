@@ -7,12 +7,12 @@ const PrivacyPolicy = () => {
   return (
     <Container className={classes.PolicyContainer}>
       <Paper className={classes.ContentPaper}>
-        <h1>Privacy Policy for Notion of Netizen</h1>
+        <h1>Privacy Policy for AgroFam</h1>
         <p>
-          At Notion of Netizen MESCOE, accessible from{' '}
-          <a href="https://notionofnetizen.tech">https://notionofnetizen.tech</a>, one of our main
+          At AgroFam , accessible from{' '}
+          <a href="https://agrofam.up.railway.app">https://agrofam.up.railway.app</a>, one of our main
           priorities is the privacy of our visitors. This Privacy Policy document contains types of
-          information that is collected and recorded by Notion of Netizen MESCOE and how we use it.
+          information that is collected and recorded by AgroFam and how we use it.
         </p>
         <p>
           If you have additional questions or require more information about our Privacy Policy, do
@@ -20,8 +20,8 @@ const PrivacyPolicy = () => {
         </p>
         <p>
           This Privacy Policy applies only to our online activities and is valid for visitors to our
-          website with regards to the information that they shared and/or collect in Notion of
-          Netizen MESCOE . This policy is not applicable to any information collected offline or via
+          website with regards to the information that they shared and/or collect in AgroFam.
+          This policy is not applicable to any information collected offline or via
           channels other than this website.
         </p>
       </Paper>
@@ -72,7 +72,7 @@ const PrivacyPolicy = () => {
       <Paper className={classes.ContentPaper}>
         <h2>Log Files</h2>
         <p>
-          Notion of Netizen MESCOE follows a standard procedure of using log files. These files log
+          AgroFam follows a standard procedure of using log files. These files log
           visitors when they visit websites. All hosting companies do this and a part of hosting
           services' analytics. The information collected by log files include internet protocol (IP)
           addresses, browser type, Internet Service Provider (ISP), date and time stamp,
@@ -87,18 +87,18 @@ const PrivacyPolicy = () => {
         <h2>Advertising Partners Privacy Policies</h2>
         <p>
           You may consult this list to find the Privacy Policy for each of the advertising partners
-          of Notion of Netizen MESCOE .
+          of AgroFam.
         </p>
         <p>
           Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web
           Beacons that are used in their respective advertisements and links that appear on Notion
-          of Netizen MESCOE , which are sent directly to users' browser. They automatically receive
+          of Netizen , which are sent directly to users' browser. They automatically receive
           your IP address when this occurs. These technologies are used to measure the effectiveness
           of their advertising campaigns and/or to personalize the advertising content that you see
           on websites that you visit.
         </p>
         <p>
-          Note that Notion of Netizen MESCOE has no access to or control over these cookies that are
+          Note that AgroFam has no access to or control over these cookies that are
           used by third-party advertisers.
         </p>
       </Paper>
@@ -106,7 +106,7 @@ const PrivacyPolicy = () => {
       <Paper className={classes.ContentPaper}>
         <h2>Third Party Privacy Policies</h2>
         <p>
-          Notion of Netizen MESCOE 's Privacy Policy does not apply to other advertisers or
+          AgroFam's Privacy Policy does not apply to other advertisers or
           websites. Thus, we are advising you to consult the respective Privacy Policies of these
           third-party ad servers for more detailed information. It may include their practices and
           instructions about how to opt-out of certain options.{' '}
@@ -185,7 +185,7 @@ const PrivacyPolicy = () => {
           their online activity.
         </p>
         <p>
-          Notion of Netizen MESCOE does not knowingly collect any Personal Identifiable Information
+          AgroFam does not knowingly collect any Personal Identifiable Information
           from children under the age of 13. If you think that your child provided this kind of
           information on our website, we strongly encourage you to contact us immediately and we
           will do our best efforts to promptly remove such information from our records.
