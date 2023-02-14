@@ -18,7 +18,7 @@ import {
   Popper,
   Grow,
   MenuList,
-  CardActions
+  CardActions,
 } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpOutlined';
@@ -90,15 +90,12 @@ const NewPost = ({ post, setCurrentId }) => {
       return likes.find((like) => like === userId) ? (
         <>
           <ThumbUpAltIcon fontSize="small" />
-          &nbsp;
-          {likes.length > 2
-            ? `You and ${likes.length - 1} others`
-            : `${likes.length} like${likes.length > 1 ? 's' : ''}`}
+          &nbsp; {likes.length} like{likes.length > 1 ? 's' : ''}
         </>
       ) : (
         <>
           <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}
+          &nbsp; {likes.length} {likes.length === 1 ? 'Like' : 'Likes'}
         </>
       );
     }
@@ -115,6 +112,7 @@ const NewPost = ({ post, setCurrentId }) => {
     <Paper className={classes.card} elevation={0}>
       <div className={classes.details}>
         <CardHeader
+          className={classes.cardHeader}
           avatar={
             <Avatar className={classes.green} alt={post.name} src={post?.creatorImg}>
               {post?.name?.charAt(0)}
@@ -144,9 +142,9 @@ const NewPost = ({ post, setCurrentId }) => {
                             autoFocusItem={open}
                             id="menu-list-grow"
                             onKeyDown={handleListKeyDown}>
-                            <MenuItem onClick={handleEdit}>Edit Notion</MenuItem>
+                            <MenuItem onClick={handleEdit}>Edit Blog</MenuItem>
                             <MenuItem onClick={() => dispatch(deletePost(post._id))}>
-                              Delete Notion
+                              Delete Blog
                             </MenuItem>
                           </MenuList>
                         </ClickAwayListener>
@@ -162,7 +160,7 @@ const NewPost = ({ post, setCurrentId }) => {
         />
         <div className={classes.content} onClick={()=> navigate(`/posts/${post._id}`)}>
           <CardContent >
-            <Typography component="h6" variant="h6">
+            <Typography className={classes.postDetailsTitleText} component="h6" variant="h6">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nam?
             </Typography>
             <Typography className={classes.postDetailsText} variant="subtitle1" color="textSecondary">
@@ -194,14 +192,14 @@ const NewPost = ({ post, setCurrentId }) => {
             onClick={handleLike}>
             <Likes />
           </Button>
-          <Button
+          <IconButton 
             component={Link}
             disableElevation
             to={`/posts/${post._id}`}
             size="small"
             color="primary">
             <Comment />
-          </Button>
+          </IconButton>
         </div>
       </CardActions>
     </Paper>

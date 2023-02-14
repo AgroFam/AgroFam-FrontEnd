@@ -1,7 +1,7 @@
 {
-  "name": "Notion of Netizen | MESCOE",
+  "name": "AgroFam",
   "short_name": "NoN-MESCOE",
-  "description": "Notion of Netizen is a social media app for the students of MESCOE Pune, created by developers at MESCOE",
+  "description": "AgroFam is a knowledge transform platform for farmers, built as a final year project by students of MESCOE",
   "icons": [
     {
       "src": "/Icons/android-chrome-36x36.png",

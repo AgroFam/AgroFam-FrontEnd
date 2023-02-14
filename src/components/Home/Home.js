@@ -90,7 +90,7 @@ const Home = () => {
                             <TextField
                                 name='search'
                                 varient='outlined'
-                                label='Serch Notions'
+                                label='Serch Blogs'
                                 fullWidth
                                 onKeyPress={handleKeyPress}
                                 value={search}

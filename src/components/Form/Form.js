@@ -95,7 +95,7 @@ const Form = ({ currentId, setCurrentId }) => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header">
-          <Typography>{currentId ? `Editing "${post.title}"` : 'Create a Notion'}</Typography>
+          <Typography>{currentId ? `Editing "${post.title}"` : 'Create a Blog'}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           {/* <Paper className={classes.paper}> */}

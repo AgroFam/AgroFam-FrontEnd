@@ -16,7 +16,7 @@ const Posts = ({ setCurrentId }) => {
       <CircularProgress size="5em" />
     </Paper>
   ) : (
-    <div className={classes.container} container alignItems="stretch" spacing={3}>
+    <div className={classes.container}>
       {posts.map((post) => (
           <NewPost post={post} setCurrentId={setCurrentId} />
       ))}
