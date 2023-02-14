@@ -2,7 +2,7 @@
   "name": "social-media-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://notionofnetizen.herokuapp.com/",
+  "proxy": "https://agrofam-backend-production.up.railway.app",
   "main": "index.js",
   "type": "module",
   "dependencies": {
