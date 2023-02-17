@@ -30,9 +30,13 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
+    padding: '0 0.2em',
+    [theme.breakpoints.down('xs')]: {
+      padding: '0',
+    },
   },
   actions: {
-    padding: '1em',
+    padding: '1.2em',
     display: 'flex',
     justifyContent: 'space-between',
     [theme.breakpoints.down('xs')]: {
@@ -50,6 +54,7 @@ export default makeStyles((theme) => ({
     },
   },
   cardHeader: {
+    padding: '1.2em',
     [theme.breakpoints.down('xs')]: {
       padding: '0.7em',
     },
