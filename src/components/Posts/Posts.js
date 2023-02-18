@@ -18,7 +18,7 @@ const Posts = ({ setCurrentId }) => {
   ) : (
     <div className={classes.container}>
       {posts.map((post) => (
-          <NewPost post={post} setCurrentId={setCurrentId} />
+          <NewPost key={post._id} post={post} setCurrentId={setCurrentId} />
       ))}
     </div>
   );
