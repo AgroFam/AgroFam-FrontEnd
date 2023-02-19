@@ -44,7 +44,7 @@ const NewPost = ({ post, setCurrentId }) => {
   const searchPost = () => {
     if (tags) {
       dispatch(getPostsBySearch({ tags: tags.join(',') }));
-      navigate(`/posts/search?searchQuery=tags=${tags.join(',')}`);
+      navigate(`/posts/search?tags=${tags.join(',')}`);
     } else {
       navigate('/');
     }

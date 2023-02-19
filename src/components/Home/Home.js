@@ -53,7 +53,6 @@ const Home = () => {
       google.accounts.id.prompt();
     }
     if (queryString !== '') {
-      console.log(searchQuery, tagsQuery);
       dispatch(getPostsBySearch({ search: searchQuery, tags: tagsQuery }));
     }
     // eslint-disable-next-line
