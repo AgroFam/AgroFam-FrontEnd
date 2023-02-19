@@ -14,8 +14,10 @@ import { Theme } from './Theme/Theme';
 import BottomNav from './components/BottomNav/BottomNav';
 import Create from './components/Create/Create';
 import Account from './components/Account/Account';
+import useStyles from './styles'
 
 const App = () => {
+  const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'));
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -27,7 +29,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar />
-        <Container style={{marginBottom: '5em'}} maxWidth="xl">
+        <Container className={classes.appContainer} maxWidth="xl">
           <Routes>
             <Route exact path="/" element={<Navigate replace={true} to="/posts" />} />
             <Route exact path="/posts" element={<Home />} />

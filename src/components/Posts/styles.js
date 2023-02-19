@@ -21,5 +21,20 @@ export default makeStyles((theme) => ({
     padding: '20px',
     borderRadius: '15px',
     height: '70vh'
-  }
+  },
+  notFoundImg: {
+    width: '30%',
+    [theme.breakpoints.down('xs')]: {
+      width: '60%',
+    },
+  },
+  notFoundContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '80vh',
+    gap: '2em',
+    textAlign: 'center',
+  },
 }));

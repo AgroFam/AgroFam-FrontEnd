@@ -25,7 +25,7 @@ import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpOutlined';
 import Comment from '@material-ui/icons/Comment';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import { likePost, deletePost } from '../../../actions/posts';
+import { likePost, deletePost, getPostsBySearch } from '../../../actions/posts';
 
 const NewPost = ({ post, setCurrentId }) => {
   const classes = useStyles();
@@ -39,6 +39,16 @@ const NewPost = ({ post, setCurrentId }) => {
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const tags = post.tags;
+
+  const searchPost = () => {
+    if (tags) {
+      dispatch(getPostsBySearch({ tags: tags.join(',') }));
+      navigate(`/posts/search?tags=${tags.join(',')}`);
+    } else {
+      navigate('/');
+    }
+  };
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -181,7 +191,7 @@ const NewPost = ({ post, setCurrentId }) => {
       </div>
       <CardActions className={classes.actions}>
         <div>
-          <Chip label="Catagory" color="secondary" onClick={()=>{}}/> &#160; 5 min read
+          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost}/> &#160; 5 min read
         </div>
         <div>
           <Button
