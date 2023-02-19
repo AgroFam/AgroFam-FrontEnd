@@ -4,7 +4,7 @@ import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
-import Pagination from '../Pagination';
+import Pagination from '../Pagination/Pagination';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 import jwt_decode from 'jwt-decode';
@@ -31,7 +31,7 @@ const Home = () => {
   const googleSuccess = async (res) => {
     const actualRes = jwt_decode(res.credential);
     const result = actualRes;
-    const token = res?.credential;
+    const token = res.credential;
 
     try {
       dispatch({ type: 'AUTH', data: { result, token } });
