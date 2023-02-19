@@ -136,14 +136,16 @@ export default makeStyles((theme) => ({
   },
   inputRoot: {
     color: 'inherit',
-    width: 'inherit'
+    width: 'inherit',
+    paddingLeft: '3em',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: '3em',
     transition: theme.transitions.create('width'),
     width: '100%',
+    color: 'inherit',
+    width: 'inherit',
     [theme.breakpoints.up('sm')]: {
       width: '20ch',
       '&:focus': {
