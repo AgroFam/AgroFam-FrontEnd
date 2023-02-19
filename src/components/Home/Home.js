@@ -26,9 +26,9 @@ const Home = () => {
   const query = useQuery();
   const navigate = useNavigate();
   const page = query.get('page') || 1;
+  const queryString = useLocation().search;
   const searchQuery = query.get('searchQuery');
   const tagsQuery = query.get('tags')
-  const queryString = useLocation().search;
 
   const googleSuccess = async (res) => {
     const actualRes = jwt_decode(res.credential);
@@ -53,7 +53,8 @@ const Home = () => {
       google.accounts.id.prompt();
     }
     if (queryString !== '') {
-      dispatch(getPostsBySearch({ queryString, tagsQuery }));
+      console.log(searchQuery, tagsQuery);
+      dispatch(getPostsBySearch({ search: searchQuery, tags: tagsQuery }));
     }
     // eslint-disable-next-line
   }, [queryString]);
@@ -61,7 +62,7 @@ const Home = () => {
   const searchPost = () => {
     if (search.trim() || tags) {
       dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-      navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+      navigate(`/posts/search?searchQuery=${search}&tags=${tags.join(',')}`);
     } else {
       navigate('/');
     }

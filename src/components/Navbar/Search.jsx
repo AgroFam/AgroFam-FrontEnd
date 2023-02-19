@@ -15,7 +15,7 @@ const Search = () => {
   const searchPost = () => {
     if (search.trim()) {
       dispatch(getPostsBySearch({ search }));
-      navigate(`/posts/search?searchQuery=${search || 'none'}`);
+      navigate(`/posts/search?searchQuery=${search}`);
     } else {
       navigate('/');
     }
