@@ -15,8 +15,7 @@ const NotFound = () => {
         variant='contained'
         color='primary'
         disableElevation
-        tabIndex={2}
-        onClick={navigate('/')}
+        onClick={() => navigate('/')}
       >
         Go Back
       </Button>
