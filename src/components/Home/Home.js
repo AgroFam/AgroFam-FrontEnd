@@ -27,6 +27,8 @@ const Home = () => {
   const navigate = useNavigate();
   const page = query.get('page') || 1;
   const searchQuery = query.get('searchQuery');
+  const tagsQuery = query.get('tags')
+  const queryString = useLocation().search;
 
   const googleSuccess = async (res) => {
     const actualRes = jwt_decode(res.credential);
@@ -50,8 +52,11 @@ const Home = () => {
       });
       google.accounts.id.prompt();
     }
+    if (queryString !== '') {
+      dispatch(getPostsBySearch({ queryString, tagsQuery }));
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [queryString]);
 
   const searchPost = () => {
     if (search.trim() || tags) {

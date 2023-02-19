@@ -191,7 +191,7 @@ const NewPost = ({ post, setCurrentId }) => {
       </div>
       <CardActions className={classes.actions}>
         <div>
-          <Chip label="Catagory" color="secondary" onClick={searchPost}/> &#160; 5 min read
+          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost}/> &#160; 5 min read
         </div>
         <div>
           <Button
