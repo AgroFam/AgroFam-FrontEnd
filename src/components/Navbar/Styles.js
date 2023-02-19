@@ -13,6 +13,7 @@ export default makeStyles((theme) => ({
     backgroundColor:
       theme.palette.type === 'dark' ? 'hsla(104, 25%, 10%, 0.85)' : 'hsla(104, 25%, 90%, 0.85)',
     backdropFilter: 'blur(20px)',
+    borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '5px 20px',
     zIndex: '9',
     [theme.breakpoints.down('sm')]: {

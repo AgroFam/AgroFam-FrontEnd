@@ -12,7 +12,7 @@ const Posts = ({ setCurrentId }) => {
   if (!posts.length && !isLoading) return 'No Posts';
 
   return isLoading ? (
-    <Paper elevation={2} className={classes.loadingPaper}>
+    <Paper elevation={0} className={classes.loadingPaper}>
       <CircularProgress size="5em" />
     </Paper>
   ) : (

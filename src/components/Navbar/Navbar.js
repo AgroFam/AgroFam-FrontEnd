@@ -16,7 +16,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   return (
-    <AppBar className={classes.appBar} position="static" color="inherit" elevation={2}>
+    <AppBar className={classes.appBar} position="static" color="inherit" elevation={0}>
       <div className={classes.menuItems1}>
         <Link to="/" className={classes.brandContainer}>
           <img src={nonLogo} alt="icon" height="40px" />

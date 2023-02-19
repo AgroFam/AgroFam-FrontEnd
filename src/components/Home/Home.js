@@ -113,7 +113,7 @@ const Home = () => {
           </Grid>
         </Grid>
         {!searchQuery && !tags.length && (
-          <Paper className={classes.pagination} elevation={2}>
+          <Paper className={classes.pagination} elevation={0}>
             <Pagination page={page} />
           </Paper>
         )}
