@@ -117,7 +117,7 @@ const Home = () => {
             <Posts setCurrentId={setCurrentId} />
           </Grid>
         </Grid>
-        {!searchQuery && !tags.length && (
+        {!searchQuery && !tagsQuery && (
           <Paper className={classes.pagination} elevation={0}>
             <Pagination page={page} />
           </Paper>
