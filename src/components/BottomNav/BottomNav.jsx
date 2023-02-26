@@ -27,13 +27,13 @@ const BottomNav = () => {
 
   useEffect(() => {
     if (pathName !== '/posts' &&
-        pathName !== '/create' &&
+        pathName !== '/write' &&
         pathName !== '/account') {
       setValue(0);
     } else if (pathName === '/posts') {
       setValue('posts')
-    } else if (pathName === '/create') {
-      setValue('create')
+    } else if (pathName === '/write') {
+      setValue('write')
     } else if (pathName === '/account') {
       setValue('account')
     }
@@ -49,7 +49,7 @@ const BottomNav = () => {
       showLabels
       className={classes.root}>
       <BottomNavigationAction label="Feed" value="posts" icon={<Home />} />
-      <BottomNavigationAction label="Create" value="create" icon={<AddCircle />} />
+      <BottomNavigationAction label="Write" value="write" icon={<AddCircle />} />
       <BottomNavigationAction label="Account" value="account" icon={<Person />} />
     </BottomNavigation>
   );

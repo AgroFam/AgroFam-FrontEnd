@@ -58,7 +58,7 @@ const PostDetails = () => {
               {post.tags.map((tag) => `#${tag} `)}
             </Typography>
             <Typography variant="subtitle1">
-              <strong>Created by:</strong> {post.name}
+              <strong>Written by:</strong> {post.name}
             </Typography>
             <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
             <Divider style={{ margin: '20px 0' }} />
