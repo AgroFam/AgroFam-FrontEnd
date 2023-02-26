@@ -2,9 +2,9 @@ import React from 'react';
 import { AppBar, IconButton, Tooltip } from '@material-ui/core';
 
 import useStyles from './Styles';
-import nonTextForLight from '../../images/nonTextForLight.png';
-import nonTextForDark from '../../images/nonTextForDark.png';
-import nonLogo from '../../images/nonLogo.png';
+import agroFamForLight from '../../images/agroFamTextForLight.png';
+import agroFamTextForDark from '../../images/agroFamTextForDark.png';
+import agroFamLogo from '../../images/agroFamLogo.png';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Search from './Search';
 import ProfileMenu from './ProfileMenu';
@@ -19,8 +19,8 @@ const Navbar = () => {
     <AppBar className={classes.appBar} position="static" color="inherit" elevation={0}>
       <div className={classes.menuItems1}>
         <Link to="/" className={classes.brandContainer}>
-          <img src={nonLogo} alt="icon" height="40px" />
-          <img className={classes.logoText} src={prefersDarkMode ? nonTextForDark : nonTextForLight} alt="icon" height="30px" />
+          <img src={agroFamLogo} alt="icon" height="40px" />
+          <img className={classes.logoText} src={prefersDarkMode ? agroFamTextForDark : agroFamForLight} alt="icon" height="30px" />
         </Link>
         <Search />
       </div>

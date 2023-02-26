@@ -71,9 +71,6 @@ export default makeStyles((theme) => ({
   brandContainer: {
     display: 'flex',
     alignItems: 'center',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none'
-    }
   },
   logoText: {
     [theme.breakpoints.down('sm')]: {
