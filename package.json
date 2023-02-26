@@ -45,7 +45,8 @@
     "start": "npm run build && node index.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "ngrok": "./ngrok http 3000 --host-header='localhost:3000'"
   },
   "eslintConfig": {
     "extends": "react-app"
