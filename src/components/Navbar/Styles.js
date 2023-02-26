@@ -143,7 +143,6 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     transition: theme.transitions.create('width'),
-    width: '100%',
     color: 'inherit',
     width: 'inherit',
     [theme.breakpoints.up('sm')]: {

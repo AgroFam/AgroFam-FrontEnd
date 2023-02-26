@@ -30,8 +30,8 @@ const Navbar = () => {
             <Home/>
           </IconButton>
         </Tooltip>
-        <Tooltip className={classes.menuItemsChild} title="Create">
-          <IconButton onClick={() => navigate('/create')} aria-label="Create">
+        <Tooltip className={classes.menuItemsChild} title="Write">
+          <IconButton onClick={() => navigate('/write')} aria-label="Write">
             <AddCircle />
           </IconButton>
         </Tooltip>
