@@ -98,7 +98,7 @@ const Form = ({ currentId, setCurrentId }) => {
           <Typography>{currentId ? `Editing "${post.title}"` : 'Write a Blog'}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {/* <Paper className={classes.paper}> */}
+
           <form
             autoComplete="off"
             noValidate
@@ -170,7 +170,7 @@ const Form = ({ currentId, setCurrentId }) => {
               </div>
             </div>
           </form>
-          {/* </Paper> */}
+
         </AccordionDetails>
       </Accordion>
     </Paper>

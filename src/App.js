@@ -24,7 +24,7 @@ const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  localStorage.setItem()
+  // localStorage.setItem()
   const theme = Theme(prefersDarkMode);
   
   return (
