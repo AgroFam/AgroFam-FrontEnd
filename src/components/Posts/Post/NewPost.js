@@ -95,6 +95,18 @@ const NewPost = ({ post, setCurrentId }) => {
     }
   };
 
+  const convertToPlain = (html) => {
+
+    // Create a new div element
+    var tempDivElement = document.createElement("div");
+
+    // Set the HTML content with the given value
+    tempDivElement.innerHTML = html;
+
+    // Retrieve the text property of the element 
+    return tempDivElement.textContent || tempDivElement.innerText || "";
+}
+
   const Likes = () => {
     if (likes.length > 0) {
       return likes.find((like) => like === userId) ? (
@@ -171,12 +183,10 @@ const NewPost = ({ post, setCurrentId }) => {
         <div className={classes.content} onClick={()=> navigate(`/posts/${post._id}`)}>
           <CardContent >
             <Typography className={classes.postDetailsTitleText} component="h6" variant="h6">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, nam?
+             {post.title}
             </Typography>
             <Typography className={classes.postDetailsText} variant="subtitle1" color="textSecondary">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et ipsam, deserunt tempore,
-              ratione debitis fugiat perferendis explicabo officiis est sapiente, neque dicta
-              laudantium cupiditate. Voluptate quisquam eum consectetur possimus dolorum!
+              {convertToPlain(post.message).substring(0, 240)}...
             </Typography>
           </CardContent>
           <img

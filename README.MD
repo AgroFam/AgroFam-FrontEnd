@@ -50,3 +50,8 @@ Start the server
   npm run dev
 ```
 
+Ngrok tunnel Command
+```
+./ngrok http 3000 --host-header="localhost:3000"
+```
+

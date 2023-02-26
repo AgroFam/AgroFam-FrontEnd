@@ -96,7 +96,7 @@ const Write = () => {
     setSave('Saving..');
     const contentState = editorState.getCurrentContent();
     const rawData = convertToRaw(contentState);
-    localStorage.setItem('editorState', JSON.stringify(rawData));
+    // localStorage.setItem('editorState', JSON.stringify(rawData));
     setPostData({ ...postData, message: stateToHTML(contentState) });
     handleSaveText();
     setPostError({ ...postError, message: false });
@@ -110,24 +110,20 @@ const Write = () => {
 
   //Form Submit
   const handleSubmit = async () => {
-    if (postData.message.length <= 11) {
-      setPostError({ ...postError, message: true });
-    }
-    if (!postData.tags) {
-      setPostError({ ...postError, tags: true });
-    }
-    if (!postData.title) {
-      setPostError({ ...postError, title: true });
-    }
-    if (!postData.selectedFile) {
-      setPostError({ ...postError, selectedFile: true });
-    }
+    if (postData.message.length <= 11) setPostError({ ...postError, message: true });
+
+    if (!postData.tags) setPostError({ ...postError, tags: true });
+
+    if (!postData.title) setPostError({ ...postError, title: true });
+    
+    if (!postData.selectedFile) setPostError({ ...postError, selectedFile: true });
+    
     if (postData.title && postData.message && postData.tags && postData.selectedFile) {
       console.log(postData.message);
-      createPost(
+      dispatch(createPost(
         { ...postData, name: user?.result?.name, creatorImg: user?.result.picture },
         navigate
-      );
+      ));
       clear();
     }
   };
@@ -267,12 +263,13 @@ const Write = () => {
                 'strikethrough',
                 'undo',
                 'redo',
+                // 'code',
                 'link',
                 'numberList',
                 'bulletList',
                 'save'
               ]}
-              toolbarButtonSize="medium"
+              // toolbarButtonSize="medium"
               label="Start typing..."
               inlineToolbar={true}
               draftEditorProps={{ spellCheck: true }}
