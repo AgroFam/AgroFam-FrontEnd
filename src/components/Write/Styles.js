@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    minHeight: '110vh',
+    minHeight: '130vh',
     width: 'min(100%, 1000px)',
     padding: '1.5em',
     gap: '1em',
