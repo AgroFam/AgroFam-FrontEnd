@@ -20,7 +20,7 @@ export default makeStyles((theme) => ({
       padding: '0 1em',
     },
     [theme.breakpoints.down('xs')]: {
-      minHeight: '73vh',
+      minHeight: '100vh',
     },
   },
   loginImg: {
