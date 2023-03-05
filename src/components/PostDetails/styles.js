@@ -1,38 +1,62 @@
+import { green } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  media: {
-    borderRadius: '15px',
-    objectFit: 'cover',
-    width: '100%',
-    maxHeight: '600px',
-    aspectRatio: '1/1'
+  container: {
+    margin: '90px auto 20px',
+    [theme.breakpoints.down('xs')]: {
+      padding: '0'
+    },
   },
-  card: {
+  blogHeader: {
+    padding: '1em 0',
     display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(2),
+  },
+  blogHeaderAvatar: {
+    width: '45px',
+    height: '45px',
+    color: theme.palette.getContrastText(green[500]),
+    backgroundColor: green[500]
+  },
+  blogHeaderTitle: {
+    fontSize: '1.3em',
+    color: theme.palette.text.primary,
+  },
+  blogHeaderDate: {
+    color: theme.palette.text.secondary,
+    fontSize: '0.9em'
+  },
+  blogTitle: {
+    fontSize: '4em',
+    color: theme.palette.text.primary,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '2.5em'
+    },
+  },
+  blogContent: {
+    fontSize: '1.5em',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.3em'
+    },
+    '& p': {
+      paddingBottom: '1em'
+    },
+    '& a': {
+      color: theme.palette.secondary.main
+    },
+  },
+  media: {
+    margin: '2em 0',
     width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      flexWrap: 'wrap',
-      flexDirection: 'column-reverse'
-    }
-  },
-  section: {
-    borderRadius: '20px',
-    margin: '10px',
-    flex: 1
-  },
-  imageSection: {
-    marginLeft: '20px',
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: 0
-    }
+    borderRadius: theme.shape.borderRadius,
   },
   recommendedPosts: {
     display: 'flex',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column'
     },
-    marginTop: '2em'
   },
   loadingPaper: {
     display: 'flex',
