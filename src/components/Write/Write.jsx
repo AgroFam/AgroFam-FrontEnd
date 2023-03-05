@@ -12,10 +12,9 @@ import {
   MenuItem
 } from '@material-ui/core';
 import { Clear, PostAdd } from '@material-ui/icons';
-import { createPost, updatePost } from '../../actions/posts';
+import { createPost } from '../../actions/posts';
 import { useDispatch } from 'react-redux';
 import useStyles from './Styles';
-import { convertToRaw } from 'draft-js';
 import LoginImg from '../../images/Login.svg';
 import placeholderImg from '../../images/PlaceholderImg.png';
 import { stateToHTML } from 'draft-js-export-html';
@@ -54,10 +53,11 @@ const Write = () => {
     tags: false,
     selectedFile: false
   });
-  const [save, setSave] = useState('Saved');
-  const editorState = localStorage.getItem('editorState');
+  const [save, setSave] = useState('✅ Saved');
+  const localEditorState = localStorage.getItem('editorState');
   const user = JSON.parse(localStorage.getItem('profile'));
   const fileUploadRef = useRef();
+  // const textEditorRef = useRef();
 
   //Function to convert file into base64 string
   const convertBase64 = (file) => {
@@ -83,22 +83,22 @@ const Write = () => {
   // mui rte Save
   const handleSave = (data) => {
     localStorage.setItem('editorState', data);
+    handleSaveText();
   };
 
   const handleSaveText = () => {
+    setSave('⏳ Saving..');
     setTimeout(() => {
-      setSave('Saved');
+      setSave('✅ Saved');
     }, 2000);
   };
 
   // mui rte handleChange
   const handleEditorChange = (editorState) => {
-    setSave('Saving..');
+    
     const contentState = editorState.getCurrentContent();
-    const rawData = convertToRaw(contentState);
-    // localStorage.setItem('editorState', JSON.stringify(rawData));
+    // const rawData = convertToRaw(contentState);
     setPostData({ ...postData, message: stateToHTML(contentState) });
-    handleSaveText();
     setPostError({ ...postError, message: false });
   };
 
@@ -110,20 +110,22 @@ const Write = () => {
 
   //Form Submit
   const handleSubmit = async () => {
-    if (postData.message.length <= 11) setPostError({ ...postError, message: true });
+    console.log(postData.message.length <= 200)
+    if (postData.message.length <= 200) setPostError({ ...postError, message: true });
 
     if (!postData.tags) setPostError({ ...postError, tags: true });
 
     if (!postData.title) setPostError({ ...postError, title: true });
-    
+
     if (!postData.selectedFile) setPostError({ ...postError, selectedFile: true });
-    
-    if (postData.title && postData.message && postData.tags && postData.selectedFile) {
-      console.log(postData.message);
-      dispatch(createPost(
-        { ...postData, name: user?.result?.name, creatorImg: user?.result.picture },
-        navigate
-      ));
+
+    if (postData.title && postData.message.length >= 200 && postData.tags && postData.selectedFile) {
+      dispatch(
+        createPost(
+          { ...postData, name: user?.result?.name, creatorImg: user?.result.picture },
+          navigate
+        )
+      );
       clear();
     }
   };
@@ -131,7 +133,7 @@ const Write = () => {
   const NotLoggedInComponent = () => {
     return (
       <div className={classes.NotLoggedInComponent} elevation={0}>
-        <img className={classes.loginImg} src={LoginImg} alt="Login image" />
+        <img className={classes.loginImg} src={LoginImg} alt="Login" />
         <Typography variant="h6" align="center" style={{ padding: '0.5em' }}>
           Please Sign in to Write new Blog.
         </Typography>
@@ -249,12 +251,12 @@ const Write = () => {
               ))}
             </TextField>
             {postError.message ? (
-              <Typography color="error"> Please Write Something to post... 👇 </Typography>
+              <Typography color="error"> Please Write Something to post... <span role="img">👇</span> </Typography>
             ) : (
               ''
             )}
             <MUIRichTextEditor
-              defaultValue={editorState}
+              defaultValue={localEditorState}
               controls={[
                 'title',
                 'bold',
@@ -263,13 +265,11 @@ const Write = () => {
                 'strikethrough',
                 'undo',
                 'redo',
-                // 'code',
                 'link',
                 'numberList',
                 'bulletList',
                 'save'
               ]}
-              // toolbarButtonSize="medium"
               label="Start typing..."
               inlineToolbar={true}
               draftEditorProps={{ spellCheck: true }}

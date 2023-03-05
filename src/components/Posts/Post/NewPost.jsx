@@ -26,6 +26,7 @@ import Comment from '@material-ui/icons/Comment';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { likePost, deletePost, getPostsBySearch } from '../../../actions/posts';
+import { convertToPlain, getMinutesToRead } from '../../../utils/utils';
 
 const NewPost = ({ post, setCurrentId }) => {
   const classes = useStyles();
@@ -94,18 +95,6 @@ const NewPost = ({ post, setCurrentId }) => {
       setLikes([...post.likes, userId]);
     }
   };
-
-  const convertToPlain = (html) => {
-
-    // Create a new div element
-    var tempDivElement = document.createElement("div");
-
-    // Set the HTML content with the given value
-    tempDivElement.innerHTML = html;
-
-    // Retrieve the text property of the element 
-    return tempDivElement.textContent || tempDivElement.innerText || "";
-}
 
   const Likes = () => {
     if (likes.length > 0) {
@@ -201,7 +190,7 @@ const NewPost = ({ post, setCurrentId }) => {
       </div>
       <CardActions className={classes.actions}>
         <div>
-          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost}/> &#160; 5 min read
+          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost}/> &#160; {getMinutesToRead(post.message)} Minute Read
         </div>
         <div>
           <Button
