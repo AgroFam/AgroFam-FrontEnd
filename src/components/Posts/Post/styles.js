@@ -49,8 +49,8 @@ export default makeStyles((theme) => ({
     },
   },
   postDetailsTitleText: {
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '1em'
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.3em'
     },
   },
   cardHeader: {

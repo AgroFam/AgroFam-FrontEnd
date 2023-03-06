@@ -11,7 +11,11 @@ const useStyles = makeStyles((theme) => ({
     height: '4.5em',
     position: 'fixed',
     bottom: 0,
-    borderTop: `1px solid ${theme.palette.divider}`
+    borderTop: `1px solid ${theme.palette.divider}`,
+    display: 'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex'
+    }
   }
 }));
 
@@ -19,17 +23,22 @@ const BottomNav = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [value, setValue] = useState('posts');
-
+  const pathName = window.location.pathname;
 
   useEffect(() => {
-    if (window.location.pathname !== '/posts' &&
-        window.location.pathname !== '/create' &&
-        window.location.pathname !== '/account') {
+    if (pathName !== '/posts' &&
+        pathName !== '/write' &&
+        pathName !== '/account') {
       setValue(0);
+    } else if (pathName === '/posts') {
+      setValue('posts')
+    } else if (pathName === '/write') {
+      setValue('write')
+    } else if (pathName === '/account') {
+      setValue('account')
     }
-  }, [window.location.pathname])
+  }, [pathName])
   
-
   return (
     <BottomNavigation 
       value={value}
@@ -40,7 +49,7 @@ const BottomNav = () => {
       showLabels
       className={classes.root}>
       <BottomNavigationAction label="Feed" value="posts" icon={<Home />} />
-      <BottomNavigationAction label="Create" value="create" icon={<AddCircle />} />
+      <BottomNavigationAction label="Write" value="write" icon={<AddCircle />} />
       <BottomNavigationAction label="Account" value="account" icon={<Person />} />
     </BottomNavigation>
   );

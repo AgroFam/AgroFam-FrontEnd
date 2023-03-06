@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Paper, Typography, CircularProgress, Divider, Grid } from '@material-ui/core/';
+import { Paper, Typography, CircularProgress, Divider, Grid, Container } from '@material-ui/core/';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { useParams } from 'react-router-dom';
@@ -7,7 +7,8 @@ import { getPost, getPostsBySearch } from '../../actions/posts';
 
 import CommentSection from './CommentSection';
 import useStyles from './styles';
-import Post from '../Posts/Post/Post';
+import NewPost from '../Posts/Post/NewPost';
+import BlogHeader from './BlogHeader';
 
 const PostDetails = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
@@ -29,8 +30,6 @@ const PostDetails = () => {
 
   if (!post) return null;
 
-  // const openPost = (_id) => navigate(`/posts/${_id}`);
-
   if (isLoading) {
     return (
       <Paper elevation={2} className={classes.loadingPaper}>
@@ -43,59 +42,58 @@ const PostDetails = () => {
 
   return (
     <>
-      <Paper
-        style={{ padding: '20px', borderRadius: '15px', margin: '100px 0 12px' }}
-        elevation={2}>
-        <div className={classes.card}>
-          <div className={classes.section}>
-            <Typography gutterBottom variant="h6" component="h2">
-              <strong>{post.title}</strong>
-            </Typography>
-            <Typography gutterBottom variant="body2" color="textSecondary" component="p">
-              {post.message}
-            </Typography>
-            <Typography gutterBottom variant="caption" color="textSecondary" component="h2">
-              {post.tags.map((tag) => `#${tag} `)}
-            </Typography>
-            <Typography variant="subtitle1">
-              <strong>Created by:</strong> {post.name}
-            </Typography>
-            <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
-            <Divider style={{ margin: '20px 0' }} />
+      <Container className={classes.container} maxWidth="md">
+        <BlogHeader post={post} />
+        <Typography className={classes.blogTitle} gutterBottom variant="h2" component="h2">
+          <strong>{post.title}</strong>
+        </Typography>
+        <img
+          className={classes.media}
+          src={
+            `${post.selectedFile}?tr=w-1000` ||
+            'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
+          }
+          alt={post.title}
+        />
+        <Typography
+          className={classes.blogContent}
+          gutterBottom
+          paragraph
+          variant="body1"
+          color="textSecondary">
+          <div dangerouslySetInnerHTML={{__html: post.message}} />
+        </Typography>
+        <Typography gutterBottom variant="caption" color="textSecondary">
+          {post.tags.map((tag) => `#${tag} `)}
+        </Typography>
+        <Typography variant="subtitle1">
+          <strong>Written by:</strong> {post.name}
+        </Typography>
+        <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+        <Divider style={{ margin: '20px 0' }} />
 
-            <CommentSection post={post} />
+        <CommentSection post={post} />
 
+        {!!recommendedPosts.length && (
+          <>
             <Divider style={{ margin: '20px 0' }} />
-          </div>
-          <div className={classes.imageSection}>
-            <img
-              className={classes.media}
-              src={
-                `${post.selectedFile}?tr=w-1000` ||
-                'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
-              }
-              alt={post.title}
-            />
-          </div>
-        </div>
-      </Paper>
-      {!!recommendedPosts.length && (
-        <div className={classes.section}>
-          <Typography gutterBottom variant="h5">
-            You might also like:
-          </Typography>
-          <Divider />
-          <div className={classes.recommendedPosts}>
-            <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-              {recommendedPosts.map((post) => (
-                <Grid key={post._id} item xs={12} sm={12} md={3}>
-                  <Post post={post} />
+            <div className={classes.section}>
+              <Typography gutterBottom variant="h5">
+                You might also like:
+              </Typography>
+              <div className={classes.recommendedPosts}>
+                <Grid container alignItems="stretch" spacing={3}>
+                  {recommendedPosts.map((post) => (
+                    <Grid key={post._id} item xs={12} sm={12} md={12}>
+                      <NewPost post={post} />
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
-          </div>
-        </div>
-      )}
+              </div>
+            </div>
+          </>
+        )}
+      </Container>
     </>
   );
 };

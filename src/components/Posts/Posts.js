@@ -4,15 +4,16 @@ import { useSelector } from 'react-redux';
 
 import useStyles from './styles';
 import NewPost from './Post/NewPost';
+import NotFound from './NotFound';
 
 const Posts = ({ setCurrentId }) => {
   const { posts, isLoading } = useSelector((state) => state.posts);
   const classes = useStyles();
 
-  if (!posts.length && !isLoading) return 'No Posts';
+  if (!posts.length && !isLoading) return <NotFound />;
 
   return isLoading ? (
-    <Paper elevation={2} className={classes.loadingPaper}>
+    <Paper elevation={0} className={classes.loadingPaper}>
       <CircularProgress size="5em" />
     </Paper>
   ) : (

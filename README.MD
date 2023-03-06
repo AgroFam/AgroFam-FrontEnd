@@ -50,8 +50,8 @@ Start the server
   npm run dev
 ```
 
-For exposing with ngrok
-```bash
-  ./ngrok http 3000 --host-header="localhost:3000"
+Ngrok tunnel Command
+```
+ngrok http 3000 --host-header="localhost:3000"
 ```
 

@@ -82,7 +82,7 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
       <Paper className={classes.paper} elevation={2}>
         <Typography variant="h6" align="center" style={{ padding: '0.5em' }}>
-          Please Sign in to create new post and like other's posts.
+          Please Sign in to Write new post and like other's posts.
         </Typography>
       </Paper>
     );
@@ -95,10 +95,10 @@ const Form = ({ currentId, setCurrentId }) => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header">
-          <Typography>{currentId ? `Editing "${post.title}"` : 'Create a Blog'}</Typography>
+          <Typography>{currentId ? `Editing "${post.title}"` : 'Write a Blog'}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {/* <Paper className={classes.paper}> */}
+
           <form
             autoComplete="off"
             noValidate
@@ -170,7 +170,7 @@ const Form = ({ currentId, setCurrentId }) => {
               </div>
             </div>
           </form>
-          {/* </Paper> */}
+
         </AccordionDetails>
       </Accordion>
     </Paper>

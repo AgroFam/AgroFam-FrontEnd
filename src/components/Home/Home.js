@@ -4,7 +4,7 @@ import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
-import Pagination from '../Pagination';
+import Pagination from '../Pagination/Pagination';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 import jwt_decode from 'jwt-decode';
@@ -26,12 +26,14 @@ const Home = () => {
   const query = useQuery();
   const navigate = useNavigate();
   const page = query.get('page') || 1;
+  const queryString = useLocation().search;
   const searchQuery = query.get('searchQuery');
+  const tagsQuery = query.get('tags')
 
   const googleSuccess = async (res) => {
     const actualRes = jwt_decode(res.credential);
     const result = actualRes;
-    const token = res?.credential;
+    const token = res.credential;
 
     try {
       dispatch({ type: 'AUTH', data: { result, token } });
@@ -50,13 +52,16 @@ const Home = () => {
       });
       google.accounts.id.prompt();
     }
+    if (queryString !== '') {
+      dispatch(getPostsBySearch({ search: searchQuery, tags: tagsQuery }));
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [queryString]);
 
   const searchPost = () => {
     if (search.trim() || tags) {
       dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-      navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+      navigate(`/posts/search?searchQuery=${search}&tags=${tags.join(',')}`);
     } else {
       navigate('/');
     }
@@ -112,8 +117,8 @@ const Home = () => {
             <Posts setCurrentId={setCurrentId} />
           </Grid>
         </Grid>
-        {!searchQuery && !tags.length && (
-          <Paper className={classes.pagination} elevation={2}>
+        {!searchQuery && !tagsQuery && (
+          <Paper className={classes.pagination} elevation={0}>
             <Pagination page={page} />
           </Paper>
         )}
