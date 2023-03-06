@@ -52,6 +52,6 @@ Start the server
 
 Ngrok tunnel Command
 ```
-./ngrok http 3000 --host-header="localhost:3000"
+ngrok http 3000 --host-header="localhost:3000"
 ```
 
