@@ -8,7 +8,7 @@ const rootUrlRegex = /http:\/\/localhost:3000\/*/gm;
 
 let API_URL;
 if (rootUrlRegex.test(ROOT_URL)) {
-  API_URL = 'https://agrofam-backend-production.up.railway.app';
+  API_URL = 'http://localhost:5000';
 } else {
   API_URL = 'https://agrofam-backend-production.up.railway.app';
 }
