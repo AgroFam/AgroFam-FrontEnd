@@ -3,8 +3,10 @@ import { Avatar, Typography } from '@material-ui/core'
 import useStyles from './styles';
 import { getHumanReadableDate, getMinutesToRead } from '../../utils/utils';
 import TextToSpeech from '../TextToSpeech/TextToSpeech';
+import { useSelector } from 'react-redux';
 
-const BlogHeader = ({ post }) => {
+const BlogHeader = () => {
+  const post = useSelector((state) => state.posts.post);
   const classes = useStyles();
   return (
     <div className={classes.blogHeader}>

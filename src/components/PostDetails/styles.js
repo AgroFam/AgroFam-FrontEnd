@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
     fontSize: '4em',
     color: theme.palette.text.primary,
     [theme.breakpoints.down('xs')]: {
-      fontSize: '2.5em'
+      fontSize: '2em'
     },
   },
   blogContent: {
@@ -46,11 +46,19 @@ export default makeStyles((theme) => ({
       fontSize: '1.3em'
     },
     '& p': {
-      paddingBottom: '1em'
+      paddingBottom: '2em'
     },
     '& a': {
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
     },
+    '& h2': {
+      color: theme.palette.text.primary,
+    },
+    '& code': {
+      backgroundColor: 'rgba(110,118,129,0.4)',
+      borderRadius: theme.shape.borderRadius,
+      padding: '0 0.2em',
+    }
   },
   media: {
     margin: '2em 0',
