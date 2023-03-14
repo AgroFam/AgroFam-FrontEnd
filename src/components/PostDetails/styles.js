@@ -24,9 +24,14 @@ export default makeStyles((theme) => ({
     fontSize: '1.3em',
     color: theme.palette.text.primary,
   },
-  blogHeaderDate: {
+  blogHeaderSubText: {
     color: theme.palette.text.secondary,
-    fontSize: '0.9em'
+    fontSize: '0.9em',
+    '& .MuiButton-label': {
+      color: theme.palette.text.secondary,
+      fontSize: '0.9em',
+      textTransform: 'none'
+    }
   },
   blogTitle: {
     fontSize: '4em',
