@@ -2,8 +2,11 @@ import React from 'react'
 import { Avatar, Typography } from '@material-ui/core'
 import useStyles from './styles';
 import { getHumanReadableDate, getMinutesToRead } from '../../utils/utils';
+import TextToSpeech from '../TextToSpeech/TextToSpeech';
+import { useSelector } from 'react-redux';
 
-const BlogHeader = ({ post }) => {
+const BlogHeader = () => {
+  const post = useSelector((state) => state.posts.post);
   const classes = useStyles();
   return (
     <div className={classes.blogHeader}>
@@ -13,13 +16,13 @@ const BlogHeader = ({ post }) => {
       <div>
         <Typography className={classes.blogHeaderTitle}> { post.name } </Typography>
         <Typography
-          className={classes.blogHeaderDate}
+          className={classes.blogHeaderSubText}
         >
           {getHumanReadableDate(post.createdAt)}
           &nbsp; &#8226; &nbsp;
           {getMinutesToRead(post.message)} Minutes Read
           &nbsp; &#8226; &nbsp;
-          ▶️ Listen
+          <TextToSpeech />
         </Typography>
       </div>
     </div>

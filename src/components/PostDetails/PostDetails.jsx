@@ -43,7 +43,7 @@ const PostDetails = () => {
   return (
     <>
       <Container className={classes.container} maxWidth="md">
-        <BlogHeader post={post} />
+        <BlogHeader />
         <Typography className={classes.blogTitle} gutterBottom variant="h2" component="h2">
           <strong>{post.title}</strong>
         </Typography>
