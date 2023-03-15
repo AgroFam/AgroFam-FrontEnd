@@ -11,7 +11,7 @@ import {
   CardActionArea,
   MenuItem
 } from '@material-ui/core';
-import { Clear, PostAdd } from '@material-ui/icons';
+import { Clear, PostAddRounded } from '@material-ui/icons';
 import { createPost } from '../../actions/posts';
 import { useDispatch } from 'react-redux';
 import useStyles from './Styles';
@@ -171,7 +171,7 @@ const Write = () => {
             variant="contained"
             color="primary"
             disableElevation
-            endIcon={<PostAdd />}
+            endIcon={<PostAddRounded />}
             onClick={handleSubmit}>
             Publish
           </Button>

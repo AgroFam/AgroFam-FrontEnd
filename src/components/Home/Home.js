@@ -9,6 +9,7 @@ import jwt_decode from 'jwt-decode';
 
 import { getPostsBySearch } from '../../actions/posts';
 import config from '../../config';
+import News from '../News/News';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -55,16 +56,18 @@ const Home = () => {
   }, [queryString]);
 
   return (
-    <Grow in>
-      <Container className={classes.homeContainer} maxWidth="xl" style={{ margin: '100px 0 20px' }}>
+      <Container className={classes.homeContainer} maxWidth="lg" style={{ margin: '100px auto 20px' }}>
         <Grid
           container
           className={classes.gridContainer}
           justifyContent="space-between"
           alignItems="stretch"
           spacing={3}>
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid item xs={12} sm={12} md={8}>
             <Posts setCurrentId={setCurrentId} />
+          </Grid>
+          <Grid className={classes.newsGrid} item xs={12} sm={12} md={4}>
+            <News />
           </Grid>
         </Grid>
         {!searchQuery && !tagsQuery && (
@@ -73,7 +76,6 @@ const Home = () => {
           </Paper>
         )}
       </Container>
-    </Grow>
   );
 };
 

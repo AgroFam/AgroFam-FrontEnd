@@ -102,3 +102,13 @@ export const deletePost = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const getArticlesFromSearch = (searchQuery) => async (dispatch) => {
+  try {
+    const query = searchQuery.toLowerCase().replace(/ /g, "_");
+    const respose = await api.getArticlesFromSearch(query);
+    console.log(respose)
+  } catch (error) {
+    console.log(error.message);
+  }
+};
