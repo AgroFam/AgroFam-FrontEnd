@@ -16,6 +16,7 @@ import BottomNav from './components/BottomNav/BottomNav';
 import Write from './components/Write/Write';
 import Account from './components/Account/Account';
 import useStyles from './styles'
+import NewsPage from './components/News/NewsPage';
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
             <Route exact path="/" element={<Navigate replace={true} to="/posts" />} />
             <Route exact path="/posts" element={<Home />} />
             <Route exact path="/write" element={<Write />} />
+            <Route exact path="/news" element={<NewsPage />} />
             <Route exact path="/account" element={<Account />} />
             <Route exact path="/posts/search" element={<Home />} />
             <Route path="/posts/:id" element={<PostDetails />} />

@@ -2,7 +2,8 @@ import Axios from 'axios';
 import config from '../config';
 
 const API = Axios.create({ baseURL: config.apiBaseURL });
-
+const NLP_API = Axios.create({ baseURL: 'https://nlp-production.up.railway.app' });
+ 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
@@ -22,3 +23,5 @@ export const deletePost = (id) => API.delete(`api/posts/${id}`);
 
 export const signIn = (FormData) => API.post('api/user/signin', FormData);
 export const signUp = (FormData) => API.post('api/user/signup', FormData);
+
+export const getArticlesFromSearch = (searchQuery) => NLP_API.get(`searchImage/?q=${searchQuery}`)

@@ -162,7 +162,6 @@ const Auth = () => {
           <Grid container justifyContent="center" className={classes.googleButton}>
             <Button fullWidth disableElevation id="signInDiv"></Button>
           </Grid>
-
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Button disableElevation onClick={switchMode}>
