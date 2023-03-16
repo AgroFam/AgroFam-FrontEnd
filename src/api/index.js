@@ -2,7 +2,8 @@ import Axios from 'axios';
 import config from '../config';
 
 const API = Axios.create({ baseURL: config.apiBaseURL });
-
+const NLP_API = Axios.create({ baseURL: 'https://nlp-production.up.railway.app' });
+ 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;

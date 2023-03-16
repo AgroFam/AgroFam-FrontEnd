@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
+import { Container, Grow, Grid, Paper } from '@material-ui/core';
 import Posts from '../Posts/Posts';
-import Form from '../Form/Form';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
 import Pagination from '../Pagination/Pagination';
 import { useNavigate, useLocation } from 'react-router-dom';
-import ChipInput from 'material-ui-chip-input';
 import jwt_decode from 'jwt-decode';
 
 import { getPostsBySearch } from '../../actions/posts';
 import config from '../../config';
+import News from '../News/News';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -19,8 +18,6 @@ function useQuery() {
 const Home = () => {
   const [currentId, setCurrentId] = useState(0);
   const user = JSON.parse(localStorage.getItem('profile'));
-  const [search, setSearch] = useState('');
-  const [tags, setTags] = useState([]);
   const dispatch = useDispatch();
   const classes = useStyles();
   const query = useQuery();
@@ -58,63 +55,19 @@ const Home = () => {
     // eslint-disable-next-line
   }, [queryString]);
 
-  const searchPost = () => {
-    if (search.trim() || tags) {
-      dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-      navigate(`/posts/search?searchQuery=${search}&tags=${tags.join(',')}`);
-    } else {
-      navigate('/');
-    }
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.keyCode === 13) {
-      searchPost();
-    }
-  };
-
-  const handleAdd = (tag) => {
-    setTags([...tags, tag]);
-  };
-
-  const handleDelete = (tagToDelete) => {
-    setTags(tags.filter((tag) => tag !== tagToDelete));
-  };
-
   return (
-    <Grow in>
-      <Container className={classes.homeContainer} maxWidth="xl" style={{ margin: '100px 0 20px' }}>
+      <Container className={classes.homeContainer} maxWidth="lg" style={{ margin: '100px auto 20px' }}>
         <Grid
           container
           className={classes.gridContainer}
           justifyContent="space-between"
           alignItems="stretch"
           spacing={3}>
-          {/* <Grid item xs={12} sm={12} md={12}>
-                         <AppBar className={classes.appBarSearch} position="static" color="inherit" elevation={2}>
-                            <TextField
-                                name='search'
-                                varient='outlined'
-                                label='Serch Blogs'
-                                fullWidth
-                                onKeyPress={handleKeyPress}
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                            />
-                            <ChipInput
-                                style={{ margin: '10px 0' }}
-                                value={tags}
-                                onAdd={handleAdd}
-                                onDelete={handleDelete}
-                                label='Search Tags'
-                                variant='outlined'
-                            />
-                            <Button onClick={searchPost} className={classes.searchButton} color="primary" variant='contained' disableElevation>Search</Button>
-                        </AppBar> 
-                        <Form currentId={currentId} setCurrentId={setCurrentId} /> 
-                    </Grid> */}
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid item xs={12} sm={12} md={8}>
             <Posts setCurrentId={setCurrentId} />
+          </Grid>
+          <Grid className={classes.newsGrid} item xs={12} sm={12} md={4}>
+            <News />
           </Grid>
         </Grid>
         {!searchQuery && !tagsQuery && (
@@ -123,7 +76,6 @@ const Home = () => {
           </Paper>
         )}
       </Container>
-    </Grow>
   );
 };
 

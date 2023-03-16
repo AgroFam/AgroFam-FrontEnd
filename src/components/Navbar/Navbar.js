@@ -9,7 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Search from './Search';
 import ProfileMenu from './ProfileMenu';
 import { Link, useNavigate } from 'react-router-dom';
-import { AddCircle, Home, Settings } from '@material-ui/icons';
+import { HomeRounded, PostAddRounded, SettingsRounded } from '@material-ui/icons';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -27,17 +27,17 @@ const Navbar = () => {
       <div className={classes.menuItems2}>
         <Tooltip className={classes.menuItemsChild} title="Home">
           <IconButton onClick={() => navigate('/posts')} aria-label="Home" >
-            <Home/>
+            <HomeRounded/>
           </IconButton>
         </Tooltip>
         <Tooltip className={classes.menuItemsChild} title="Write">
           <IconButton onClick={() => navigate('/write')} aria-label="Write">
-            <AddCircle />
+            <PostAddRounded />
           </IconButton>
         </Tooltip>
         <Tooltip className={classes.menuItemsChild} title="Settings">
           <IconButton onClick={() => navigate('/account')} aria-label="Settings">
-            <Settings />
+            <SettingsRounded />
           </IconButton>
         </Tooltip>
         <ProfileMenu />
