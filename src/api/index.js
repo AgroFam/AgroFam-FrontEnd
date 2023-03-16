@@ -22,3 +22,5 @@ export const deletePost = (id) => API.delete(`api/posts/${id}`);
 
 export const signIn = (FormData) => API.post('api/user/signin', FormData);
 export const signUp = (FormData) => API.post('api/user/signup', FormData);
+
+export const getArticlesFromSearch = (searchQuery) => NLP_API.get(`searchImage?q=${searchQuery}`)
