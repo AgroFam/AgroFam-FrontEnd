@@ -20,7 +20,7 @@ const BlogHeader = () => {
         >
           {getHumanReadableDate(post.createdAt)}
           &nbsp; &#8226; &nbsp;
-          {getMinutesToRead(post.message)} Minutes Read
+          {getMinutesToRead(post.message.english)} Minutes Read
           &nbsp; &#8226; &nbsp;
           <TextToSpeech />
         </Typography>

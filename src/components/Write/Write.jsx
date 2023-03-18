@@ -126,7 +126,7 @@ const Write = () => {
           navigate
         )
       );
-      clear();
+      // clear();
     }
   };
 
