@@ -45,7 +45,7 @@ const PostDetails = () => {
       <Container className={classes.container} maxWidth="md">
         <BlogHeader />
         <Typography className={classes.blogTitle} gutterBottom variant="h2" component="h2">
-          <strong>{post.title}</strong>
+          <strong>{post.title.english}</strong>
         </Typography>
         <img
           className={classes.media}
@@ -53,7 +53,7 @@ const PostDetails = () => {
             `${post.selectedFile}?tr=w-1000` ||
             'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
           }
-          alt={post.title}
+          alt={post.title.english}
         />
         <Typography
           className={classes.blogContent}

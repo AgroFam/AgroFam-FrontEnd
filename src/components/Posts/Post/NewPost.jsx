@@ -172,7 +172,7 @@ const NewPost = ({ post, setCurrentId }) => {
         <div className={classes.content} onClick={()=> navigate(`/posts/${post._id}`)}>
           <CardContent >
             <Typography className={classes.postDetailsTitleText} component="h6" variant="h6">
-             {post.title}
+             {post.title.english}
             </Typography>
             <Typography className={classes.postDetailsText} variant="subtitle1" color="textSecondary">
               {convertToPlain(post.message.english).substring(0, 240)}...

@@ -133,13 +133,13 @@ const Post = ({ post, setCurrentId }) => {
                 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
               }
               className={classes.media}
-              title={post.title}
+              title={post.title.english}
             />
           </Link>
         </CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
-            {post.title}
+            {post.title.english}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {post.message.english}
