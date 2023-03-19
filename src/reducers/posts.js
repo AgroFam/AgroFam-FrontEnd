@@ -8,15 +8,29 @@ import {
   LIKE,
   START_LOADING,
   END_LOADING,
-  COMMENT
+  COMMENT,
+  FETCH_ARTICLES,
+  START_LOADING_NEWS,
+  END_LOADING_NEWS
 } from '../constants/actionTypes';
 
-export default (state = { isLoading: true, posts: [] }, action) => {
+const defaultState = {
+  isLoading: true,
+  isLoadingNews: false,
+  posts: [],
+  articles: []
+}
+
+export default (state = defaultState, action) => {
   switch (action.type) {
     case START_LOADING:
       return { ...state, isLoading: true };
     case END_LOADING:
       return { ...state, isLoading: false };
+    case START_LOADING_NEWS:
+      return { ...state, isLoadingNews: true };
+    case END_LOADING_NEWS:
+      return { ...state, isLoadingNews: false };
     case FETCH_ALL:
       return {
         ...state,
@@ -58,6 +72,11 @@ export default (state = { isLoading: true, posts: [] }, action) => {
       };
     case DELETE:
       return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) };
+    case FETCH_ARTICLES:
+      return {
+        ...state,
+        articles: action.payload
+      };
     default:
       return state;
   }
