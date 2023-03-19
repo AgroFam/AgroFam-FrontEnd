@@ -6,7 +6,7 @@ import { convertToPlain } from '../../utils/utils';
 
 const TextToSpeech = () => {
   const post = useSelector((state) => state.posts.post);
-  const text = `${post.title}, ${convertToPlain(post.message.english)}`;
+  const text = `${post.title.english}, ${convertToPlain(post.message.english)}`;
   const { speak, cancel, speaking, voices } = useSpeechSynthesis();
   const voice = voices[1] || null;
   return (
