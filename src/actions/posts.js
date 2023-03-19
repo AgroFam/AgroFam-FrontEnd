@@ -4,11 +4,14 @@ import {
   FETCH_BY_SEARCH,
   START_LOADING,
   END_LOADING,
+  START_LOADING_NEWS,
+  END_LOADING_NEWS,
   CREATE,
   UPDATE,
   DELETE,
   LIKE,
-  COMMENT
+  COMMENT,
+  FETCH_ARTICLES,
 } from '../constants/actionTypes';
 
 import * as api from '../api/index.js';
@@ -105,9 +108,14 @@ export const deletePost = (id) => async (dispatch) => {
 
 export const getArticlesFromSearch = (searchQuery) => async (dispatch) => {
   try {
+    dispatch({ type: START_LOADING_NEWS });
+
     const query = searchQuery.toLowerCase().replace(/ /g, "_");
-    const respose = await api.getArticlesFromSearch(query);
-    console.log(respose)
+    const { data } = await api.getArticlesFromSearch(query);
+    
+    dispatch({ type: FETCH_ARTICLES, payload: data.results })
+    
+    dispatch({ type: END_LOADING_NEWS });
   } catch (error) {
     console.log(error.message);
   }

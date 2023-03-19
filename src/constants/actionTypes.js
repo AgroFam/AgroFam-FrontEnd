@@ -8,9 +8,13 @@ export const LIKE = 'LIKE';
 
 export const START_LOADING = 'START_LOADING';
 export const END_LOADING = 'END_LOADING';
+export const START_LOADING_NEWS = 'START_LOADING_NEWS';
+export const END_LOADING_NEWS = 'END_LOADING_NEWS';
 
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
 export const COMMENT = 'COMMENT';
 
 export const SET_THEME = 'SET_THEME'
+
+export const FETCH_ARTICLES = 'FETCH_ARTICLES'
