@@ -175,7 +175,7 @@ const NewPost = ({ post, setCurrentId }) => {
              {post.title}
             </Typography>
             <Typography className={classes.postDetailsText} variant="subtitle1" color="textSecondary">
-              {convertToPlain(post.message).substring(0, 240)}...
+              {convertToPlain(post.message.english).substring(0, 240)}...
             </Typography>
           </CardContent>
           <img
@@ -190,7 +190,7 @@ const NewPost = ({ post, setCurrentId }) => {
       </div>
       <CardActions className={classes.actions}>
         <div>
-          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost}/> &#160; {getMinutesToRead(post.message)} Minute Read
+          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost}/> &#160; {getMinutesToRead(post.message.english)} Minute Read
         </div>
         <div>
           <Button

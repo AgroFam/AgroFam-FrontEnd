@@ -142,7 +142,7 @@ const Post = ({ post, setCurrentId }) => {
             {post.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {post.message}
+            {post.message.english}
           </Typography>
           <Typography variant="caption" color="textSecondary" component="h2">
             {post.tags.map((tag) => `#${tag} `)}

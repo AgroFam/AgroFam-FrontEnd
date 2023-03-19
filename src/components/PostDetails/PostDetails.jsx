@@ -61,7 +61,7 @@ const PostDetails = () => {
           paragraph
           variant="body1"
           color="textSecondary">
-          <div dangerouslySetInnerHTML={{__html: post.message}} />
+          <div dangerouslySetInnerHTML={{__html: post.message.english}} />
         </Typography>
         <Typography gutterBottom variant="caption" color="textSecondary">
           {post.tags.map((tag) => `#${tag} `)}
