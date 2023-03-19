@@ -5,7 +5,7 @@ import { green } from '@material-ui/core/colors';
 export default makeStyles((theme) => ({
   media: {
     aspectRatio: '1/1',
-    height: '200px',
+    height: '175px',
     objectFit: 'center',
     [theme.breakpoints.down('xs')]: {
       height: '100px',

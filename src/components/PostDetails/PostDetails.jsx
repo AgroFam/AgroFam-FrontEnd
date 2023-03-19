@@ -40,8 +40,6 @@ const PostDetails = () => {
 
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
-  // console.log(post.message.english.replace(/\n/g, ''))
-
   return (
     <>
       <Container className={classes.container} maxWidth="md">
@@ -63,7 +61,7 @@ const PostDetails = () => {
           paragraph
           variant="body1"
           color="textSecondary">
-          <div dangerouslySetInnerHTML={{__html: post.message.english.replace(/\n/g, '')}} />
+          <div dangerouslySetInnerHTML={{__html: post.message.english}} />
         </Typography>
         <Typography gutterBottom variant="caption" color="textSecondary">
           {post.tags.map((tag) => `#${tag} `)}
