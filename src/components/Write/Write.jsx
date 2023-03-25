@@ -110,7 +110,6 @@ const Write = () => {
 
   //Form Submit
   const handleSubmit = async () => {
-    console.log(postData.message.length <= 200)
     if (postData.message.length <= 200) setPostError({ ...postError, message: true });
 
     if (!postData.tags) setPostError({ ...postError, tags: true });

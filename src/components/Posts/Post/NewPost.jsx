@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import {
@@ -26,13 +26,14 @@ import Comment from '@material-ui/icons/Comment';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { likePost, deletePost, getPostsBySearch } from '../../../actions/posts';
-import { convertToPlain, getMinutesToRead } from '../../../utils/utils';
+import { convertToPlain, getMinutesToRead, removeTrailingQuotes } from '../../../utils/utils';
 
 const NewPost = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('profile'));
+  const language = useSelector((state) => state.settings.language).toLowerCase();
   const [likes, setLikes] = useState(post?.likes);
 
   const userId = user?.result.sub || user?.result?._id;
@@ -172,10 +173,10 @@ const NewPost = ({ post, setCurrentId }) => {
         <div className={classes.content} onClick={()=> navigate(`/posts/${post._id}`)}>
           <CardContent >
             <Typography className={classes.postDetailsTitleText} component="h6" variant="h6">
-             {post.title.english}
+             {removeTrailingQuotes(post.title[language])}
             </Typography>
             <Typography className={classes.postDetailsText} variant="subtitle1" color="textSecondary">
-              {convertToPlain(post.message.english).substring(0, 240)}...
+              {convertToPlain(removeTrailingQuotes(post.message[language])).substring(0, 240)}...
             </Typography>
           </CardContent>
           <img
@@ -190,7 +191,7 @@ const NewPost = ({ post, setCurrentId }) => {
       </div>
       <CardActions className={classes.actions}>
         <div>
-          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost}/> &#160; {getMinutesToRead(post.message.english)} Minute Read
+          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost}/> &#160; {getMinutesToRead(post.message[language])} Minute Read
         </div>
         <div>
           <Button

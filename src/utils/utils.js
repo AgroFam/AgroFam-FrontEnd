@@ -10,14 +10,22 @@ export const convertToPlain = (html) => {
 };
 
 export const getHumanReadableDate = (dateString) => {
-    const date = new Date(dateString);
-    const options = { day: 'numeric', month: 'short', year: 'numeric' };
-    const humanReadableDate = date.toLocaleString('en-US', options).replace(/(\d+)(?:st|nd|rd|th)/, '$1');
-    return humanReadableDate;
+  const date = new Date(dateString);
+  const options = { day: 'numeric', month: 'short', year: 'numeric' };
+  const humanReadableDate = date
+    .toLocaleString('en-US', options)
+    .replace(/(\d+)(?:st|nd|rd|th)/, '$1');
+  return humanReadableDate;
 };
 
 export const getMinutesToRead = (text) => {
-    const WPM = 220;
-    const words = text.trim().split(/\s+/).length;
-    return Math.ceil(words / WPM); 
-}
+  const WPM = 220;
+  const words = text.trim().split(/\s+/).length;
+  return Math.ceil(words / WPM);
+};
+
+export const removeTrailingQuotes = (text) => {
+  // Remove single quotes from the start and end of the string
+  text = text.replace(/^'|'$/g, '');
+  return text;
+};

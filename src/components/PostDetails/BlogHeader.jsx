@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 const BlogHeader = () => {
   const post = useSelector((state) => state.posts.post);
+  const language = useSelector((state) => state.settings.language).toLowerCase();
   const classes = useStyles();
   return (
     <div className={classes.blogHeader}>
@@ -20,7 +21,7 @@ const BlogHeader = () => {
         >
           {getHumanReadableDate(post.createdAt)}
           &nbsp; &#8226; &nbsp;
-          {getMinutesToRead(post.message.english)} Minutes Read
+          {getMinutesToRead(post.message[language])} Minutes Read
           &nbsp; &#8226; &nbsp;
           <TextToSpeech />
         </Typography>

@@ -9,9 +9,11 @@ import CommentSection from './CommentSection';
 import useStyles from './styles';
 import NewPost from '../Posts/Post/NewPost';
 import BlogHeader from './BlogHeader';
+import { removeTrailingQuotes } from '../../utils/utils';
 
 const PostDetails = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
+  const language = useSelector((state) => state.settings.language).toLowerCase();
   const dispatch = useDispatch();
   const classes = useStyles();
   const { id } = useParams();
@@ -45,7 +47,7 @@ const PostDetails = () => {
       <Container className={classes.container} maxWidth="md">
         <BlogHeader />
         <Typography className={classes.blogTitle} gutterBottom variant="h2" component="h2">
-          <strong>{post.title.english}</strong>
+          <strong>{removeTrailingQuotes(post.title[language])}</strong>
         </Typography>
         <img
           className={classes.media}
@@ -53,7 +55,7 @@ const PostDetails = () => {
             `${post.selectedFile}?tr=w-1000` ||
             'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
           }
-          alt={post.title.english}
+          alt={post.title[language]}
         />
         <Typography
           className={classes.blogContent}
@@ -61,7 +63,7 @@ const PostDetails = () => {
           paragraph
           variant="body1"
           color="textSecondary">
-          <div dangerouslySetInnerHTML={{__html: post.message.english}} />
+          <div dangerouslySetInnerHTML={{__html: removeTrailingQuotes(post.message[language])}} />
         </Typography>
         <Typography gutterBottom variant="caption" color="textSecondary">
           {post.tags.map((tag) => `#${tag} `)}

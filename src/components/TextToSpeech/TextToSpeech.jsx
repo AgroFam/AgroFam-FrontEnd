@@ -2,11 +2,12 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useSpeechSynthesis } from 'react-speech-kit';
-import { convertToPlain } from '../../utils/utils';
+import { convertToPlain, removeTrailingQuotes } from '../../utils/utils';
 
 const TextToSpeech = () => {
   const post = useSelector((state) => state.posts.post);
-  const text = `${post.title.english}, ${convertToPlain(post.message.english)}`;
+  const language = useSelector((state) => state.settings.language).toLowerCase();
+  const text = `${removeTrailingQuotes(post.title[language])}, ${convertToPlain(removeTrailingQuotes(post.message[language]))}`;
   const { speak, cancel, speaking, voices } = useSpeechSynthesis();
   const voice = voices[1] || null;
   return (
