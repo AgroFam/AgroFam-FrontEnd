@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from '@material-ui/core';
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -17,13 +17,33 @@ import Write from './components/Write/Write';
 import Account from './components/Account/Account';
 import useStyles from './styles'
 import NewsPage from './components/News/NewsPage';
+import { DARK, FOLLOW_SYSTEM, LIGHT } from './constants/settings';
 
 
 const App = () => {
   const classes = useStyles();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const theme = Theme(prefersDarkMode);
+  const { colorTheme } = useSelector((state) => state.settings);
+  const prefersDarkMode = !useMediaQuery('(prefers-color-scheme: light)');
+  const [mode, setMode] = useState('')
+
+  useEffect(() => {
+    switch (colorTheme) {
+      case FOLLOW_SYSTEM:
+        setMode(prefersDarkMode);
+        break;
+      case DARK:
+        setMode(true);
+        break;
+      case LIGHT:
+        setMode(false);
+        break;
+      default:
+        break;
+    } 
+  }, [colorTheme, prefersDarkMode])
+  
+  const theme = Theme(mode);
   
   return (
     <BrowserRouter>
