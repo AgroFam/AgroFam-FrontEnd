@@ -16,6 +16,7 @@ export default makeStyles((theme) => ({
   card: {
     borderRadius: '12px',
     maxWidth: '900px',
+    width: '100%',
   },
   details: {
     display: 'flex',
@@ -29,6 +30,7 @@ export default makeStyles((theme) => ({
   content: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     cursor: 'pointer',
     padding: '0 0.2em',
     [theme.breakpoints.down('xs')]: {

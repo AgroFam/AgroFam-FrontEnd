@@ -11,12 +11,14 @@ import {
   COMMENT,
   FETCH_ARTICLES,
   START_LOADING_NEWS,
-  END_LOADING_NEWS
+  END_LOADING_NEWS,
+  SET_PROGRESS
 } from '../constants/actionTypes';
 
 const defaultState = {
-  isLoading: true,
+  isLoading: false,
   isLoadingNews: false,
+  progress: 0,
   posts: [],
   articles: []
 }
@@ -31,6 +33,8 @@ export default (state = defaultState, action) => {
       return { ...state, isLoadingNews: true };
     case END_LOADING_NEWS:
       return { ...state, isLoadingNews: false };
+    case SET_PROGRESS:
+      return { ...state, progress: action.payload }
     case FETCH_ALL:
       return {
         ...state,
