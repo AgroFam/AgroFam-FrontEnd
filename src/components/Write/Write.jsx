@@ -9,15 +9,26 @@ import {
   Typography,
   Card,
   CardActionArea,
-  MenuItem
+  MenuItem,
+  Backdrop,
+  LinearProgress
 } from '@material-ui/core';
-import { Clear, PostAddRounded } from '@material-ui/icons';
+import {
+  Clear,
+  ClosedCaption,
+  Language,
+  PostAddRounded,
+  Public,
+  Subtitles,
+  TranslateRounded
+} from '@material-ui/icons';
 import { createPost } from '../../actions/posts';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './Styles';
 import LoginImg from '../../images/Login.svg';
 import placeholderImg from '../../images/PlaceholderImg.png';
 import { stateToHTML } from 'draft-js-export-html';
+import { useEffect } from 'react';
 
 const categories = [
   {
@@ -46,6 +57,7 @@ const Write = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isLoading, progress } = useSelector((state) => state.posts);
   const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' });
   const [postError, setPostError] = useState({
     title: false,
@@ -95,7 +107,6 @@ const Write = () => {
 
   // mui rte handleChange
   const handleEditorChange = (editorState) => {
-    
     const contentState = editorState.getCurrentContent();
     // const rawData = convertToRaw(contentState);
     setPostData({ ...postData, message: stateToHTML(contentState) });
@@ -118,15 +129,39 @@ const Write = () => {
 
     if (!postData.selectedFile) setPostError({ ...postError, selectedFile: true });
 
-    if (postData.title && postData.message.length >= 200 && postData.tags && postData.selectedFile) {
+    if (
+      postData.title &&
+      postData.message.length >= 200 &&
+      postData.tags &&
+      postData.selectedFile
+    ) {
       dispatch(
         createPost(
           { ...postData, name: user?.result?.name, creatorImg: user?.result.picture },
-          navigate
+          navigate,
+          clear
         )
       );
-      // clear();
     }
+  };
+
+  useEffect(() => {
+    var counter = 0;
+
+    // Start the changing images
+    setInterval(function () {
+      if (counter === 5) {
+        counter = 0;
+      }
+      changeImage(counter);
+      counter++;
+    }, 3000);
+  }, []);
+
+  const [placeHolderIcon, setPlaceHolderIcon] = useState(<TranslateRounded />);
+  const changeImage = (counter) => {
+    var images = [<Language />, <ClosedCaption />, <Public />, <Subtitles />, <TranslateRounded />];
+    setPlaceHolderIcon(images[counter]);
   };
 
   const NotLoggedInComponent = () => {
@@ -185,6 +220,23 @@ const Write = () => {
         <NotLoggedInComponent />
       ) : (
         <>
+          <Backdrop
+            style={{ zIndex: 1000, backdropFilter: 'blur(10px)' }}
+            className={classes.backdrop}
+            open={isLoading}>
+            <div className={classes.loaderContainer}>
+              <div className={classes.loader}>
+                <div className={classes.loaderImage}>{placeHolderIcon}</div>
+                  <span>
+                    <Typography variant='body1'>Translating...</Typography>
+                  </span>
+              </div>
+                <div className={classes.linearProgressContainer}>
+                  <Typography style={{ color: '#b4b1b1' }} variant='caption'>Do not hit Back or Refresh the page</Typography>
+                  <LinearProgress variant="determinate" value={progress}/>
+                </div>
+            </div>
+          </Backdrop>
           <HeaderComponent />
           <Paper className={classes.paper} elevation={0}>
             <Card
@@ -250,7 +302,10 @@ const Write = () => {
               ))}
             </TextField>
             {postError.message ? (
-              <Typography color="error"> Please Write Something to post... <span role="img">👇</span> </Typography>
+              <Typography color="error">
+                {' '}
+                Please Write Something to post... <span role="img">👇</span>{' '}
+              </Typography>
             ) : (
               ''
             )}

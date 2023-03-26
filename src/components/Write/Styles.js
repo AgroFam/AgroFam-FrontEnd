@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     margin: '90px 0 20px',
-    padding: '0',
+    padding: '0'
   },
   paper: {
     display: 'flex',
@@ -17,17 +17,17 @@ export default makeStyles((theme) => ({
     padding: '1.5em',
     gap: '1em',
     '& ul,ol': {
-      padding: '0 1em',
+      padding: '0 1em'
     },
     [theme.breakpoints.down('xs')]: {
-      minHeight: '100vh',
-    },
+      minHeight: '100vh'
+    }
   },
   loginImg: {
     width: '30%',
     [theme.breakpoints.down('xs')]: {
-      width: '60%',
-    },
+      width: '60%'
+    }
   },
   NotLoggedInComponent: {
     display: 'flex',
@@ -36,26 +36,26 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     height: '80vh',
     gap: '2em',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   fileInputNormal: {
     border: '1px solid',
     borderColor: theme.palette.divider,
     borderRadius: theme.shape.borderRadius,
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   fileInputError: {
     border: '1px solid',
     borderColor: theme.palette.error.main,
     borderRadius: theme.shape.borderRadius,
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   selectedFile: {
     width: '100%',
     aspectRatio: 2 / 1,
     objectFit: 'cover',
     transform: 'scale(1.05) translateY(4px)',
-    cursor: 'pointer',
+    cursor: 'pointer'
   },
   header: {
     display: 'flex',
@@ -65,8 +65,8 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       padding: '0',
       flexDirection: 'column',
-      gap: '1em',
-    },
+      gap: '1em'
+    }
   },
   headerTitle: {
     '& > *': {
@@ -84,8 +84,69 @@ export default makeStyles((theme) => ({
     gap: '1em',
     [theme.breakpoints.down('xs')]: {
       justifyContent: 'space-between',
-      width: '100%',
-      // margin: '10px 0'
-    },
+      width: '100%'
+    }
   },
+  loaderContainer: {
+    width: '40%',
+    paddingTop: '35vh',
+    '& > *': {
+      color: 'white'
+    }
+  },
+  loader: {
+    width: '130px',
+    height: '100px',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+    margin: 'auto',
+    '& span': {
+      display: 'block',
+      width: '100%',
+      textAlign: 'center',
+      position: 'absolute',
+      bottom: 0
+    }
+  },
+  loaderImage: {
+    width: '130px',
+    height: '160px',
+    fontSize: '40px',
+    textAlign: 'center',
+    transformOrigin: 'bottom center',
+    animation: '3s $rotate infinite',
+    opacity: 0
+  },
+  '@keyframes rotate': {
+    '0%': {
+      transform: 'rotate(90deg)'
+    },
+    '10%': {
+      opacity: 0
+    },
+    '35%': {
+      transform: 'rotate(0deg)',
+      opacity: 1
+    },
+    '65%': {
+      transform: 'rotate(0deg)',
+      opacity: 1
+    },
+    '80%': {
+      opacity: 0
+    },
+    '100%': {
+      transform: 'rotate(-90deg)'
+    }
+  },
+  linearProgressContainer: {
+    width: '100%',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1em',
+  }
 }));

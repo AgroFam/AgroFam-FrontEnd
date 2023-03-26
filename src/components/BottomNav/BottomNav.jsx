@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     height: '4.5em',
     position: 'fixed',
     bottom: 0,
+    zIndex: 100,
     borderTop: `0.5px solid ${theme.palette.divider}`,
     display: 'none',
     [theme.breakpoints.down('sm')]: {

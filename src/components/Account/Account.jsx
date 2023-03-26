@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import {
   Avatar,
-  Box,
-  CardContent,
   Container,
   FormControl,
-  InputLabel,
   List,
   ListItem,
   ListItemIcon,
   ListItemSecondaryAction,
   ListItemText,
-  ListSubheader,
   MenuItem,
   Paper,
   Select,
-  Switch,
   Typography
 } from '@material-ui/core';
 import useStyles from './styles';
@@ -28,7 +23,7 @@ const Account = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const { colorTheme, language } = useSelector((state) => state.settings);
-  const [checked, setChecked] = React.useState(['wifi']);
+  // const [checked, setChecked] = React.useState(['wifi']);
   const classes = useStyles();
 
   const handleChangeTheme = (e) => {
@@ -39,18 +34,18 @@ const Account = () => {
     dispatch(setLanguage(e.target.value));
   };
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+  // const handleToggle = (value) => () => {
+  //   const currentIndex = checked.indexOf(value);
+  //   const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
+  //   if (currentIndex === -1) {
+  //     newChecked.push(value);
+  //   } else {
+  //     newChecked.splice(currentIndex, 1);
+  //   }
 
-    setChecked(newChecked);
-  };
+  //   setChecked(newChecked);
+  // };
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('profile')));

@@ -12,9 +12,11 @@ import {
   LIKE,
   COMMENT,
   FETCH_ARTICLES,
+  SET_PROGRESS,
 } from '../constants/actionTypes';
 
 import * as api from '../api/index.js';
+import { createPostProgressInterval } from '../utils/utils';
 
 export const getPost = (id) => async (dispatch) => {
   try {
@@ -53,16 +55,42 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   }
 };
 
-export const createPost = (post, navigate) => async (dispatch) => {
-  try {
-    dispatch({ type: START_LOADING });
-    const { data } = await api.createPost(post);
+export const createPost = (post, navigate, clear) => async (dispatch) => {
+  
+  let setProgressInterval = createPostProgressInterval(dispatch)
 
+  try {
+
+    dispatch({ type: START_LOADING });
+
+    const { data } = await api.createPost(post);
+    
+    dispatch({ type: CREATE, payload: data });
+    
+    clear();
+    clearInterval(setProgressInterval);
     navigate(`/posts/${data._id}`);
 
-    dispatch({ type: CREATE, payload: data });
+    setTimeout(() => {
+      dispatch({ type: END_LOADING });
+    }, 500);
+
   } catch (error) {
-    console.log(error.message);
+    if (error.response && error.response.status === 500) {
+
+      clearInterval(setProgressInterval);
+
+      dispatch({ type: SET_PROGRESS, payload: 100 });
+
+      setTimeout(() => {
+        dispatch({ type: END_LOADING });
+      }, 500);
+      
+      dispatch({ type: SET_PROGRESS, payload: 0 })
+
+    } else {
+      console.log(error.message);
+    }
   }
 };
 
@@ -110,11 +138,11 @@ export const getArticlesFromSearch = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING_NEWS });
 
-    const query = searchQuery.toLowerCase().replace(/ /g, "_");
+    const query = searchQuery.toLowerCase().replace(/ /g, '_');
     const { data } = await api.getArticlesFromSearch(query);
-    
-    dispatch({ type: FETCH_ARTICLES, payload: data.results })
-    
+
+    dispatch({ type: FETCH_ARTICLES, payload: data.results });
+
     dispatch({ type: END_LOADING_NEWS });
   } catch (error) {
     console.log(error.message);

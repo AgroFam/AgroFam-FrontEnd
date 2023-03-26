@@ -1,3 +1,5 @@
+import { SET_PROGRESS } from '../constants/actionTypes';
+
 export const convertToPlain = (html) => {
   // Create a new div element
   var tempDivElement = document.createElement('div');
@@ -28,4 +30,15 @@ export const removeTrailingQuotes = (text) => {
   // Remove single quotes from the start and end of the string
   text = text.replace(/^'|'$/g, '');
   return text;
+};
+
+export const createPostProgressInterval = (dispatch) => {
+  let progress = 0;
+  const intervalId = setInterval(() => {
+    if (progress < 99) {
+      progress += 3.84;
+      dispatch({ type: SET_PROGRESS, payload: progress });
+    }
+  }, 2400);
+  return intervalId;
 };
