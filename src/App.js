@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from '@material-ui/core';
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,11 +17,12 @@ import Write from './components/Write/Write';
 import Account from './components/Account/Account';
 import useStyles from './styles'
 import NewsPage from './components/News/NewsPage';
-import { DARK, FOLLOW_SYSTEM, LIGHT } from './constants/settings';
+import { DARK, FOLLOW_SYSTEM, LIGHT, PREFERS_DARK_MODE } from './constants/settings';
 
 
 const App = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const { colorTheme } = useSelector((state) => state.settings);
   const prefersDarkMode = !useMediaQuery('(prefers-color-scheme: light)');
@@ -31,12 +32,15 @@ const App = () => {
     switch (colorTheme) {
       case FOLLOW_SYSTEM:
         setMode(prefersDarkMode);
+        dispatch({ type: PREFERS_DARK_MODE, payload: prefersDarkMode })
         break;
       case DARK:
         setMode(true);
+        dispatch({ type: PREFERS_DARK_MODE, payload: true })
         break;
       case LIGHT:
         setMode(false);
+        dispatch({ type: PREFERS_DARK_MODE, payload: false })
         break;
       default:
         break;

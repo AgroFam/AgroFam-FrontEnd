@@ -1,9 +1,10 @@
 import { SET_LANGUAGE, SET_THEME} from '../constants/actionTypes';
-import { ENGLISH, FOLLOW_SYSTEM } from '../constants/settings';
+import { ENGLISH, FOLLOW_SYSTEM, PREFERS_DARK_MODE } from '../constants/settings';
 
 const defaultState = {
   colorTheme: localStorage.getItem('colorTheme') || FOLLOW_SYSTEM,
   language: localStorage.getItem('language') || ENGLISH,
+  prefersDarkMode: false,
 }
 
 const settingsReducer = (state = defaultState, action) => {
@@ -17,6 +18,8 @@ const settingsReducer = (state = defaultState, action) => {
     case SET_LANGUAGE:
       localStorage.setItem('language', action.payload)
       return { ...state, language: action.payload }
+    case PREFERS_DARK_MODE:
+      return {...state, prefersDarkMode: action.payload}
     default:
       return state;
   }
