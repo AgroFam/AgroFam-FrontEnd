@@ -17,7 +17,9 @@ import Write from './components/Write/Write';
 import Account from './components/Account/Account';
 import useStyles from './styles'
 import NewsPage from './components/News/NewsPage';
-import { DARK, FOLLOW_SYSTEM, LIGHT, PREFERS_DARK_MODE } from './constants/settings';
+import { DARK, FOLLOW_SYSTEM, LIGHT } from './constants/settings';
+import { PREFERS_DARK_MODE } from './constants/actionTypes';
+import SnackbarComponent from './components/SnackbarComponent/SnackbarComponent';
 
 
 const App = () => {
@@ -54,6 +56,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar />
+        <SnackbarComponent />
         <Container className={classes.appContainer} maxWidth="xl">
           <Routes>
             <Route exact path="/" element={<Navigate replace={true} to="/posts" />} />

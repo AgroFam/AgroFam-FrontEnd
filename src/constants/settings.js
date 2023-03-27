@@ -2,8 +2,6 @@ export const FOLLOW_SYSTEM = 'FOLLOW_SYSTEM';
 export const DARK = 'DARK';
 export const LIGHT = 'LIGHT';
 
-export const PREFERS_DARK_MODE = 'PREFERS_DARK_MODE' 
-
 export const ENGLISH = 'ENGLISH';
 export const HINDI = 'HINDI';
 export const MARATHI = 'MARATHI';

@@ -29,6 +29,7 @@ import LoginImg from '../../images/Login.svg';
 import placeholderImg from '../../images/PlaceholderImg.png';
 import { stateToHTML } from 'draft-js-export-html';
 import { useEffect } from 'react';
+import { SET_SNACKBAR } from '../../constants/actionTypes';
 
 const categories = [
   {
@@ -46,6 +47,18 @@ const categories = [
   {
     value: 'Technology',
     label: 'Technology'
+  },
+  {
+    value: 'Climate',
+    label: 'Climate'
+  },
+  {
+    value: 'Gardening',
+    label: 'Gardening'
+  },
+  {
+    value: 'Production',
+    label: 'Production'
   },
   {
     value: 'Other',
@@ -121,6 +134,16 @@ const Write = () => {
 
   //Form Submit
   const handleSubmit = async () => {
+    if (postData.message.length > 8000)
+      dispatch({
+        type: SET_SNACKBAR,
+        payload: {
+          open: true,
+          message:
+            "⚠️ Please Make sure your content dosen't go beyond 8000 characters, If you want to post longer posts you can always write part 2"
+        }
+      });
+
     if (postData.message.length <= 200) setPostError({ ...postError, message: true });
 
     if (!postData.tags) setPostError({ ...postError, tags: true });
@@ -132,6 +155,7 @@ const Write = () => {
     if (
       postData.title &&
       postData.message.length >= 200 &&
+      postData.message.length < 8000 &&
       postData.tags &&
       postData.selectedFile
     ) {
@@ -227,14 +251,16 @@ const Write = () => {
             <div className={classes.loaderContainer}>
               <div className={classes.loader}>
                 <div className={classes.loaderImage}>{placeHolderIcon}</div>
-                  <span>
-                    <Typography variant='body1'>Translating...</Typography>
-                  </span>
+                <span>
+                  <Typography variant="body1">Translating...</Typography>
+                </span>
               </div>
-                <div className={classes.linearProgressContainer}>
-                  <Typography style={{ color: '#b4b1b1' }} variant='caption'>Do not hit Back or Refresh the page</Typography>
-                  <LinearProgress variant="determinate" value={progress}/>
-                </div>
+              <div className={classes.linearProgressContainer}>
+                <Typography style={{ color: '#b4b1b1' }} variant="caption">
+                  Do not hit Back or Refresh the page
+                </Typography>
+                <LinearProgress variant="determinate" value={progress} />
+              </div>
             </div>
           </Backdrop>
           <HeaderComponent />
