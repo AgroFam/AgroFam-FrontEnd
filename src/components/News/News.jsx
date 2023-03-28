@@ -9,11 +9,12 @@ const News = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { articles, isLoadingNews } = useSelector((state) => state.posts);
-  const query = 'Agriculture News In India';
-  // const query = 'Agriculture News';
+  const queries = ['Agriculture News In India', 'india agri news', 'agri news india', 'agri news hindi','agri news marathi','agriculture news india','agriculture news hindi','india agriculture news'];
+
+  const randomQuery = queries[Math.floor(Math.random() * queries.length)];
 
   useEffect(() => {
-    dispatch(getArticlesFromSearch(query));
+    dispatch(getArticlesFromSearch(randomQuery));
   }, []);
 
   const NewsLoading = () => (
