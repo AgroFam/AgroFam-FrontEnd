@@ -51,14 +51,17 @@ export default makeStyles((theme) => ({
     '& a': {
       color: theme.palette.secondary.main,
     },
-    '& h2': {
+    '& h1,h2,h3,h4,h5,h6': {
       color: theme.palette.text.primary,
     },
     '& code': {
       backgroundColor: 'rgba(110,118,129,0.4)',
       borderRadius: theme.shape.borderRadius,
       padding: '0 0.2em',
-    }
+    },
+    '& ul,ol': {
+      padding: '0 2em'
+    },
   },
   media: {
     margin: '2em 0',
@@ -100,5 +103,5 @@ export default makeStyles((theme) => ({
         width: '100%'
       }
     }
-  }
+  },
 }));

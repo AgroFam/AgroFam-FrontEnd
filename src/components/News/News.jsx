@@ -38,11 +38,11 @@ const News = () => {
           <div className={classes.newsCard}>
             <div className={classes.newsContent}>
               <img src={newsItem.image_url} alt="news favicon" />
-              <a href={newsItem.link}>
+              <a href={newsItem.link} target='_blank'>
                 <h3>{newsItem.title}</h3>
               </a>
             </div>
-            <a href={newsItem.link}>{newsItem.link.substring(0, 40)}...</a>
+            <a href={newsItem.link} target='_blank'>{newsItem.link.substring(0, 40)}...</a>
           </div>
           <Divider />
         </div>
@@ -55,6 +55,8 @@ const News = () => {
       <div className={classes.newsContainer}>
         {isLoadingNews ? (
           <>
+            <NewsLoading />
+            <NewsLoading />
             <NewsLoading />
             <NewsLoading />
             <NewsLoading />
