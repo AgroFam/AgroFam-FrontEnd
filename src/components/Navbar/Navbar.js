@@ -5,16 +5,17 @@ import useStyles from './Styles';
 import agroFamForLight from '../../images/agroFamTextForLight.png';
 import agroFamTextForDark from '../../images/agroFamTextForDark.png';
 import agroFamLogo from '../../images/agroFamLogo.png';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Search from './Search';
 import ProfileMenu from './ProfileMenu';
 import { Link, useNavigate } from 'react-router-dom';
 import { HomeRounded, PostAddRounded, SettingsRounded } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const prefersDarkMode = useSelector(state => state.settings.prefersDarkMode);
   return (
     <AppBar className={classes.appBar} position="static" color="inherit" elevation={0}>
       <div className={classes.menuItems1}>

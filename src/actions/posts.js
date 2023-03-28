@@ -13,6 +13,7 @@ import {
   COMMENT,
   FETCH_ARTICLES,
   SET_PROGRESS,
+  SET_SNACKBAR
 } from '../constants/actionTypes';
 
 import * as api from '../api/index.js';
@@ -38,7 +39,14 @@ export const getPosts = (page) => async (dispatch) => {
     dispatch({ type: FETCH_ALL, payload: data });
     dispatch({ type: END_LOADING });
   } catch (error) {
-    console.log(error.message);
+    if (error.response) {
+      dispatch({
+        type: SET_SNACKBAR,
+        payload: { open: true, message: '⚠️ Failed to fetch Posts' }
+      });
+    } else {
+      console.log(error.message);
+    }
   }
 };
 
@@ -51,33 +59,34 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     dispatch({ type: FETCH_BY_SEARCH, payload: data });
     dispatch({ type: END_LOADING });
   } catch (error) {
-    console.log(error);
+    dispatch({
+      type: SET_SNACKBAR,
+      payload: { open: true, message: '⚠️ Failed to fetch news' }
+    });
+    console.log(error.message);
   }
 };
 
 export const createPost = (post, navigate, clear) => async (dispatch) => {
-  
-  let setProgressInterval = createPostProgressInterval(dispatch)
+  let setProgressInterval = createPostProgressInterval(dispatch);
 
   try {
-
     dispatch({ type: START_LOADING });
 
     const { data } = await api.createPost(post);
-    
+
     dispatch({ type: CREATE, payload: data });
-    
+
     clear();
     clearInterval(setProgressInterval);
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: '✨ New Post Created' } });
     navigate(`/posts/${data._id}`);
 
     setTimeout(() => {
       dispatch({ type: END_LOADING });
     }, 500);
-
   } catch (error) {
     if (error.response && error.response.status === 500) {
-
       clearInterval(setProgressInterval);
 
       dispatch({ type: SET_PROGRESS, payload: 100 });
@@ -85,9 +94,16 @@ export const createPost = (post, navigate, clear) => async (dispatch) => {
       setTimeout(() => {
         dispatch({ type: END_LOADING });
       }, 500);
-      
-      dispatch({ type: SET_PROGRESS, payload: 0 })
 
+      dispatch({ type: SET_PROGRESS, payload: 0 });
+      dispatch({
+        type: SET_SNACKBAR,
+        payload: {
+          open: true,
+          message:
+            '⚠️ Oops, Translations failed on our end, try again later, make sure to save  you work'
+        }
+      });
     } else {
       console.log(error.message);
     }
@@ -99,8 +115,16 @@ export const updatePost = (id, post) => async (dispatch) => {
     const { data } = await api.updatePost(id, post);
 
     dispatch({ type: UPDATE, payload: data });
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: '✨ Post Updated' } });
   } catch (error) {
-    console.log(error.message);
+    if (error.response) {
+      dispatch({
+        type: SET_SNACKBAR,
+        payload: { open: true, message: `⚠️ ${error.response.data.message}` }
+      });
+    } else {
+      console.log(error.message);
+    }
   }
 };
 
@@ -109,8 +133,16 @@ export const likePost = (id) => async (dispatch) => {
     const { data } = await api.likePost(id);
 
     dispatch({ type: LIKE, payload: data });
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: '👍 Post Liked' } });
   } catch (error) {
-    console.log(error.message);
+    if (error.response) {
+      dispatch({
+        type: SET_SNACKBAR,
+        payload: { open: true, message: `⚠️ ${error.response.data.message}` }
+      });
+    } else {
+      console.log(error.message);
+    }
   }
 };
 
@@ -118,9 +150,17 @@ export const commentPost = (value, id) => async (dispatch) => {
   try {
     const { data } = await api.comment(value, id);
     dispatch({ type: COMMENT, payload: data });
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: '💬 Comment Added' } });
     return data.comments;
   } catch (error) {
-    console.log(error);
+    if (error.response) {
+      dispatch({
+        type: SET_SNACKBAR,
+        payload: { open: true, message: `⚠️ ${error.response.data.message}` }
+      });
+    } else {
+      console.log(error.message);
+    }
   }
 };
 
@@ -129,8 +169,16 @@ export const deletePost = (id) => async (dispatch) => {
     await api.deletePost(id);
 
     dispatch({ type: DELETE, payload: id });
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: '🗑️ Post Deleted' } });
   } catch (error) {
-    console.log(error.message);
+    if (error.response) {
+      dispatch({
+        type: SET_SNACKBAR,
+        payload: { open: true, message: `⚠️ ${error.response.data.message}` }
+      });
+    } else {
+      console.log(error.message);
+    }
   }
 };
 
@@ -145,6 +193,7 @@ export const getArticlesFromSearch = (searchQuery) => async (dispatch) => {
 
     dispatch({ type: END_LOADING_NEWS });
   } catch (error) {
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: error.message } });
     console.log(error.message);
   }
 };

@@ -103,7 +103,7 @@ const Account = () => {
                       <MenuItem value={HINDI}>Hindi</MenuItem>
                       <MenuItem value={MARATHI}>Marathi</MenuItem>
                       <MenuItem value={GUJARATI}>Gujrati</MenuItem>
-                      <MenuItem value={PUNJABI}>Panjabi</MenuItem>
+                      <MenuItem value={PUNJABI}>Punjabi</MenuItem>
                       <MenuItem value={BENGALI}>Bengali</MenuItem>
                       <MenuItem value={TAMIL}>Tamil</MenuItem>
                       <MenuItem value={TELUGU}>Telugu</MenuItem>

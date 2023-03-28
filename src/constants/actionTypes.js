@@ -11,6 +11,8 @@ export const END_LOADING = 'END_LOADING';
 export const START_LOADING_NEWS = 'START_LOADING_NEWS';
 export const END_LOADING_NEWS = 'END_LOADING_NEWS';
 export const SET_PROGRESS = 'SET_PROGRESS';
+export const PREFERS_DARK_MODE = 'PREFERS_DARK_MODE';
+export const SET_SNACKBAR = 'SET_SNACKBAR'
 
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';

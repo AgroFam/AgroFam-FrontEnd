@@ -18,6 +18,7 @@ import Input from './Input';
 import { signin, signup } from '../../actions/auth';
 import jwt_decode from 'jwt-decode';
 import config from '../../config';
+import { AUTH, SET_SNACKBAR } from '../../constants/actionTypes';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
@@ -77,7 +78,8 @@ const Auth = () => {
     const token = res?.credential;
 
     try {
-      dispatch({ type: 'AUTH', data: { result, token } });
+      dispatch({ type: AUTH, data: { result, token } });
+      dispatch({ type: SET_SNACKBAR, payload: { open: true, message: 'Logged In With Google' } })
 
       navigate('/');
     } catch (error) {

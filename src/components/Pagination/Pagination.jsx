@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../actions/posts';
 
 const Paginate = ({ page }) => {
-  const { numberOfPages, posts } = useSelector((state) => state.posts);
+  const { numberOfPages } = useSelector((state) => state.posts);
   const classes = useStyles();
   const dispatch = useDispatch();
 
