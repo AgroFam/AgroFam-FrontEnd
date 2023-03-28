@@ -18,34 +18,23 @@ import { Brightness4Rounded, Translate } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLanguage, setTheme } from '../../actions/settings';
 import { BENGALI, DARK, ENGLISH, FOLLOW_SYSTEM, GUJARATI, HINDI, KANNADA, LIGHT, MALAYALAM, MARATHI, PUNJABI, TAMIL, TELUGU } from '../../constants/settings';
+import { SET_SNACKBAR } from '../../constants/actionTypes';
 
 const Account = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const { colorTheme, language } = useSelector((state) => state.settings);
-  // const [checked, setChecked] = React.useState(['wifi']);
   const classes = useStyles();
 
   const handleChangeTheme = (e) => {
     dispatch(setTheme(e.target.value));
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: `💡 Set ${e.target.value} Mode` } });
   };
 
   const handleChangeLanguage = (e) => {
     dispatch(setLanguage(e.target.value));
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: `🌐 Changed Default Content Language to ${e.target.value}` } });
   };
-
-  // const handleToggle = (value) => () => {
-  //   const currentIndex = checked.indexOf(value);
-  //   const newChecked = [...checked];
-
-  //   if (currentIndex === -1) {
-  //     newChecked.push(value);
-  //   } else {
-  //     newChecked.splice(currentIndex, 1);
-  //   }
-
-  //   setChecked(newChecked);
-  // };
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('profile')));

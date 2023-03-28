@@ -1,6 +1,9 @@
 import { createTheme } from '@material-ui/core/styles';
-export const Theme = (prefersDarkMode) =>
-  createTheme({
+import { useSelector } from 'react-redux';
+
+export const Theme = () => {
+  const prefersDarkMode = useSelector(state => state.settings.prefersDarkMode);
+  return createTheme({
     palette: {
       type: prefersDarkMode ? 'dark' : 'light',
       primary: {
@@ -20,7 +23,8 @@ export const Theme = (prefersDarkMode) =>
         main: prefersDarkMode ? '#ffb86e' : '#8a5100'
       },
       text: {
-        primary: prefersDarkMode ? '#e2f5da' : '#14290a'
+        primary: prefersDarkMode ? '#e2f5da' : '#14290a',
+        secondary: prefersDarkMode ? '#d8fac8b3' : '#0a1505b3'
       },
       divider: prefersDarkMode ? '#6a6e65' : '#a4ab9a'
     },
@@ -64,4 +68,4 @@ export const Theme = (prefersDarkMode) =>
         },
       },
     },
-  })
+  })}

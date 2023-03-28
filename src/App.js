@@ -28,20 +28,16 @@ const App = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const { colorTheme } = useSelector((state) => state.settings);
   const prefersDarkMode = !useMediaQuery('(prefers-color-scheme: light)');
-  const [mode, setMode] = useState('')
 
   useEffect(() => {
     switch (colorTheme) {
       case FOLLOW_SYSTEM:
-        setMode(prefersDarkMode);
         dispatch({ type: PREFERS_DARK_MODE, payload: prefersDarkMode })
         break;
       case DARK:
-        setMode(true);
         dispatch({ type: PREFERS_DARK_MODE, payload: true })
         break;
       case LIGHT:
-        setMode(false);
         dispatch({ type: PREFERS_DARK_MODE, payload: false })
         break;
       default:
@@ -49,7 +45,7 @@ const App = () => {
     } 
   }, [colorTheme, prefersDarkMode])
   
-  const theme = Theme(mode);
+  const theme = Theme();
   
   return (
     <BrowserRouter>

@@ -7,7 +7,7 @@ import Pagination from '../Pagination/Pagination';
 import { useNavigate, useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
-import { getPostsBySearch } from '../../actions/posts';
+import { getArticlesFromSearch, getPostsBySearch } from '../../actions/posts';
 import config from '../../config';
 import News from '../News/News';
 
@@ -51,6 +51,7 @@ const Home = () => {
     }
     if (queryString !== '') {
       dispatch(getPostsBySearch({ search: searchQuery, tags: tagsQuery }));
+      dispatch(getArticlesFromSearch(searchQuery))
     }
     // eslint-disable-next-line
   }, [queryString]);

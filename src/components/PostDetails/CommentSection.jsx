@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { TextField, Button, Typography } from '@material-ui/core';
+import { TextField, Button, Typography, Chip } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import useStyles from './styles';
@@ -28,11 +28,13 @@ const CommentSection = ({ post }) => {
           <Typography gutterBottom variant="h6">
             Comments
           </Typography>
-          {comments.map((c, i) => (
-            <Typography key={i} gutterBottom variant="subtitle1">
-              <strong>{c.split(': ')[0]}</strong> :{c.split(':')[1]}
-            </Typography>
-          ))}
+          {!comments.length
+            ? <Chip color="primary" variant="outlined" label="🏆 Be the first to comment on this Post" />
+            : comments.map((c, i) => (
+                <Typography key={i} gutterBottom variant="subtitle1">
+                  <strong>{c.split(': ')[0]}</strong> :{c.split(':')[1]}
+                </Typography>
+              ))}
           <div ref={commentsRef} />
         </div>
         <div className={classes.commentsTextContainer}>

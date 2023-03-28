@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
     padding: '1.5em',
     gap: '1em',
     '& ul,ol': {
-      padding: '0 1em'
+      padding: '0 2em'
     },
     [theme.breakpoints.down('xs')]: {
       minHeight: '100vh'

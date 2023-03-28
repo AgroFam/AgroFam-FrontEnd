@@ -4,9 +4,11 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_SNACKBAR } from '../../constants/actionTypes';
+import useStyles from './Styles'
 
 const SnackbarComponent = () => {
   const dispatch = useDispatch();
+  const classes = useStyles();
   const { snackBarState } = useSelector(state => state.settings);
 
   const handleClose = (event, reason) => {
@@ -20,6 +22,7 @@ const SnackbarComponent = () => {
   return (
     <>
       <Snackbar
+        className={classes.snackBar}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left'
