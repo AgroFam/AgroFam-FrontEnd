@@ -28,6 +28,7 @@ export const getPost = (id) => async (dispatch) => {
     dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error.message);
+    dispatch({ type: END_LOADING });
   }
 };
 
@@ -44,8 +45,10 @@ export const getPosts = (page) => async (dispatch) => {
         type: SET_SNACKBAR,
         payload: { open: true, message: '⚠️ Failed to fetch Posts' }
       });
+      dispatch({ type: END_LOADING });
     } else {
       console.log(error.message);
+      dispatch({ type: END_LOADING });
     }
   }
 };
@@ -63,6 +66,7 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
       type: SET_SNACKBAR,
       payload: { open: true, message: '⚠️ Failed to fetch news' }
     });
+    dispatch({ type: END_LOADING });
     console.log(error.message);
   }
 };
@@ -194,6 +198,8 @@ export const getArticlesFromSearch = (searchQuery) => async (dispatch) => {
     dispatch({ type: END_LOADING_NEWS });
   } catch (error) {
     dispatch({ type: SET_SNACKBAR, payload: { open: true, message: error.message } });
+    dispatch({ type: FETCH_ARTICLES, payload: [] });
+    dispatch({ type: END_LOADING_NEWS });
     console.log(error.message);
   }
 };
