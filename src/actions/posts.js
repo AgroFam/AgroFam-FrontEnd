@@ -19,10 +19,10 @@ import {
 import * as api from '../api/index.js';
 import { createPostProgressInterval } from '../utils/utils';
 
-export const getPost = (id) => async (dispatch) => {
+export const getPost = (id, lang) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
-    const { data } = await api.fetchPost(id);
+    const { data } = await api.fetchPost(id, lang.toLowerCase());
 
     dispatch({ type: FETCH_POST, payload: data });
     dispatch({ type: END_LOADING });
@@ -32,10 +32,10 @@ export const getPost = (id) => async (dispatch) => {
   }
 };
 
-export const getPosts = (page) => async (dispatch) => {
+export const getPosts = (page, lang) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
-    const { data } = await api.fetchPosts(page);
+    const { data } = await api.fetchPosts(page, lang.toLowerCase());
 
     dispatch({ type: FETCH_ALL, payload: data });
     dispatch({ type: END_LOADING });
@@ -134,10 +134,11 @@ export const updatePost = (id, post) => async (dispatch) => {
 
 export const likePost = (id) => async (dispatch) => {
   try {
-    const { data } = await api.likePost(id);
-
-    dispatch({ type: LIKE, payload: data });
     dispatch({ type: SET_SNACKBAR, payload: { open: true, message: '👍 Post Liked' } });
+    
+    const { data } = await api.likePost(id);
+    
+    dispatch({ type: LIKE, payload: data });
   } catch (error) {
     if (error.response) {
       dispatch({
@@ -190,7 +191,7 @@ export const getArticlesFromSearch = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING_NEWS });
 
-    const query = searchQuery.toLowerCase().replace(/ /g, '_');
+    const query = searchQuery?.toLowerCase().replace(/ /g, '_') || 'null';
     const { data } = await api.getArticlesFromSearch(query);
 
     dispatch({ type: FETCH_ARTICLES, payload: data.results });

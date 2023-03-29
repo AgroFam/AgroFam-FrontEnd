@@ -10,6 +10,7 @@ import jwt_decode from 'jwt-decode';
 import { getArticlesFromSearch, getPostsBySearch } from '../../actions/posts';
 import config from '../../config';
 import News from '../News/News';
+import { useSelector } from 'react-redux';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -23,16 +24,16 @@ const Home = () => {
   const query = useQuery();
   const navigate = useNavigate();
   const page = query.get('page') || 1;
-  const queryString = useLocation().search;
   const searchQuery = query.get('searchQuery');
   const tagsQuery = query.get('tags');
+  const language = useSelector((state) => state.settings.language).toLowerCase();
 
   const useStyles2 = makeStyles((theme) => ({
     newsGrid: {
       [theme.breakpoints.down('sm')]: {
         display: searchQuery ? 'block' : 'none'
       }
-    },
+    }
   }));
 
   const classes2 = useStyles2();
@@ -59,12 +60,12 @@ const Home = () => {
       });
       google.accounts.id.prompt();
     }
-    if (queryString !== '') {
-      dispatch(getPostsBySearch({ search: searchQuery, tags: tagsQuery }));
-      dispatch(getArticlesFromSearch(searchQuery));
+    if (searchQuery || tagsQuery) {
+      dispatch(getPostsBySearch({ search: searchQuery, tags: tagsQuery, lang: language }));
+      dispatch(getArticlesFromSearch(searchQuery || tagsQuery));
     }
     // eslint-disable-next-line
-  }, [queryString]);
+  }, [searchQuery, tagsQuery]);
 
   return (
     <Container
@@ -80,12 +81,7 @@ const Home = () => {
         <Grid item xs={12} sm={12} md={8}>
           <Posts setCurrentId={setCurrentId} />
         </Grid>
-        <Grid
-          className={classes2.newsGrid}
-          item
-          xs={12}
-          sm={12}
-          md={4}>
+        <Grid className={classes2.newsGrid} item xs={12} sm={12} md={4}>
           <News />
         </Grid>
       </Grid>
