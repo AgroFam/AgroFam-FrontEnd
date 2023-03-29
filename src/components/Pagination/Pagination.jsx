@@ -8,16 +8,17 @@ import { getPosts } from '../../actions/posts';
 
 const Paginate = ({ page }) => {
   const { numberOfPages } = useSelector((state) => state.posts);
+  const language = useSelector((state) => state.settings.language).toLowerCase();
   const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (page) {
       window.scroll(0, 0);
-      dispatch(getPosts(page));
+      dispatch(getPosts(page, language));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page, language]);
 
   return (
     <Pagination

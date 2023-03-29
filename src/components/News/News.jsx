@@ -6,10 +6,16 @@ import useStyles from './styles';
 import { Skeleton } from '@material-ui/lab';
 import { useLocation } from 'react-router-dom';
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 const News = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const queryString = useLocation().search;
+  const query = useQuery();
+  const searchQuery = query.get('searchQuery');
+  const tagsQuery = query.get('tags');
   const { articles, isLoadingNews } = useSelector((state) => state.posts);
   const queries = [
     'Agriculture News In India',
@@ -25,7 +31,7 @@ const News = () => {
   const randomQuery = queries[Math.floor(Math.random() * queries.length)];
 
   useEffect(() => {
-    !queryString && dispatch(getArticlesFromSearch(randomQuery));
+    !tagsQuery && !searchQuery && dispatch(getArticlesFromSearch(randomQuery));
   }, []);
 
   const NewsLoading = () => (
@@ -65,7 +71,11 @@ const News = () => {
 
   return (
     <>
-      {queryString ? <Typography variant="h4">🔍 Results From Web</Typography> :  <Typography variant="h4">📰 Latest News</Typography>}
+      {tagsQuery || searchQuery ? (
+        <Typography variant="h5">🔍 Results From Web</Typography>
+      ) : (
+        <Typography variant="h5">📰 Latest News</Typography>
+      )}
       <div className={classes.newsContainer}>
         {isLoadingNews ? (
           <>

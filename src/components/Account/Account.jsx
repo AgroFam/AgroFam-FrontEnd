@@ -19,11 +19,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLanguage, setTheme } from '../../actions/settings';
 import { BENGALI, DARK, ENGLISH, FOLLOW_SYSTEM, GUJARATI, HINDI, KANNADA, LIGHT, MALAYALAM, MARATHI, PUNJABI, TAMIL, TELUGU } from '../../constants/settings';
 import { SET_SNACKBAR } from '../../constants/actionTypes';
+import { getPost, getPosts } from '../../actions/posts';
 
 const Account = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const { colorTheme, language } = useSelector((state) => state.settings);
+  const { currentPage, post } = useSelector((state) => state.posts);
   const classes = useStyles();
 
   const handleChangeTheme = (e) => {
@@ -34,6 +36,8 @@ const Account = () => {
   const handleChangeLanguage = (e) => {
     dispatch(setLanguage(e.target.value));
     dispatch({ type: SET_SNACKBAR, payload: { open: true, message: `🌐 Changed Default Content Language to ${e.target.value}` } });
+    dispatch(getPosts(currentPage || 1, e.target.value))
+    dispatch(getPost(post?._id, language))
   };
 
   useEffect(() => {

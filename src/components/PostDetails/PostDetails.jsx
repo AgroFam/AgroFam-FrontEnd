@@ -19,13 +19,13 @@ const PostDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getPost(id));
+    dispatch(getPost(id, language));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     if (post) {
-      dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
+      dispatch(getPostsBySearch({ search: post.name, tags: post?.tags.join(','), lang: language }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post]);
