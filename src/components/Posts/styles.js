@@ -33,7 +33,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '80vh',
+    height: '50vh',
     gap: '2em',
     textAlign: 'center',
   },
