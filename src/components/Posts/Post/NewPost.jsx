@@ -170,11 +170,11 @@ const NewPost = ({ post, setCurrentId }) => {
           title={post.name}
           subheader={moment(post.createdAt).fromNow()}
         />
-        <div className={classes.content} onClick={()=> navigate(`/posts/${post._id}`)}>
-          <CardContent >
-            <Typography className={classes.postDetailsTitleText} component="h6" variant="h6">
-             {removeTrailingQuotes(post.title[language])}
-            </Typography>
+        <div className={classes.content}>
+          <CardContent component={Link} to={`/posts/${post._id}`}>
+              <Typography className={classes.postDetailsTitleText} component="h6" variant="h6">
+               {removeTrailingQuotes(post.title[language])}
+              </Typography>
             <Typography className={classes.postDetailsText} variant="subtitle1" color="textSecondary">
               {convertToPlain(removeTrailingQuotes(post.message[language])).substring(0, 240)}...
             </Typography>

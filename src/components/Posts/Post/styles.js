@@ -31,10 +31,16 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    cursor: 'pointer',
     padding: '0 0.2em',
     [theme.breakpoints.down('xs')]: {
       padding: '0',
+    },
+    '& a': {
+      textDecoration: 'none',
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
+      color: theme.palette.text.secondary,
     },
   },
   actions: {
@@ -51,6 +57,7 @@ export default makeStyles((theme) => ({
     },
   },
   postDetailsTitleText: {
+    color: theme.palette.text.primary,
     [theme.breakpoints.down('xs')]: {
       fontSize: '1.3em'
     },
