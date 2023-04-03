@@ -8,14 +8,13 @@ const TextToSpeech = () => {
   const post = useSelector((state) => state.posts.post);
   const language = useSelector((state) => state.settings.language).toLowerCase();
   const text = `${removeTrailingQuotes(post.title[language])}, ${convertToPlain(removeTrailingQuotes(post.message[language]))}`;
-  const { speak, cancel, speaking, voices } = useSpeechSynthesis();
-  const voice = voices[1] || null;
+  const { speak, cancel, speaking } = useSpeechSynthesis();
   return (
     <>
       {speaking ? (
         <Button size="small" onClick={cancel}>🛑 Stop Listening</Button>
       ) : (
-        <Button  size="small" onClick={() => speak({ text, voice })}>▶️ Listen</Button>
+        <Button  size="small" onClick={() => speak({ text, rate: 0.9 })}>▶️ Listen</Button>
       )}
     </>
   );
