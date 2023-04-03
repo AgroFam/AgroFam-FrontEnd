@@ -3,7 +3,7 @@ import useStyles from './Styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { InputBase } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostsBySearch, getArticlesFromSearch } from '../../actions/posts';
+import { getPostsBySearch, getWebResults } from '../../actions/posts';
 import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
@@ -16,8 +16,8 @@ const Search = () => {
   const searchPost = () => {
     if (search.trim()) {
       dispatch(getPostsBySearch({ search, lang: language }));
-      dispatch(getArticlesFromSearch(search));
-      navigate(`/posts/search?searchQuery=${search.replace(/ /g, '_')}`);
+      dispatch(getWebResults(search));
+      navigate(`/posts/search?searchQuery=${search}`);
     } else {
       navigate('/');
     }

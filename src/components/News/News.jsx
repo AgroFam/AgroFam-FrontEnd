@@ -17,15 +17,18 @@ const News = () => {
   const searchQuery = query.get('searchQuery');
   const tagsQuery = query.get('tags');
   const { articles, isLoadingNews } = useSelector((state) => state.posts);
+  const language = useSelector((state) => state.settings.language).toLowerCase();
   const queries = [
     'Agriculture News In India',
     'india agri news',
     'agri news india',
-    'agri news hindi',
-    'agri news marathi',
+    `agri news ${language}`,
+    `agriculture news ${language}`,
     'agriculture news india',
-    'agriculture news hindi',
-    'india agriculture news'
+    `agriculture news ${language}`,
+    'india agriculture news',
+    'agri news marathi',
+    'agri news hindi',
   ];
 
   const randomQuery = queries[Math.floor(Math.random() * queries.length)];

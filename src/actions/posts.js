@@ -191,8 +191,26 @@ export const getArticlesFromSearch = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING_NEWS });
 
-    const query = searchQuery?.toLowerCase().replace(/ /g, '_') || 'null';
+    const query = searchQuery?.toLowerCase() || 'null';
     const { data } = await api.getArticlesFromSearch(query);
+
+    dispatch({ type: FETCH_ARTICLES, payload: data.results });
+
+    dispatch({ type: END_LOADING_NEWS });
+  } catch (error) {
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: error.message } });
+    dispatch({ type: FETCH_ARTICLES, payload: [] });
+    dispatch({ type: END_LOADING_NEWS });
+    console.log(error.message);
+  }
+};
+
+export const getWebResults = (searchQuery) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING_NEWS });
+
+    const query = searchQuery?.toLowerCase() || 'null';
+    const { data } = await api.getWebResults(query);
 
     dispatch({ type: FETCH_ARTICLES, payload: data.results });
 
