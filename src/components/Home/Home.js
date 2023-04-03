@@ -7,7 +7,7 @@ import Pagination from '../Pagination/Pagination';
 import { useNavigate, useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
-import { getArticlesFromSearch, getPostsBySearch } from '../../actions/posts';
+import { getWebResults, getPostsBySearch } from '../../actions/posts';
 import config from '../../config';
 import News from '../News/News';
 import { useSelector } from 'react-redux';
@@ -62,7 +62,7 @@ const Home = () => {
     }
     if (searchQuery || tagsQuery) {
       dispatch(getPostsBySearch({ search: searchQuery, tags: tagsQuery, lang: language }));
-      dispatch(getArticlesFromSearch(searchQuery || tagsQuery));
+      dispatch(getWebResults(searchQuery || tagsQuery));
     }
     // eslint-disable-next-line
   }, [searchQuery, tagsQuery]);
