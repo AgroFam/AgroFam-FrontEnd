@@ -20,8 +20,8 @@ https://agrofam.up.railway.app
 To run this project, you will need to add the following environment variables to your .env file
 
 ```
-REACT_APP_ENVIRONMENT=DEVELOPMENT
-REACT_APP_GOOGLE_AUTH_CLIENT_ID=312651318153-duhu95bpdjuv8vj29nndbo48gfc18lbr.apps.googleusercontent.com
+VITE_ENVIRONMENT=DEVELOPMENT
+VITE_GOOGLE_AUTH_CLIENT_ID=312651318153-duhu95bpdjuv8vj29nndbo48gfc18lbr.apps.googleusercontent.com
 ```
 
 ## Run Locally
