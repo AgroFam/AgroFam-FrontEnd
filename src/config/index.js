@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 const ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 
 const ROOT_URL = window.location.href;
@@ -13,8 +10,9 @@ if (rootUrlRegex.test(ROOT_URL)) {
   API_URL = 'https://agrofam-backend-production.up.railway.app';
 }
 
-console.log("mode",import.meta.env.MODE)
-console.log('google id',import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID || process.env.VITE_GOOGLE_AUTH_CLIENT_ID)
+console.log("mode", import.meta.env.MODE)
+console.log('google id', import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID)
+console.log('environment', import.meta.env.VITE_ENVIRONMENT)
 
 // All the config variables avialable globally
 export default {
