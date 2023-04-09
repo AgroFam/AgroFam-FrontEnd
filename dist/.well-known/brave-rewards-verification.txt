@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: notionofnetizen.herokuapp.com
-Token: d1da2586d59d3cbfc1e3b098cec03b4b4aa55e2de67a203eed13f02caad1968b
