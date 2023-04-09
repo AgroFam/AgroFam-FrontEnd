@@ -17,16 +17,16 @@ const News = () => {
   const { articles, isLoadingNews } = useSelector((state) => state.posts);
   const language = useSelector((state) => state.settings.language).toLowerCase();
   const queries = [
-    'Agriculture News In India',
-    'india agri news',
-    'agri news india',
+    `Agriculture News In India ${language}`,
+    `india agri news ${language}`,
+    `agri news india ${language}`,
     `agri news ${language}`,
     `agriculture news ${language}`,
-    'agriculture news india',
+    `agriculture news india in ${language}`,
     `agriculture news ${language}`,
-    'india agriculture news',
-    'agri news marathi',
-    'agri news hindi',
+    `agri news ${language}`,
+    `todays agriculture news in ${language}`,
+    `latest news on agriculture ${language}`,
   ];
 
   const randomQuery = queries[Math.floor(Math.random() * queries.length)];
