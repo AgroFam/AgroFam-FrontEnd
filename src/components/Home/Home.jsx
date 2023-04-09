@@ -11,21 +11,17 @@ import { getWebResults, getPostsBySearch } from '../../actions/posts';
 import config from '../../config';
 import News from '../News/News';
 import { useSelector } from 'react-redux';
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
+import { getQueryParams } from '../../utils/utils';
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(0);
   const user = JSON.parse(localStorage.getItem('profile'));
   const dispatch = useDispatch();
   const classes = useStyles();
-  const query = useQuery();
   const navigate = useNavigate();
-  const page = query.get('page') || 1;
-  const searchQuery = query.get('searchQuery');
-  const tagsQuery = query.get('tags');
+  const page = getQueryParams('page') || 1;
+  const searchQuery = getQueryParams('searchQuery')
+  const tagsQuery = getQueryParams('tags')
   const language = useSelector((state) => state.settings.language).toLowerCase();
 
   const useStyles2 = makeStyles((theme) => ({

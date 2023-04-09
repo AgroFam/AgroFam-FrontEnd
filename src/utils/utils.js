@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { SET_PROGRESS } from '../constants/actionTypes';
 
 export const convertToPlain = (html) => {
@@ -54,3 +55,8 @@ export const createPostProgressInterval = (dispatch) => {
   }, 2400);
   return intervalId;
 };
+
+export const getQueryParams = (queryParam) => {
+  const query = new URLSearchParams(useLocation().search);
+  return query.get(queryParam);
+}
