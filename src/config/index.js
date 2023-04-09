@@ -1,5 +1,5 @@
-// import dotenv from 'dotenv';
-// dotenv.config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 
@@ -14,7 +14,7 @@ if (rootUrlRegex.test(ROOT_URL)) {
 }
 
 console.log("mode",import.meta.env.MODE)
-console.log('google id',import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID)
+console.log('google id',import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID || process.env.VITE_GOOGLE_AUTH_CLIENT_ID)
 
 // All the config variables avialable globally
 export default {
