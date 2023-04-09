@@ -1,10 +1,10 @@
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
-const ENVIRONMENT = process.env.REACT_APP_ENVIRONMENT;
+const ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 
 const ROOT_URL = window.location.href;
-const rootUrlRegex = /http:\/\/localhost:3000\/*/gm;
+const rootUrlRegex = /http:\/\/127.0.0.1:3000\/*/gm;
 
 let API_URL;
 if (rootUrlRegex.test(ROOT_URL)) {
@@ -15,7 +15,7 @@ if (rootUrlRegex.test(ROOT_URL)) {
 
 // All the config variables avialable globally
 export default {
-  googleOAuthClientID: process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID,
+  googleOAuthClientID: import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID,
   environment: ENVIRONMENT,
   apiBaseURL: API_URL
 };
