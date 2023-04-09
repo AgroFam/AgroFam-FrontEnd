@@ -4,7 +4,7 @@
 const ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 
 const ROOT_URL = window.location.href;
-const rootUrlRegex = /http:\/\/127.0.0.1:3000\/*/gm;
+const rootUrlRegex = /^http:\/\/(localhost|127\.0\.0\.1):3000(\/\S*)?$/;
 
 let API_URL;
 if (rootUrlRegex.test(ROOT_URL)) {
@@ -12,6 +12,9 @@ if (rootUrlRegex.test(ROOT_URL)) {
 } else {
   API_URL = 'https://agrofam-backend-production.up.railway.app';
 }
+
+console.log("mode",import.meta.env.MODE)
+console.log('google id',import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID)
 
 // All the config variables avialable globally
 export default {
