@@ -38,7 +38,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "serve": "vite preview",
     "start": "node index.js",

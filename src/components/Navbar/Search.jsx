@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import useStyles from './Styles';
 import SearchIcon from '@material-ui/icons/Search';
-import { InputBase } from '@material-ui/core';
+import { ClearRounded } from '@material-ui/icons';
+import { IconButton, InputBase } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsBySearch, getWebResults } from '../../actions/posts';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getQueryParams } from '../../utils/utils';
 
 const Search = () => {
   const classes = useStyles();
@@ -12,6 +15,7 @@ const Search = () => {
   const navigate = useNavigate();
   const language = useSelector((state) => state.settings.language).toLowerCase();
   const [search, setSearch] = useState('');
+  const searchQuery = getQueryParams('searchQuery')
 
   const searchPost = () => {
     if (search.trim()) {
@@ -33,6 +37,15 @@ const Search = () => {
     setSearch(event.target.value);
   };
 
+  const handleClear = () => {
+    setSearch('')
+  }
+
+  useEffect(() => {
+    !searchQuery && setSearch('')
+  }, [searchQuery])
+  
+
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
@@ -44,10 +57,18 @@ const Search = () => {
           root: classes.inputRoot,
           input: classes.inputInput
         }}
+        value={search}
         inputProps={{ 'aria-label': 'search' }}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
+      {search && (
+        <div className={classes.clearIcon}>
+          <IconButton onClick={handleClear}>
+            <ClearRounded />
+          </IconButton>
+        </div>
+      )}
     </div>
   );
 };

@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: '1em',
+    gap: theme.spacing(2),
     backgroundColor:
       theme.palette.type === 'dark' ? 'hsla(104, 25%, 10%, 0.85)' : 'hsla(104, 25%, 90%, 0.85)',
     backdropFilter: 'blur(20px)',
@@ -25,13 +25,13 @@ export default makeStyles((theme) => ({
   },
   menuItems1: {
     display: 'flex',
-    gap: theme.spacing(1),
+    gap: theme.spacing(2),
     alignItems: 'center',
-    width: 'inherit'
+    // width: 'inherit'
   },
   menuItems2: {
     display: 'flex',
-    gap: theme.spacing(1),
+    gap: theme.spacing(2),
     alignItems: 'center',
   },
   heading: {
@@ -117,7 +117,7 @@ export default makeStyles((theme) => ({
     },
     marginLeft: 0,
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
     },
@@ -131,22 +131,30 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  clearIcon: {
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 0,
+    top: 0,
+  },
   inputRoot: {
     color: 'inherit',
     width: 'inherit',
     paddingLeft: '3em',
+    paddingRight: '0.7em',
   },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
+    padding: theme.spacing(1.5, 1.5, 1.5, 0),
     // vertical padding + font size from searchIcon
     transition: theme.transitions.create('width'),
     color: 'inherit',
     width: 'inherit',
-    [theme.breakpoints.up('sm')]: {
-      width: '20ch',
-      '&:focus': {
-        width: '30ch',
-      },
+    [theme.breakpoints.up('md')]: {
+      width: '45ch',
     },
   },
 }));

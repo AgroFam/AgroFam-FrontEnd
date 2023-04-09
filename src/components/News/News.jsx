@@ -6,17 +6,14 @@ import useStyles from './styles';
 import { Skeleton } from '@material-ui/lab';
 import { useLocation } from 'react-router-dom';
 import agroFamLogo from '../../images/agroFamLogo.png';
+import { getQueryParams } from '../../utils/utils';
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 
 const News = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const query = useQuery();
-  const searchQuery = query.get('searchQuery');
-  const tagsQuery = query.get('tags');
+  const searchQuery = getQueryParams('searchQuery');
+  const tagsQuery = getQueryParams('tags');
   const { articles, isLoadingNews } = useSelector((state) => state.posts);
   const language = useSelector((state) => state.settings.language).toLowerCase();
   const queries = [

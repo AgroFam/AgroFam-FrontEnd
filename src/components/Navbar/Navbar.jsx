@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux';
 const Navbar = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const prefersDarkMode = useSelector(state => state.settings.prefersDarkMode);
   return (
     <AppBar className={classes.appBar} position="static" color="inherit" elevation={0}>
@@ -23,8 +22,8 @@ const Navbar = () => {
           <img src={agroFamLogo} alt="icon" height="40px" />
           <img className={classes.logoText} src={prefersDarkMode ? agroFamTextForDark : agroFamForLight} alt="icon" height="30px" />
         </Link>
-        <Search />
       </div>
+      <Search />
       <div className={classes.menuItems2}>
         <Tooltip className={classes.menuItemsChild} title="Home">
           <IconButton onClick={() => navigate('/posts')} aria-label="Home" >
