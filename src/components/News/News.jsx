@@ -5,6 +5,7 @@ import { getArticlesFromSearch } from '../../actions/posts';
 import useStyles from './styles';
 import { Skeleton } from '@material-ui/lab';
 import { useLocation } from 'react-router-dom';
+import agroFamLogo from '../../images/agroFamLogo.png';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -58,7 +59,7 @@ const News = () => {
         <div key={i}>
           <div className={classes.newsCard}>
             <div className={classes.newsContent}>
-              <img src={newsItem.image_url} alt="news favicon" />
+              <img src={newsItem.image_url || agroFamLogo} alt="news-source favicon" />
               <a href={newsItem.link} target="_blank">
                 <h3>{newsItem.title}</h3>
               </a>
