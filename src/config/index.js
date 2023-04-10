@@ -16,7 +16,7 @@ console.log('environment', import.meta.env.VITE_ENVIRONMENT)
 
 // All the config variables avialable globally
 export default {
-  googleOAuthClientID: import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID,
+  googleOAuthClientID: import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID || '312651318153-duhu95bpdjuv8vj29nndbo48gfc18lbr.apps.googleusercontent.com',
   environment: ENVIRONMENT,
   apiBaseURL: API_URL
 };
