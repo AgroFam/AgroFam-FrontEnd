@@ -53,14 +53,13 @@ const Search = () => {
         <SearchIcon />
       </div>
       <InputBase
-        role="search"
         placeholder="Search…"
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput
         }}
         value={search}
-        inputProps={{ 'aria-label': 'search' }}
+        inputProps={{ 'aria-label': 'search', 'role': 'search', 'type': 'search' }}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
