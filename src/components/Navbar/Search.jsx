@@ -52,6 +52,7 @@ const Search = () => {
         <SearchIcon />
       </div>
       <InputBase
+        role="search"
         placeholder="Search…"
         classes={{
           root: classes.inputRoot,

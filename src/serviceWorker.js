@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-const VERSION = 1.006;
+const VERSION = 1.007;
 // This optional code is used to register a service worker.
 // register() is not called by default.
 

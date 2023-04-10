@@ -119,7 +119,8 @@ export default makeStyles((theme) => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(1),
-      width: 'auto',
+      maxWidth: '60ch',
+
     },
   },
   searchIcon: {
@@ -154,7 +155,7 @@ export default makeStyles((theme) => ({
     color: 'inherit',
     width: 'inherit',
     [theme.breakpoints.up('md')]: {
-      width: '45ch',
+      width: 'inherit',
     },
   },
 }));
