@@ -43,6 +43,7 @@ const Search = () => {
 
   useEffect(() => {
     !searchQuery && setSearch('')
+    searchQuery && setSearch(searchQuery)
   }, [searchQuery])
   
 

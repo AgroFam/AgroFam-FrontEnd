@@ -120,7 +120,6 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(1),
       maxWidth: '60ch',
-
     },
   },
   searchIcon: {
@@ -151,11 +150,7 @@ export default makeStyles((theme) => ({
   inputInput: {
     padding: theme.spacing(1.5, 1.5, 1.5, 0),
     // vertical padding + font size from searchIcon
-    transition: theme.transitions.create('width'),
     color: 'inherit',
     width: 'inherit',
-    [theme.breakpoints.up('md')]: {
-      width: 'inherit',
-    },
   },
 }));
