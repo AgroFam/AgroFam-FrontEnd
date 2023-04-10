@@ -39,10 +39,10 @@ const News = () => {
     <>
       <div className={classes.newsCard}>
         <div className={classes.newsContent}>
-          <Skeleton variant="circle" width={28} height={28} />
-          <Skeleton variant="rect" width={300} height={30} />
+          <Skeleton animation="wave" variant="circle" width={28} height={28} />
+          <Skeleton animation="wave" variant="rect" width={300} height={30} />
         </div>
-        <Skeleton variant="text" />
+        <Skeleton animation="wave" variant="text" />
       </div>
       <Divider />
     </>
