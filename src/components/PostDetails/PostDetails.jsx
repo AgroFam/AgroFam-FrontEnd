@@ -10,6 +10,7 @@ import useStyles from './styles';
 import NewPost from '../Posts/Post/NewPost';
 import BlogHeader from './BlogHeader';
 import { removeTrailingQuotes } from '../../utils/utils';
+import SkeletonLoader from './SkeletonLoader';
 
 const PostDetails = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
@@ -34,9 +35,7 @@ const PostDetails = () => {
 
   if (isLoading) {
     return (
-      <Paper elevation={2} className={classes.loadingPaper}>
-        <CircularProgress size="5em" />
-      </Paper>
+      <SkeletonLoader />
     );
   }
 
