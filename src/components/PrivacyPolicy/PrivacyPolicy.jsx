@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
   const classes = useStyles();
   return (
     <Container className={classes.PolicyContainer}>
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h1>Privacy Policy for AgroFam</h1>
         <p>
           At AgroFam , accessible from{' '}
@@ -26,14 +26,14 @@ const PrivacyPolicy = () => {
         </p>
       </Paper>
 
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h2>Consent</h2>
         <p>
           By using our website, you hereby consent to our Privacy Policy and agree to its terms.
         </p>
       </Paper>
 
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h2>Information we collect</h2>
         <p>
           The personal information that you are asked to provide, and the reasons why you are asked
@@ -51,7 +51,7 @@ const PrivacyPolicy = () => {
         </p>
       </Paper>
 
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h2>How we use your information</h2>
         <p>We use the information we collect in various ways, including to:</p>
         <ul className={classes.List}>
@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
         </ul>
       </Paper>
 
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h2>Log Files</h2>
         <p>
           AgroFam follows a standard procedure of using log files. These files log
@@ -83,7 +83,7 @@ const PrivacyPolicy = () => {
         </p>
       </Paper>
 
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h2>Advertising Partners Privacy Policies</h2>
         <p>
           You may consult this list to find the Privacy Policy for each of the advertising partners
@@ -103,7 +103,7 @@ const PrivacyPolicy = () => {
         </p>
       </Paper>
 
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h2>Third Party Privacy Policies</h2>
         <p>
           AgroFam's Privacy Policy does not apply to other advertisers or
@@ -118,7 +118,7 @@ const PrivacyPolicy = () => {
         </p>
       </Paper>
 
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h2>CCPA Privacy Rights (Do Not Sell My Personal Information)</h2>
         <p>Under the CCPA, among other rights, California consumers have the right to:</p>
         <p>
@@ -139,7 +139,7 @@ const PrivacyPolicy = () => {
         </p>
       </Paper>
 
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h2>GDPR Data Protection Rights</h2>
         <p>
           We would like to make sure you are fully aware of all of your data protection rights.
@@ -177,7 +177,7 @@ const PrivacyPolicy = () => {
         </p>
       </Paper>
 
-      <Paper className={classes.ContentPaper}>
+      <Paper elevation={0} className={classes.ContentPaper}>
         <h2>Children's Information</h2>
         <p>
           Another part of our priority is adding protection for children while using the internet.
