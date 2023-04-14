@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, Typography } from '@material-ui/core'
 import useStyles from './styles';
-import { getHumanReadableDate, getMinutesToRead } from '../../utils/utils';
+import { getAvatar, getHumanReadableDate, getMinutesToRead } from '../../utils/utils';
 import TextToSpeech from '../TextToSpeech/TextToSpeech';
 import { useSelector } from 'react-redux';
 
@@ -11,7 +11,7 @@ const BlogHeader = () => {
   const classes = useStyles();
   return (
     <div className={classes.blogHeader}>
-      <Avatar className={classes.blogHeaderAvatar} alt={post.name} src={post.creatorImg} >
+      <Avatar className={classes.blogHeaderAvatar} alt={post.name} src={post.creatorImg || getAvatar(post.creator)} >
         { post?.name?.charAt(0) }
       </Avatar> 
       <div>

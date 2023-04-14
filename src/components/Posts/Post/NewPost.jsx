@@ -18,7 +18,7 @@ import {
   Popper,
   Grow,
   MenuList,
-  CardActions,
+  CardActions
 } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpOutlined';
@@ -26,18 +26,23 @@ import Comment from '@material-ui/icons/Comment';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { likePost, deletePost, getPostsBySearch } from '../../../redux/actions/posts';
-import { convertToPlain, getMinutesToRead, removeTrailingQuotes } from '../../../utils/utils';
+import {
+  convertToPlain,
+  getAvatar,
+  getMinutesToRead,
+  removeTrailingQuotes
+} from '../../../utils/utils';
 
 const NewPost = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const user = useSelector((state) => state.auth.authData);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const language = useSelector((state) => state.settings.language).toLowerCase();
   const [likes, setLikes] = useState(post?.likes);
 
-  const userId = user?.result.sub || user?.result?._id;
-  const hasLikedPost = post.likes.find((like) => like === userId);
+  const hasLikedPost = post.likes.find((like) => like === user?.id);
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -91,15 +96,15 @@ const NewPost = ({ post, setCurrentId }) => {
     dispatch(likePost(post._id));
 
     if (hasLikedPost) {
-      setLikes(post.likes.filter((id) => id !== userId));
+      setLikes(post.likes.filter((id) => id !== user?.id));
     } else {
-      setLikes([...post.likes, userId]);
+      setLikes([...post.likes, user?.id]);
     }
   };
 
   const Likes = () => {
     if (likes.length > 0) {
-      return likes.find((like) => like === userId) ? (
+      return likes.find((like) => like === user?.id) ? (
         <>
           <ThumbUpAltIcon fontSize="small" />
           &nbsp; {likes.length} like{likes.length > 1 ? 's' : ''}
@@ -126,12 +131,15 @@ const NewPost = ({ post, setCurrentId }) => {
         <CardHeader
           className={classes.cardHeader}
           avatar={
-            <Avatar className={classes.green} alt={post.name} src={post?.creatorImg}>
+            <Avatar
+              className={classes.green}
+              alt={post.name}
+              src={post?.creatorImg || getAvatar(post.creator)}>
               {post?.name?.charAt(0)}
             </Avatar>
           }
           action={
-            (user?.result.sub === post?.creator || user?.result?._id === post?.creator) && (
+            (user?.id === post?.creator) && (
               <div>
                 <IconButton aria-label="edit post" onClick={handleToggle} ref={anchorRef}>
                   <MoreVertIcon />
@@ -172,10 +180,13 @@ const NewPost = ({ post, setCurrentId }) => {
         />
         <div className={classes.content}>
           <CardContent component={Link} to={`/posts/${post._id}`}>
-              <Typography className={classes.postDetailsTitleText} component="h6" variant="h6">
-               {removeTrailingQuotes(post.title[language])}
-              </Typography>
-            <Typography className={classes.postDetailsText} variant="subtitle1" color="textSecondary">
+            <Typography className={classes.postDetailsTitleText} component="h6" variant="h6">
+              {removeTrailingQuotes(post.title[language])}
+            </Typography>
+            <Typography
+              className={classes.postDetailsText}
+              variant="subtitle1"
+              color="textSecondary">
               {convertToPlain(removeTrailingQuotes(post.message[language])).substring(0, 240)}...
             </Typography>
           </CardContent>
@@ -191,18 +202,19 @@ const NewPost = ({ post, setCurrentId }) => {
       </div>
       <CardActions className={classes.actions}>
         <div>
-          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost}/> &#160; {getMinutesToRead(post.message[language])} Minute Read
+          <Chip label={tags[0] || 'No Tag'} color="secondary" onClick={searchPost} /> &#160;{' '}
+          {getMinutesToRead(post.message[language])} Minute Read
         </div>
         <div>
           <Button
             size="small"
             color="primary"
-            disabled={!user?.result}
+            disabled={!isLoggedIn}
             disableElevation
             onClick={handleLike}>
             <Likes />
           </Button>
-          <IconButton 
+          <IconButton
             component={Link}
             disableElevation
             to={`/posts/${post._id}`}

@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import { AUTH, SET_PROGRESS, SET_SNACKBAR } from '../redux/constants/actionTypes';
-import jwt_decode from 'jwt-decode';
+import { SET_PROGRESS } from '../redux/constants/actionTypes';
+import { googleLogin } from '../redux/actions/auth';
 
 export const convertToPlain = (html) => {
   // Create a new div element
@@ -60,18 +60,14 @@ export const createPostProgressInterval = (dispatch) => {
 export const getQueryParams = (queryParam) => {
   const query = new URLSearchParams(useLocation().search);
   return query.get(queryParam);
-}
+};
 
 export const googleSuccess = async (res, dispatch, navigate) => {
-  const result = jwt_decode(res.credential);
   const token = res?.credential;
-
-  try {
-    dispatch({ type: AUTH, data: { result, token } });
-    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: 'Logged In With Google' } })
-
-    navigate('/');
-  } catch (error) {
-    console.log(error);
-  }
+  dispatch(googleLogin(token));
+  navigate('/');
 };
+
+export const getAvatar = (param) => {
+  return `https://api.dicebear.com/6.x/adventurer-neutral/svg?seed=${param}`
+}

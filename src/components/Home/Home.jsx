@@ -15,7 +15,8 @@ import { getQueryParams, googleSuccess } from '../../utils/utils';
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(0);
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const user = useSelector((state) => state.auth.authData);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const classes = useStyles();
   const navigate = useNavigate();
@@ -34,22 +35,26 @@ const Home = () => {
 
   const classes2 = useStyles2();
 
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     /* global google */
+  //     google.accounts.id.initialize({
+  //       client_id: config.googleOAuthClientID,
+  //       callback: (res) => googleSuccess(res, dispatch, navigate)
+  //     });
+  //     google.accounts.id.prompt();
+  //   }
+  // }, [])
+  
+
   useEffect(() => {
-    if (!user) {
-      /* global google */
-      google.accounts.id.initialize({
-        client_id: config.googleOAuthClientID,
-        callback: (res) => googleSuccess(res, dispatch, navigate)
-      });
-      google.accounts.id.prompt();
-    }
     if (searchQuery || tagsQuery) {
       dispatch(getPostsBySearch({ search: searchQuery, tags: tagsQuery, lang: language }));
       dispatch(getWebResults(searchQuery || tagsQuery));
     }
     // eslint-disable-next-line
   }, [searchQuery, tagsQuery]);
-
+  
   return (
     <Container
       className={classes.homeContainer}

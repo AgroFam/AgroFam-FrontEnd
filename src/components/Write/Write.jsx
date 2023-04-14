@@ -84,9 +84,9 @@ const Write = () => {
   const [characters, setCharacters] = useState(0);
   const MAX_LENGTH = 8000;
   const localEditorState = localStorage.getItem('editorState');
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const user = useSelector((state) => state.auth.authData);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const fileUploadRef = useRef();
-  // const textEditorRef = useRef();
 
   //Function to convert file into base64 string
   const convertBase64 = (file) => {
@@ -125,7 +125,6 @@ const Write = () => {
   // mui rte handleChange
   const handleEditorChange = (editorState) => {
     const contentState = editorState.getCurrentContent();
-    // const rawData = convertToRaw(contentState);
     setPostData({ ...postData, message: stateToHTML(contentState) });
     setPostError({ ...postError, message: false });
     setCharacters(stateToHTML(contentState).length);
@@ -167,7 +166,7 @@ const Write = () => {
     ) {
       dispatch(
         createPost(
-          { ...postData, name: user?.result?.name, creatorImg: user?.result.picture },
+          { ...postData, name: user?.name, creatorImg: user?.picture },
           navigate,
           clear
         )
@@ -215,7 +214,7 @@ const Write = () => {
   const HeaderComponent = () => (
     <div className={classes.header}>
       <div className={classes.headerTitle}>
-        <Typography variant="h5">Draft By {user?.result?.name.split(' ')[0]} </Typography>
+        <Typography variant="h5">Draft By {user?.name.split(' ')[0]} </Typography>
         <Typography varialnt="subtitle">{save}</Typography>
       </div>
       <div className={classes.buttonGroup}>
@@ -246,7 +245,7 @@ const Write = () => {
 
   return (
     <Container className={classes.container} maxWidth="xl">
-      {!user?.result?.name ? (
+      {!isLoggedIn ? (
         <NotLoggedInComponent />
       ) : (
         <>

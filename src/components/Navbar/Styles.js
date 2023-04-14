@@ -73,15 +73,14 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
   },
   logoText: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       display: 'none'
     }
   },
   menuItemsChild: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'none'
     },
-    alignSelf: 'strech'
   },
   profileButton: {
     padding: '0'
