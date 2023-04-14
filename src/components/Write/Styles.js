@@ -12,6 +12,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    position: 'relative',
     minHeight: '130vh',
     width: 'min(100%, 1000px)',
     padding: '1.5em',
@@ -148,5 +149,17 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     gap: '1em',
+  },
+  editor: {
+    marginBottom: '2em',
+  },
+  progress: {
+    display: 'flex',
+    gap: '1em',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: '0',
+    right: '0',
+    padding: '1em'
   }
 }));

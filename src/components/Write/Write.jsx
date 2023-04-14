@@ -11,7 +11,9 @@ import {
   CardActionArea,
   MenuItem,
   Backdrop,
-  LinearProgress
+  LinearProgress,
+  CircularProgress,
+  Chip
 } from '@material-ui/core';
 import {
   Clear,
@@ -79,6 +81,8 @@ const Write = () => {
     selectedFile: false
   });
   const [save, setSave] = useState('✅ Saved');
+  const [characters, setCharacters] = useState(0);
+  const MAX_LENGTH = 8000;
   const localEditorState = localStorage.getItem('editorState');
   const user = JSON.parse(localStorage.getItem('profile'));
   const fileUploadRef = useRef();
@@ -124,6 +128,7 @@ const Write = () => {
     // const rawData = convertToRaw(contentState);
     setPostData({ ...postData, message: stateToHTML(contentState) });
     setPostError({ ...postError, message: false });
+    setCharacters(stateToHTML(contentState).length);
   };
 
   // Clear form
@@ -134,13 +139,13 @@ const Write = () => {
 
   //Form Submit
   const handleSubmit = async () => {
-    if (postData.message.length > 8000)
+    if (postData.message.length > MAX_LENGTH)
       dispatch({
         type: SET_SNACKBAR,
         payload: {
           open: true,
           message:
-            "⚠️ Please Make sure your content dosen't go beyond 8000 characters, If you want to post longer posts you can always write part 2"
+            `⚠️ Please Make sure your content dosen't go beyond ${MAX_LENGTH} characters, If you want to post longer posts you can always write part 2`
         }
       });
 
@@ -155,7 +160,7 @@ const Write = () => {
     if (
       postData.title &&
       postData.message.length >= 200 &&
-      postData.message.length < 8000 &&
+      postData.message.length < MAX_LENGTH &&
       postData.tags &&
       postData.selectedFile
     ) {
@@ -265,6 +270,19 @@ const Write = () => {
           </Backdrop>
           <HeaderComponent />
           <Paper className={classes.paper} elevation={0}>
+            <TextField
+              error={postError.title}
+              name="title"
+              variant="outlined"
+              label="Title"
+              multiline
+              helperText={postError.title ? 'Please Enter a Title for your Article' : ''}
+              value={postData.title}
+              onChange={(e) => {
+                setPostData({ ...postData, title: e.target.value });
+                setPostError({ ...postError, title: false });
+              }}
+            />
             <Card
               className={postError.selectedFile ? classes.fileInputError : classes.fileInputNormal}
               elevation={0}>
@@ -297,19 +315,6 @@ const Write = () => {
               ''
             )}
             <TextField
-              error={postError.title}
-              name="title"
-              variant="outlined"
-              label="Title"
-              multiline
-              helperText={postError.title ? 'Please Enter a Title for your Article' : ''}
-              value={postData.title}
-              onChange={(e) => {
-                setPostData({ ...postData, title: e.target.value });
-                setPostError({ ...postError, title: false });
-              }}
-            />
-            <TextField
               id="outlined-select-currency"
               select
               error={postError.tags}
@@ -335,27 +340,39 @@ const Write = () => {
             ) : (
               ''
             )}
-            <MUIRichTextEditor
-              defaultValue={localEditorState}
-              controls={[
-                'title',
-                'bold',
-                'italic',
-                'underline',
-                'strikethrough',
-                'undo',
-                'redo',
-                'link',
-                'numberList',
-                'bulletList',
-                'save'
-              ]}
-              label="Start typing..."
-              inlineToolbar={true}
-              draftEditorProps={{ spellCheck: true }}
-              onSave={handleSave}
-              onChange={handleEditorChange}
-            />
+            <div className={classes.editor}>
+              <MUIRichTextEditor
+                defaultValue={localEditorState}
+                controls={[
+                  'title',
+                  'bold',
+                  'italic',
+                  'underline',
+                  'strikethrough',
+                  'undo',
+                  'redo',
+                  'link',
+                  'numberList',
+                  'bulletList',
+                  'save'
+                ]}
+                label="Start typing..."
+                inlineToolbar={true}
+                draftEditorProps={{ spellCheck: true }}
+                onSave={handleSave}
+                onChange={handleEditorChange}
+              />
+            </div>
+              <div className={classes.progress}>
+                {characters < MAX_LENGTH ? '' : <Chip variant='outlined' color='secondary' label={`unfortunately we only support ${MAX_LENGTH} characters as of now ` }/> }
+              <Typography variant="caption"> {`${characters}/8000`} </Typography>
+              <CircularProgress
+                variant="determinate"
+                color={characters < MAX_LENGTH ? 'primary' : 'secondary'}
+                value={characters < MAX_LENGTH ? (characters / MAX_LENGTH) * 100 : 100}
+                size={20}
+              />
+            </div>
           </Paper>
         </>
       )}
