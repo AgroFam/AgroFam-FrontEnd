@@ -3,7 +3,7 @@ import { TextField, Button, Typography, Chip } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import useStyles from './styles';
-import { commentPost } from '../../actions/posts';
+import { commentPost } from '../../redux/actions/posts';
 
 const CommentSection = ({ post }) => {
   const classes = useStyles();

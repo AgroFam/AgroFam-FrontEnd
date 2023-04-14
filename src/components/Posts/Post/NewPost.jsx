@@ -25,7 +25,7 @@ import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpOutlined';
 import Comment from '@material-ui/icons/Comment';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import { likePost, deletePost, getPostsBySearch } from '../../../actions/posts';
+import { likePost, deletePost, getPostsBySearch } from '../../../redux/actions/posts';
 import { convertToPlain, getMinutesToRead, removeTrailingQuotes } from '../../../utils/utils';
 
 const NewPost = ({ post, setCurrentId }) => {

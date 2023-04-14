@@ -24,14 +24,14 @@ import {
   Subtitles,
   TranslateRounded
 } from '@material-ui/icons';
-import { createPost } from '../../actions/posts';
+import { createPost } from '../../redux/actions/posts';
 import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './Styles';
 import LoginImg from '../../images/Login.svg';
 import placeholderImg from '../../images/PlaceholderImg.png';
 import { stateToHTML } from 'draft-js-export-html';
 import { useEffect } from 'react';
-import { SET_SNACKBAR } from '../../constants/actionTypes';
+import { SET_SNACKBAR } from '../../redux/constants/actionTypes';
 
 const categories = [
   {
@@ -134,6 +134,7 @@ const Write = () => {
   // Clear form
   const clear = () => {
     setPostData({ title: '', message: '', tags: '', selectedFile: '' });
+    setPostError({ title: '', message: '', tags: '', selectedFile: '' });
     localStorage.setItem('editorState', '');
   };
 
@@ -153,9 +154,9 @@ const Write = () => {
 
     if (!postData.tags) setPostError({ ...postError, tags: true });
 
-    if (!postData.title) setPostError({ ...postError, title: true });
-
     if (!postData.selectedFile) setPostError({ ...postError, selectedFile: true });
+    
+    if (!postData.title) setPostError({ ...postError, title: true });
 
     if (
       postData.title &&
@@ -364,7 +365,7 @@ const Write = () => {
               />
             </div>
               <div className={classes.progress}>
-                {characters < MAX_LENGTH ? '' : <Chip variant='outlined' color='secondary' label={`unfortunately we only support ${MAX_LENGTH} characters as of now ` }/> }
+                {characters < MAX_LENGTH ? '' : <Chip variant='outlined' color='secondary' label={`Unfortunately we only support ${MAX_LENGTH} characters as of now ` }/> }
               <Typography variant="caption"> {`${characters}/8000`} </Typography>
               <CircularProgress
                 variant="determinate"

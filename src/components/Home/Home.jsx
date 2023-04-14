@@ -7,11 +7,11 @@ import Pagination from '../Pagination/Pagination';
 import { useNavigate, useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
-import { getWebResults, getPostsBySearch } from '../../actions/posts';
+import { getWebResults, getPostsBySearch } from '../../redux/actions/posts';
 import config from '../../config';
 import News from '../News/News';
 import { useSelector } from 'react-redux';
-import { getQueryParams } from '../../utils/utils';
+import { getQueryParams, googleSuccess } from '../../utils/utils';
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(0);
@@ -34,25 +34,12 @@ const Home = () => {
 
   const classes2 = useStyles2();
 
-  const googleSuccess = async (res) => {
-    const actualRes = jwt_decode(res.credential);
-    const result = actualRes;
-    const token = res.credential;
-
-    try {
-      dispatch({ type: 'AUTH', data: { result, token } });
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     if (!user) {
       /* global google */
       google.accounts.id.initialize({
         client_id: config.googleOAuthClientID,
-        callback: googleSuccess
+        callback: (res) => googleSuccess(res, dispatch, navigate)
       });
       google.accounts.id.prompt();
     }

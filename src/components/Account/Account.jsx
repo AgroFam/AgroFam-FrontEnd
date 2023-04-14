@@ -16,10 +16,10 @@ import {
 import useStyles from './styles';
 import { Brightness4Rounded, Translate } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLanguage, setTheme } from '../../actions/settings';
-import { BENGALI, DARK, ENGLISH, FOLLOW_SYSTEM, GUJARATI, HINDI, KANNADA, LIGHT, MALAYALAM, MARATHI, PUNJABI, TAMIL, TELUGU } from '../../constants/settings';
-import { SET_SNACKBAR } from '../../constants/actionTypes';
-import { getPost, getPosts } from '../../actions/posts';
+import { setLanguage, setTheme } from '../../redux/actions/settings';
+import { BENGALI, DARK, ENGLISH, FOLLOW_SYSTEM, GUJARATI, HINDI, KANNADA, LIGHT, MALAYALAM, MARATHI, PUNJABI, TAMIL, TELUGU } from '../../redux/constants/settings';
+import { SET_SNACKBAR } from '../../redux/constants/actionTypes';
+import { getPost, getPosts } from '../../redux/actions/posts';
 
 const Account = () => {
   const dispatch = useDispatch();

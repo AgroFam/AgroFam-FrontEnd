@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import { SET_PROGRESS } from '../constants/actionTypes';
+import { AUTH, SET_PROGRESS, SET_SNACKBAR } from '../redux/constants/actionTypes';
+import jwt_decode from 'jwt-decode';
 
 export const convertToPlain = (html) => {
   // Create a new div element
@@ -60,3 +61,17 @@ export const getQueryParams = (queryParam) => {
   const query = new URLSearchParams(useLocation().search);
   return query.get(queryParam);
 }
+
+export const googleSuccess = async (res, dispatch, navigate) => {
+  const result = jwt_decode(res.credential);
+  const token = res?.credential;
+
+  try {
+    dispatch({ type: AUTH, data: { result, token } });
+    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: 'Logged In With Google' } })
+
+    navigate('/');
+  } catch (error) {
+    console.log(error);
+  }
+};

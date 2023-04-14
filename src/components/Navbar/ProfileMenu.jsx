@@ -13,7 +13,7 @@ import {
 import useStyles from './Styles';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import * as actionType from '../../constants/actionTypes';
+import * as actionType from '../../redux/constants/actionTypes';
 
 const ProfileMenu = () => {
   const classes = useStyles();

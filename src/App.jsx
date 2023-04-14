@@ -17,8 +17,8 @@ import Write from './components/Write/Write';
 import Account from './components/Account/Account';
 import useStyles from './styles'
 import NewsPage from './components/News/NewsPage';
-import { DARK, FOLLOW_SYSTEM, LIGHT } from './constants/settings';
-import { PREFERS_DARK_MODE } from './constants/actionTypes';
+import { DARK, FOLLOW_SYSTEM, LIGHT } from './redux/constants/settings';
+import { PREFERS_DARK_MODE } from './redux/constants/actionTypes';
 import SnackbarComponent from './components/SnackbarComponent/SnackbarComponent';
 
 

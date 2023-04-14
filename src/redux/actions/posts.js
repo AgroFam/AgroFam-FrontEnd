@@ -16,8 +16,8 @@ import {
   SET_SNACKBAR
 } from '../constants/actionTypes';
 
-import * as api from '../api/index.js';
-import { createPostProgressInterval } from '../utils/utils';
+import * as api from '../../api/index.js';
+import { createPostProgressInterval } from '../../utils/utils';
 
 export const getPost = (id, lang) => async (dispatch) => {
   try {

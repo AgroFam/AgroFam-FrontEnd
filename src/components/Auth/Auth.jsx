@@ -14,11 +14,11 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import useStyles from './Styles';
 import Input from './Input';
-// import Icon from "./Icon";
-import { signin, signup } from '../../actions/auth';
-import jwt_decode from 'jwt-decode';
+import { signin, signup } from '../../redux/actions/auth';
+
 import config from '../../config';
-import { AUTH, SET_SNACKBAR } from '../../constants/actionTypes';
+import { AUTH, SET_SNACKBAR } from '../../redux/constants/actionTypes';
+import { googleSuccess } from '../../utils/utils';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
@@ -35,7 +35,7 @@ const Auth = () => {
     /* global google */
     google.accounts.id.initialize({
       client_id: config.googleOAuthClientID,
-      callback: googleSuccess
+      callback: (res) => googleSuccess(res, dispatch, navigate)
     });
     google.accounts.id.prompt();
     google.accounts.id.renderButton(document.getElementById('signInDiv'), {
@@ -71,26 +71,6 @@ const Auth = () => {
   const switchMode = () => setIsSignUp((isSignUp) => !isSignUp);
 
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
-
-  const googleSuccess = async (res) => {
-    const actualRes = jwt_decode(res.credential);
-    const result = actualRes;
-    const token = res?.credential;
-
-    try {
-      dispatch({ type: AUTH, data: { result, token } });
-      dispatch({ type: SET_SNACKBAR, payload: { open: true, message: 'Logged In With Google' } })
-
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // const googleFailure = (error) => {
-  //     console.log('Google sign in was unsuccessfull. Try Again later');
-  //     console.log(error)
-  // };
 
   return (
     <Container component="main" maxWidth="xs" style={{ marginTop: '100px' }}>
