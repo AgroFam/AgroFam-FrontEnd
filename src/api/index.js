@@ -23,6 +23,7 @@ export const deletePost = (id) => API.delete(`api/posts/${id}`);
 
 export const signIn = (FormData) => API.post('api/user/signin', FormData);
 export const signUp = (FormData) => API.post('api/user/signup', FormData);
+export const googleSignIn = (token) => API.post('api/user/googleSignIn', { token });
 
 export const getArticlesFromSearch = (searchQuery) => NLP_API.get(`news?q=${searchQuery}`)
 export const getWebResults = (searchQuery) => NLP_API.get(`searchWeb?q=${searchQuery}`)

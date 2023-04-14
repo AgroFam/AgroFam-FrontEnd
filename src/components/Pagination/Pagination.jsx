@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import useStyles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts } from '../../actions/posts';
+import { getPosts } from '../../redux/actions/posts';
 
 const Paginate = ({ page }) => {
   const { numberOfPages } = useSelector((state) => state.posts);

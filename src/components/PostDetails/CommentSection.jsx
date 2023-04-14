@@ -1,21 +1,22 @@
 import React, { useState, useRef } from 'react';
 import { TextField, Button, Typography, Chip } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import useStyles from './styles';
-import { commentPost } from '../../actions/posts';
+import { commentPost } from '../../redux/actions/posts';
 
 const CommentSection = ({ post }) => {
   const classes = useStyles();
   const [comments, setComments] = useState(post?.comments);
   const [comment, setComment] = useState('');
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const user = useSelector((state) => state.auth.authData)
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const commentsRef = useRef();
 
   const handleClick = async () => {
-    const finalComment = `${user.result.name}: ${comment}`;
-    const newComments = await dispatch(commentPost(finalComment, post._id));
+    const finalComment = `${user.name}: ${comment}`;
+    const newComments = dispatch(commentPost(finalComment, post._id));
     setComments(newComments);
     setComment('');
     commentsRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -48,18 +49,18 @@ const CommentSection = ({ post }) => {
             label="Comment"
             multiline
             value={comment}
-            disabled={!user?.result?.name}
+            disabled={!isLoggedIn}
             onChange={(e) => setComment(e.target.value)}
           />
           <Button
             disableElevation
             style={{ marginTop: '10px' }}
             fullWidth
-            disabled={!comment || !user?.result?.name}
+            disabled={!comment || !isLoggedIn}
             variant="contained"
             color="primary"
             onClick={handleClick}>
-            {user?.result?.name ? 'comment' : 'Login To Post Comment'}
+            {isLoggedIn ? 'comment' : 'Login To Post Comment'}
           </Button>
         </div>
       </div>

@@ -24,14 +24,14 @@ import {
   Subtitles,
   TranslateRounded
 } from '@material-ui/icons';
-import { createPost } from '../../actions/posts';
+import { createPost } from '../../redux/actions/posts';
 import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './Styles';
 import LoginImg from '../../images/Login.svg';
 import placeholderImg from '../../images/PlaceholderImg.png';
 import { stateToHTML } from 'draft-js-export-html';
 import { useEffect } from 'react';
-import { SET_SNACKBAR } from '../../constants/actionTypes';
+import { SET_SNACKBAR } from '../../redux/constants/actionTypes';
 
 const categories = [
   {
@@ -84,9 +84,9 @@ const Write = () => {
   const [characters, setCharacters] = useState(0);
   const MAX_LENGTH = 8000;
   const localEditorState = localStorage.getItem('editorState');
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const user = useSelector((state) => state.auth.authData);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const fileUploadRef = useRef();
-  // const textEditorRef = useRef();
 
   //Function to convert file into base64 string
   const convertBase64 = (file) => {
@@ -125,7 +125,6 @@ const Write = () => {
   // mui rte handleChange
   const handleEditorChange = (editorState) => {
     const contentState = editorState.getCurrentContent();
-    // const rawData = convertToRaw(contentState);
     setPostData({ ...postData, message: stateToHTML(contentState) });
     setPostError({ ...postError, message: false });
     setCharacters(stateToHTML(contentState).length);
@@ -134,6 +133,7 @@ const Write = () => {
   // Clear form
   const clear = () => {
     setPostData({ title: '', message: '', tags: '', selectedFile: '' });
+    setPostError({ title: '', message: '', tags: '', selectedFile: '' });
     localStorage.setItem('editorState', '');
   };
 
@@ -153,9 +153,9 @@ const Write = () => {
 
     if (!postData.tags) setPostError({ ...postError, tags: true });
 
-    if (!postData.title) setPostError({ ...postError, title: true });
-
     if (!postData.selectedFile) setPostError({ ...postError, selectedFile: true });
+    
+    if (!postData.title) setPostError({ ...postError, title: true });
 
     if (
       postData.title &&
@@ -166,7 +166,7 @@ const Write = () => {
     ) {
       dispatch(
         createPost(
-          { ...postData, name: user?.result?.name, creatorImg: user?.result.picture },
+          { ...postData, name: user?.name, creatorImg: user?.picture },
           navigate,
           clear
         )
@@ -214,7 +214,7 @@ const Write = () => {
   const HeaderComponent = () => (
     <div className={classes.header}>
       <div className={classes.headerTitle}>
-        <Typography variant="h5">Draft By {user?.result?.name.split(' ')[0]} </Typography>
+        <Typography variant="h5">Draft By {user?.name.split(' ')[0]} </Typography>
         <Typography varialnt="subtitle">{save}</Typography>
       </div>
       <div className={classes.buttonGroup}>
@@ -245,7 +245,7 @@ const Write = () => {
 
   return (
     <Container className={classes.container} maxWidth="xl">
-      {!user?.result?.name ? (
+      {!isLoggedIn ? (
         <NotLoggedInComponent />
       ) : (
         <>
@@ -364,7 +364,7 @@ const Write = () => {
               />
             </div>
               <div className={classes.progress}>
-                {characters < MAX_LENGTH ? '' : <Chip variant='outlined' color='secondary' label={`unfortunately we only support ${MAX_LENGTH} characters as of now ` }/> }
+                {characters < MAX_LENGTH ? '' : <Chip variant='outlined' color='secondary' label={`Unfortunately we only support ${MAX_LENGTH} characters as of now ` }/> }
               <Typography variant="caption"> {`${characters}/8000`} </Typography>
               <CircularProgress
                 variant="determinate"

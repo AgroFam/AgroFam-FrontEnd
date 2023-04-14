@@ -11,61 +11,66 @@ import {
   Divider
 } from '@material-ui/core';
 import useStyles from './Styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import * as actionType from '../../constants/actionTypes';
+import * as actionType from '../../redux/constants/actionTypes';
+import { getAvatar } from '../../utils/utils';
+import jwtDecode from 'jwt-decode';
 
 const ProfileMenu = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
-  const open = Boolean(anchorElUser);
-  const id = open ? 'simple-popover' : undefined;
 
+  const user = useSelector((state) => state.auth.authData);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const [open, setOpen] = useState(false)
+  const id = open ? 'simple-popover' : undefined;
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
+    setOpen(true)
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+    setOpen(false);
   };
 
   useEffect(() => {
     // Logs out user if the jwt token expires
-    // const token = user?.token;
-    // if (token) {
-    //   const decodedToken = decode(token);
-    //   if (decodedToken.exp * 1000 < new Date().getTime()) logout();
-    // }
+    const token = JSON.parse(localStorage.getItem('profile'))?.token;
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
 
-    setUser(JSON.parse(localStorage.getItem('profile')));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
-    //Function to logout user
-    const logout = () => {
-      dispatch({ type: actionType.LOGOUT });
-      navigate('/auth');
-      setUser(null);
-    };
-  
+  //Function to logout user
+  const logout = () => {
+    dispatch({ type: actionType.LOGOUT });
+    navigate('/auth');
+  };
+
   return (
     <Toolbar className={classes.toolbar}>
-      {user ? (
+      {isLoggedIn ? (
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton
               className={classes.profileButton}
               aria-describedby={id}
               onClick={handleOpenUserMenu}>
-              <Avatar className={classes.purple} alt={user.result.name} src={user.result.picture}>
-                {user.result.name.charAt(0)}
+              <Avatar
+                className={classes.purple}
+                alt={user?.name}
+                src={user?.picture || getAvatar(user?.id)}>
+                {user?.name?.charAt(0)}
               </Avatar>
             </IconButton>
           </Tooltip>
@@ -87,14 +92,14 @@ const ProfileMenu = () => {
                 <Avatar
                   style={{ margin: '0.5em' }}
                   className={classes.purple}
-                  alt={user.result.name}
-                  src={user.result.picture}>
-                  {user.result.name.charAt(0)}
+                  alt={user?.name}
+                  src={user?.picture || getAvatar(user?.id)}>
+                  {user?.name?.charAt(0)}
                 </Avatar>
                 <Typography variant="subtitle1">
-                  <b>{user.result.name}</b>
+                  <b>{user?.name}</b>
                 </Typography>
-                <Typography variant="body2">{user.result.email}</Typography>
+                <Typography variant="body2">{user?.email}</Typography>
               </div>
               <Divider className={classes.divider} />
               <div className={classes.userMenuItem}>

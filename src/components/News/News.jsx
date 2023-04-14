@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Divider, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { getArticlesFromSearch } from '../../actions/posts';
+import { getArticlesFromSearch } from '../../redux/actions/posts';
 import useStyles from './styles';
 import { Skeleton } from '@material-ui/lab';
 import { useLocation } from 'react-router-dom';

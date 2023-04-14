@@ -16,33 +16,51 @@ import {
 import useStyles from './styles';
 import { Brightness4Rounded, Translate } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLanguage, setTheme } from '../../actions/settings';
-import { BENGALI, DARK, ENGLISH, FOLLOW_SYSTEM, GUJARATI, HINDI, KANNADA, LIGHT, MALAYALAM, MARATHI, PUNJABI, TAMIL, TELUGU } from '../../constants/settings';
-import { SET_SNACKBAR } from '../../constants/actionTypes';
-import { getPost, getPosts } from '../../actions/posts';
+import { setLanguage, setTheme } from '../../redux/actions/settings';
+import {
+  BENGALI,
+  DARK,
+  ENGLISH,
+  FOLLOW_SYSTEM,
+  GUJARATI,
+  HINDI,
+  KANNADA,
+  LIGHT,
+  MALAYALAM,
+  MARATHI,
+  PUNJABI,
+  TAMIL,
+  TELUGU
+} from '../../redux/constants/settings';
+import { SET_SNACKBAR } from '../../redux/constants/actionTypes';
+import { getPost, getPosts } from '../../redux/actions/posts';
+import { getAvatar } from '../../utils/utils';
 
 const Account = () => {
   const dispatch = useDispatch();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const user = useSelector((state) => state.auth.authData);
+  console.log(user)
   const { colorTheme, language } = useSelector((state) => state.settings);
   const { currentPage, post } = useSelector((state) => state.posts);
   const classes = useStyles();
 
   const handleChangeTheme = (e) => {
     dispatch(setTheme(e.target.value));
-    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: `💡 Set ${e.target.value} Mode` } });
+    dispatch({
+      type: SET_SNACKBAR,
+      payload: { open: true, message: `💡 Set ${e.target.value} Mode` }
+    });
   };
 
   const handleChangeLanguage = (e) => {
     dispatch(setLanguage(e.target.value));
-    dispatch({ type: SET_SNACKBAR, payload: { open: true, message: `🌐 Changed Default Content Language to ${e.target.value}` } });
-    dispatch(getPosts(currentPage || 1, e.target.value))
-    dispatch(getPost(post?._id, language))
+    dispatch({
+      type: SET_SNACKBAR,
+      payload: { open: true, message: `🌐 Changed Default Content Language to ${e.target.value}` }
+    });
+    dispatch(getPosts(currentPage || 1, e.target.value));
+    dispatch(getPost(post?._id, language));
   };
-
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('profile')));
-  }, []);
 
   return (
     <>
@@ -52,23 +70,31 @@ const Account = () => {
         style={{ margin: '100px 0 20px' }}>
         <div className={classes.cardContent}>
           <div className={classes.cardHeaders}>
-            <Avatar className={classes.avtar} alt={user?.result?.name} src={user?.result?.picture}>
-              {user?.result?.name?.charAt(0)}
+            <Avatar
+              className={classes.avtar}
+              alt={user?.name}
+              src={user?.picture || getAvatar(user?.id)}>
+              {user?.name?.charAt(0)}
             </Avatar>
             <Typography variant="h5" color="text.secondary" className={classes.content}>
-              {user?.result?.name}
+              {user?.name}
             </Typography>
             <Typography
               variant="subtitle"
               color="text.secondary"
               gutterBottom
               className={classes.content}>
-              {user?.result?.email}
+              {user?.email}
             </Typography>
           </div>
           <Paper elevation={0} className={classes.list}>
             <List
-              subheader={<Typography style={{padding: '0.7em'}} variant='h6'> General Settings</Typography>}>
+              subheader={
+                <Typography style={{ padding: '0.7em' }} variant="h6">
+                  {' '}
+                  General Settings
+                </Typography>
+              }>
               <ListItem className={classes.listItem}>
                 <ListItemIcon>
                   <Brightness4Rounded />
@@ -76,7 +102,10 @@ const Account = () => {
                 <ListItemText primary="AgroFam Colors" />
                 <ListItemSecondaryAction>
                   <FormControl variant="outlined" className={classes.formControl}>
-                    <Select className={classes.select} value={colorTheme} onChange={handleChangeTheme}>
+                    <Select
+                      className={classes.select}
+                      value={colorTheme}
+                      onChange={handleChangeTheme}>
                       <MenuItem value={FOLLOW_SYSTEM}>System</MenuItem>
                       <MenuItem value={DARK}>Dark</MenuItem>
                       <MenuItem value={LIGHT}>Light</MenuItem>
@@ -91,7 +120,10 @@ const Account = () => {
                 <ListItemText id="switch-list-label-language" primary="Preferred Language" />
                 <ListItemSecondaryAction>
                   <FormControl variant="outlined" className={classes.formControl}>
-                    <Select className={classes.select} value={language} onChange={handleChangeLanguage}>
+                    <Select
+                      className={classes.select}
+                      value={language}
+                      onChange={handleChangeLanguage}>
                       <MenuItem value={ENGLISH}>English</MenuItem>
                       <MenuItem value={HINDI}>Hindi</MenuItem>
                       <MenuItem value={MARATHI}>Marathi</MenuItem>

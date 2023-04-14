@@ -10,10 +10,6 @@ if (rootUrlRegex.test(ROOT_URL)) {
   API_URL = 'https://agrofam-backend-production.up.railway.app';
 }
 
-console.log("mode", import.meta.env.MODE)
-console.log('google id', import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID)
-console.log('environment', import.meta.env.VITE_ENVIRONMENT)
-
 // All the config variables avialable globally
 export default {
   googleOAuthClientID: import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID || '312651318153-duhu95bpdjuv8vj29nndbo48gfc18lbr.apps.googleusercontent.com',

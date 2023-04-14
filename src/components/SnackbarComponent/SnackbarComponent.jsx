@@ -3,7 +3,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { useSelector, useDispatch } from 'react-redux';
-import { SET_SNACKBAR } from '../../constants/actionTypes';
+import { SET_SNACKBAR } from '../../redux/constants/actionTypes';
 import useStyles from './Styles'
 
 const SnackbarComponent = () => {

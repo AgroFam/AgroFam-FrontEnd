@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import { SET_PROGRESS } from '../constants/actionTypes';
+import { SET_PROGRESS } from '../redux/constants/actionTypes';
+import { googleLogin } from '../redux/actions/auth';
 
 export const convertToPlain = (html) => {
   // Create a new div element
@@ -59,4 +60,14 @@ export const createPostProgressInterval = (dispatch) => {
 export const getQueryParams = (queryParam) => {
   const query = new URLSearchParams(useLocation().search);
   return query.get(queryParam);
+};
+
+export const googleSuccess = async (res, dispatch, navigate) => {
+  const token = res?.credential;
+  dispatch(googleLogin(token));
+  navigate('/');
+};
+
+export const getAvatar = (param) => {
+  return `https://api.dicebear.com/6.x/adventurer-neutral/svg?seed=${param}`
 }

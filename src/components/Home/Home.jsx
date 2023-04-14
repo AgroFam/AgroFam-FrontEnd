@@ -7,15 +7,16 @@ import Pagination from '../Pagination/Pagination';
 import { useNavigate, useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
-import { getWebResults, getPostsBySearch } from '../../actions/posts';
+import { getWebResults, getPostsBySearch } from '../../redux/actions/posts';
 import config from '../../config';
 import News from '../News/News';
 import { useSelector } from 'react-redux';
-import { getQueryParams } from '../../utils/utils';
+import { getQueryParams, googleSuccess } from '../../utils/utils';
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(0);
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const user = useSelector((state) => state.auth.authData);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const classes = useStyles();
   const navigate = useNavigate();
@@ -34,35 +35,26 @@ const Home = () => {
 
   const classes2 = useStyles2();
 
-  const googleSuccess = async (res) => {
-    const actualRes = jwt_decode(res.credential);
-    const result = actualRes;
-    const token = res.credential;
-
-    try {
-      dispatch({ type: 'AUTH', data: { result, token } });
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     /* global google */
+  //     google.accounts.id.initialize({
+  //       client_id: config.googleOAuthClientID,
+  //       callback: (res) => googleSuccess(res, dispatch, navigate)
+  //     });
+  //     google.accounts.id.prompt();
+  //   }
+  // }, [])
+  
 
   useEffect(() => {
-    if (!user) {
-      /* global google */
-      google.accounts.id.initialize({
-        client_id: config.googleOAuthClientID,
-        callback: googleSuccess
-      });
-      google.accounts.id.prompt();
-    }
     if (searchQuery || tagsQuery) {
       dispatch(getPostsBySearch({ search: searchQuery, tags: tagsQuery, lang: language }));
       dispatch(getWebResults(searchQuery || tagsQuery));
     }
     // eslint-disable-next-line
   }, [searchQuery, tagsQuery]);
-
+  
   return (
     <Container
       className={classes.homeContainer}

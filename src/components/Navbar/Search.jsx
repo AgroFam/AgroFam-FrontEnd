@@ -4,7 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { ClearRounded } from '@material-ui/icons';
 import { IconButton, InputBase } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostsBySearch, getWebResults } from '../../actions/posts';
+import { getPostsBySearch, getWebResults } from '../../redux/actions/posts';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getQueryParams } from '../../utils/utils';
