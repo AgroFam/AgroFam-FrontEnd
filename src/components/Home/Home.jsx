@@ -4,22 +4,16 @@ import Posts from '../Posts/Posts';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
 import Pagination from '../Pagination/Pagination';
-import { useNavigate, useLocation } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 
 import { getWebResults, getPostsBySearch } from '../../redux/actions/posts';
-import config from '../../config';
 import News from '../News/News';
 import { useSelector } from 'react-redux';
-import { getQueryParams, googleSuccess } from '../../utils/utils';
+import { getQueryParams } from '../../utils/utils';
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(0);
-  const user = useSelector((state) => state.auth.authData);
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const classes = useStyles();
-  const navigate = useNavigate();
   const page = getQueryParams('page') || 1;
   const searchQuery = getQueryParams('searchQuery')
   const tagsQuery = getQueryParams('tags')
