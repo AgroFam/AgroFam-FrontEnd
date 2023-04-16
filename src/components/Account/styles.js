@@ -5,7 +5,8 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     minHeight: '50vh',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: '1em',
   },
   cardContent: {
     display: 'grid',
@@ -41,5 +42,18 @@ export default makeStyles((theme) => ({
     '& div': {
       padding: '12px 30px 12px 12px',
     },
+  },
+  NotLoggedInComponent: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '1em',
+    textAlign: 'center'
+  },
+  footer: {
+    '& a': {
+      color: theme.palette.secondary.main,
+    }
   }
 }));

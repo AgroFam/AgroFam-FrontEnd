@@ -12,9 +12,6 @@ export default makeStyles((theme) => ({
     marginTop: '1rem',
     padding: '16px'
   },
-  gridContainer: {
-
-  },
   homeContainer: {
     padding: '0',
   },

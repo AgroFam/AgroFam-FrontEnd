@@ -14,7 +14,10 @@ export default makeStyles((theme) => ({
     maxWidth: '410px',
     '& a': {
       textDecoration: 'none',
-      color: theme.palette.primary.main
+      color: theme.palette.primary.main,
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
     }
   },
   newsContent: {
@@ -27,7 +30,10 @@ export default makeStyles((theme) => ({
     },
     '& a': {
       textDecoration: 'none',
-      color: theme.palette.text.secondary
+      color: theme.palette.text.secondary,
+      '& :hover': {
+        textDecoration: 'underline',
+      }
     }
   },
 }));

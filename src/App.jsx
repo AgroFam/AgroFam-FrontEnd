@@ -20,6 +20,9 @@ import NewsPage from './components/News/NewsPage';
 import { DARK, FOLLOW_SYSTEM, LIGHT } from './redux/constants/settings';
 import { PREFERS_DARK_MODE } from './redux/constants/actionTypes';
 import SnackbarComponent from './components/SnackbarComponent/SnackbarComponent';
+import Team from './components/Team/Team';
+import About from './components/About/About';
+import Support from './components/Support/Support';
 
 
 const App = () => {
@@ -64,6 +67,9 @@ const App = () => {
             <Route path="/posts/:id" element={<PostDetails />} />
             <Route path="/auth" element={!isLoggedIn ? <Auth /> : <Navigate to="/posts" />} />
             <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/team" element={<Team />} />
           </Routes>
         </Container>
         <BottomNav />

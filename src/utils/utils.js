@@ -69,5 +69,5 @@ export const googleSuccess = async (res, dispatch, navigate) => {
 };
 
 export const getAvatar = (param) => {
-  return `https://api.dicebear.com/6.x/adventurer-neutral/svg?seed=${param}`
+  return `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${param}`
 }
