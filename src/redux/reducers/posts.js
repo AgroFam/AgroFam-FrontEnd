@@ -12,7 +12,8 @@ import {
   FETCH_ARTICLES,
   START_LOADING_NEWS,
   END_LOADING_NEWS,
-  SET_PROGRESS
+  SET_PROGRESS,
+  FETCH_MORE
 } from '../constants/actionTypes';
 
 const defaultState = {
@@ -20,7 +21,9 @@ const defaultState = {
   isLoadingNews: false,
   progress: 0,
   posts: [],
-  articles: []
+  articles: [],
+  numberOfPages: 0,
+  currentPage: 1,
 }
 
 export default (state = defaultState, action) => {
@@ -39,6 +42,13 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         posts: action.payload.data,
+        currentPage: action.payload.currentPage,
+        numberOfPages: action.payload.numberOfPages
+      };
+    case FETCH_MORE:
+      return {
+        ...state,
+        posts: state.posts.concat(action.payload.data),
         currentPage: action.payload.currentPage,
         numberOfPages: action.payload.numberOfPages
       };

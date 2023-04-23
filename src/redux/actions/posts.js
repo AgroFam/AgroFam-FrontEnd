@@ -13,7 +13,8 @@ import {
   COMMENT,
   FETCH_ARTICLES,
   SET_PROGRESS,
-  SET_SNACKBAR
+  SET_SNACKBAR,
+  FETCH_MORE
 } from '../constants/actionTypes';
 
 import * as api from '../../api/index.js';
@@ -52,6 +53,29 @@ export const getPosts = (page, lang) => async (dispatch) => {
     }
   }
 };
+
+export const getMorePosts = (page, lang) => async (dispatch) => { 
+
+  try {
+    console.log('page', page)
+    dispatch({ type: START_LOADING });
+    const { data } = await api.fetchPosts(page + 1, lang.toLowerCase());
+
+    dispatch({ type: FETCH_MORE, payload: data });
+    dispatch({ type: END_LOADING });
+  } catch (error) {
+    if (error.response) {
+      dispatch({
+        type: SET_SNACKBAR,
+        payload: { open: true, message: '⚠️ Failed to fetch Posts' }
+      });
+      dispatch({ type: END_LOADING });
+    } else {
+      console.log(error.message);
+      dispatch({ type: END_LOADING });
+    }
+  }
+}
 
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   try {

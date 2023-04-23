@@ -6,7 +6,7 @@ import NewPost from './Post/NewPost';
 import NotFound from './NotFound';
 import SkeletonLoader from './Post/SkeletonLoader';
 
-const Posts = ({ setCurrentId }) => {
+const SearchResults = ({ setCurrentId }) => {
   const { posts, isLoading } = useSelector((state) => state.posts);
   const classes = useStyles();
 
@@ -27,4 +27,4 @@ const Posts = ({ setCurrentId }) => {
   );
 };
 
-export default Posts;
+export default SearchResults;

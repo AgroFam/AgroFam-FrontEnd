@@ -49,7 +49,6 @@ const App = () => {
   }, [colorTheme, prefersDarkMode])
   
   const theme = Theme();
-  
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
