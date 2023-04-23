@@ -255,7 +255,7 @@ const Account = () => {
             </List>
           </Paper>
           <Typography className={classes.footer}>
-            Crafted by 💝 by AgroFam&#8482; <Link to="/team">Team</Link>
+            Crafted with 💝 by AgroFam&#8482; <Link to="/team">Team</Link>
           </Typography>
         </div>
       </Container>
