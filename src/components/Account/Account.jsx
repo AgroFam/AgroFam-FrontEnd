@@ -173,15 +173,15 @@ const Account = () => {
                         value={language}
                         onChange={handleChangeLanguage}>
                         <MenuItem value={ENGLISH}>English</MenuItem>
-                        <MenuItem value={HINDI}>Hindi</MenuItem>
-                        <MenuItem value={MARATHI}>Marathi</MenuItem>
-                        <MenuItem value={GUJARATI}>Gujrati</MenuItem>
-                        <MenuItem value={PUNJABI}>Punjabi</MenuItem>
-                        <MenuItem value={BENGALI}>Bengali</MenuItem>
-                        <MenuItem value={TAMIL}>Tamil</MenuItem>
-                        <MenuItem value={TELUGU}>Telugu</MenuItem>
-                        <MenuItem value={KANNADA}>Kannada</MenuItem>
-                        <MenuItem value={MALAYALAM}>Malayalam</MenuItem>
+                        <MenuItem value={HINDI}>हिंदी</MenuItem>
+                        <MenuItem value={MARATHI}>मराठी</MenuItem>
+                        <MenuItem value={GUJARATI}>ગુજરાતી</MenuItem>
+                        <MenuItem value={PUNJABI}>ਪੰਜਾਬੀ</MenuItem>
+                        <MenuItem value={BENGALI}>বাংলা</MenuItem>
+                        <MenuItem value={TAMIL}>தமிழ்</MenuItem>
+                        <MenuItem value={TELUGU}>తెలుగు</MenuItem>
+                        <MenuItem value={KANNADA}>ಕನ್ನಡ</MenuItem>
+                        <MenuItem value={MALAYALAM}>മലയാളം</MenuItem>
                       </Select>
                     </FormControl>
                   </ListItemSecondaryAction>
