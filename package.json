@@ -1,5 +1,5 @@
 {
-  "name": "social-media-app",
+  "name": "agrofam",
   "version": "0.1.0",
   "private": true,
   "proxy": "https://agrofam-backend-production.up.railway.app",
