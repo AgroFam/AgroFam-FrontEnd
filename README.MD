@@ -55,3 +55,10 @@ Ngrok tunnel Command
 ngrok http 3000 --host-header="localhost:3000"
 ```
 
+  const response = await octokit.pulls.get({
+    owner,
+    repo,
+    pull_number,
+    mediaType: { format: "diff" },
+  });
+
