@@ -8,6 +8,7 @@ API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
   }
+  console.log("ajlksdjflkjklasd")
   return req;
 });
 
@@ -20,6 +21,8 @@ export const likePost = (id) => API.patch(`api/posts/${id}/likePost`);
 export const comment = (value, id) => API.post(`api/posts/${id}/commentPost`, { value });
 export const updatePost = (id, updatedPost) => API.patch(`api/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`api/posts/${id}`);
+export const updatePost2 = (id, updatedPost) => API.patch(`api/posts/${id}`, updatedPost);
+export const deletePost2 = (id) => API.delete(`api/posts/${id}`);
 
 export const signIn = (FormData) => API.post('api/user/signin', FormData);
 export const signUp = (FormData) => API.post('api/user/signup', FormData);
