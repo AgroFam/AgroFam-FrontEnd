@@ -50,12 +50,12 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Account = () => {
   // const dispatch = useDispatch(); //
-  const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.authData);
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const { colorTheme, language } = useSelector((state) => state.settings);
-  const { currentPage, post } = useSelector((state) => state.posts);
-  const classes = useStyles();//
+  // const navigate = useNavigate();
+  // const user = useSelector((state) => state.auth.authData);
+  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  // const { colorTheme, language } = useSelector((state) => state.settings);
+  // const { currentPage, post } = useSelector((state) => state.posts);
+  // const classes = useStyles();//
 
   const handleChangeTheme = (e) => {
     dispatch(setTheme(e.target.value));
