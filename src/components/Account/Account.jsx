@@ -49,7 +49,7 @@ import { getAvatar } from '../../utils/utils';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Account = () => {
-  // const dispatch = useDispatch();
+  // const dispatch = useDispatch(); //
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.authData);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
