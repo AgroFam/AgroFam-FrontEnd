@@ -11,7 +11,7 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchPost = (id, lang) => API.get(`api/posts/${id}?lang=${lang}`);
+export const fetchPost = (id, lang) => API.get(`api/posts\${id}?lang=${lang}`);
 export const fetchPosts = (page, lang) => API.get(`api/posts?page=${page}&lang=${lang}`);
 export const fetchPostsBySearch = (searchQuery, lang) =>
   API.get(`api/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}&lang=${searchQuery.lang}`);
