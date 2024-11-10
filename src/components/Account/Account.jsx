@@ -55,7 +55,7 @@ const Account = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const { colorTheme, language } = useSelector((state) => state.settings);
   const { currentPage, post } = useSelector((state) => state.posts);
-  const classes = useStyles();
+  const classes = useStyles();//
 
   const handleChangeTheme = (e) => {
     dispatch(setTheme(e.target.value));
