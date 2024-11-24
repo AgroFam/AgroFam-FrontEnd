@@ -9,6 +9,12 @@ if (rootUrlRegex.test(ROOT_URL)) {
 } else {
   API_URL = 'https://agrofam-backend-production.up.railway.app';
 }
+let API_URL;
+if (rootUrlRegex.test(ROOT_URL)) {
+  API_URL = 'http://localhost:5000';
+} else {
+  API_URL = 'https://agrofam-backend-production.up.railway.app';
+}
 
 // All the config variables avialable globally
 export default {
