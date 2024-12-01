@@ -1,5 +1,4 @@
-featureX: true
+# yaml-language-server: $schema=./pullpanda.schema.json
 enabled: true
 reviews:
-  load: lkajldskjf
-
+  level: skipReview
