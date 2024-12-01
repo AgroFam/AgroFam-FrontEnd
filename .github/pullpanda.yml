@@ -1,2 +1,5 @@
 featureX: true
 enabled: true
+reviews:
+  load: "lkajldskjf"
+
