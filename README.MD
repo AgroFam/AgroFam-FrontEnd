@@ -1,4 +1,3 @@
- wont merge this
 # AgroFam Frontend client
 
 This repo consist of react application for the frontend client of the AgroFam Project
