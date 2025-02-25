@@ -1,4 +1,4 @@
 # yaml-language-server: $schema=./pullpanda.schema.json
 enabled: true
 reviews:
-  level: skipReview
+  level: fullReview
