@@ -2,3 +2,6 @@
 enabled: true
 reviews:
   level: fullReview
+allowedBranches:
+  - master
+  - mrcoder991-*
