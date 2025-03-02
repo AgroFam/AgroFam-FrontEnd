@@ -62,6 +62,10 @@ export default makeStyles((theme) => ({
     '& ul,ol': {
       padding: '0 2em'
     },
+    '& img': {
+      width: '100%',
+      borderRadius: theme.shape.borderRadius,
+    }
   },
   media: {
     margin: '2em 0',
