@@ -1,5 +1,4 @@
-
-# AgroFam Frontend client
+# AgroFam Frontend client wont merge this only for testing
 
 This repo consist of react application for the frontend client of the AgroFam Project
 
@@ -21,7 +20,7 @@ To run this project, you will need to add the following environment variables to
 
 ```
 VITE_ENVIRONMENT=DEVELOPMENT
-VITE_GOOGLE_AUTH_CLIENT_ID=312651318153-duhu95bpdjuv8vj29nndbo48gfc18lbr.apps.googleusercontent.com
+VITE_GOOGLE_AUTH_CLIENT_ID=<YOUR_GOOGLE_AUTH_CLIENT_ID>
 ```
 
 ## Run Locally
