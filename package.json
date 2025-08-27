@@ -5,6 +5,10 @@
   "proxy": "https://agrofam-backend-production.up.railway.app",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
